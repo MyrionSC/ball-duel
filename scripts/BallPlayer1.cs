@@ -1,6 +1,8 @@
 using System;
 using Godot;
 
+namespace BallDuel.scripts;
+
 public partial class BallPlayer1 : Area2D
 {
     [Export] public double MoveSpeed = 50;
@@ -10,8 +12,8 @@ public partial class BallPlayer1 : Area2D
     {
         // Get input from both analog stick and d-pad
         Vector2 analogInput = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-        Console.WriteLine(analogInput);
-        
+        // Console.WriteLine(analogInput);
+
         // If there's analog input, use it
         if (analogInput.Length() > 0.1f) // Small deadzone
         {

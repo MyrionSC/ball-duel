@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpduhltgap0qw"]
+[gd_scene load_steps=8 format=3 uid="uid://cpduhltgap0qw"]
 
 [ext_resource type="Texture2D" uid="uid://b123b1fma3a5b" path="res://assets/BallDuelBackground.png" id="1_anwit"]
 [ext_resource type="Script" uid="uid://c4t3h6uyc6xu6" path="res://scripts/BallPlayer1.cs" id="2_lpbkv"]
 [ext_resource type="Texture2D" uid="uid://b5dlha0kq0kmt" path="res://icon.svg" id="3_30pw2"]
+[ext_resource type="Script" uid="uid://ggat428lkf2t" path="res://scripts/PhysicsBall1.cs" id="4_30pw2"]
+[ext_resource type="Texture2D" uid="uid://dmi46x0p0rh22" path="res://assets/bowling_ball.png" id="4_lpbkv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y32ns"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_anwit"]
 
 [node name="VersusScene" type="Node2D"]
 
@@ -14,7 +18,9 @@
 texture = ExtResource("1_anwit")
 
 [node name="BallPlayer1" type="Area2D" parent="."]
+position = Vector2(-200, 0)
 script = ExtResource("2_lpbkv")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallPlayer1"]
 modulate = Color(0.48084, 0.592684, 1, 1)
@@ -23,3 +29,15 @@ one_way_collision_margin = 30.0
 
 [node name="Sprite2D" type="Sprite2D" parent="BallPlayer1"]
 texture = ExtResource("3_30pw2")
+
+[node name="PhysicsBall1" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(200, 0)
+script = ExtResource("4_30pw2")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBall1"]
+shape = SubResource("CircleShape2D_anwit")
+
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsBall1"]
+texture = ExtResource("4_lpbkv")
