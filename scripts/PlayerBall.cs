@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PhysicsBall1 : RigidBody2D
+public partial class PlayerBall : RigidBody2D
 {
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
 

@@ -6,9 +6,14 @@ public partial class VersusScene : Node2D
     public override void _Ready()
     {
         base._Ready();
-
         Console.WriteLine("VersusScene ready");
         
+        
+        var player1 = GetNode<PlayerBall>("PhysicsBall1");
+        // var player2 = GetNode<PhysicsBall1>("Player2");
+        
+        player1.ControllerId = 0; // First controller
+        // player2.ControllerId = 1; // Second controller
         
     }
 

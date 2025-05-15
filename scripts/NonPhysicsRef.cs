@@ -3,7 +3,7 @@ using Godot;
 
 namespace BallDuel.scripts;
 
-public partial class BallPlayer1 : Area2D
+public partial class NonPhysicsRef : Area2D
 {
     [Export] public double MoveSpeed = 50;
     [Export] public Vector2 Direction = Vector2.Zero;
