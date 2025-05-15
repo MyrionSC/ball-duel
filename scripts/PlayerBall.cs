@@ -3,11 +3,13 @@ using System;
 
 public partial class PlayerBall : RigidBody2D
 {
+    private float ACCELERATION_CONSTANT = 100;
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
         base._IntegrateForces(state);
+        float forceMultiplier = 1f;
 
         // Get input for specific controller
         Vector2 analogInput = new Vector2(
@@ -16,9 +18,14 @@ public partial class PlayerBall : RigidBody2D
         );
 
         // Console.WriteLine($"Controller {ControllerId} input: {analogInput}");
+        
+        if (Input.IsActionPressed($"device_{ControllerId}_trigger_right"))
+        {
+            forceMultiplier = 2f;
+        }
 
         // Apply force based on controller input
-        ApplyForce(analogInput * 100);
+        ApplyForce(analogInput * forceMultiplier * ACCELERATION_CONSTANT);
     }
 
     private float GetClampedJoyAxis(int controllerId, JoyAxis axis)

@@ -7,12 +7,12 @@ public partial class VersusScene : Node2D
     {
         base._Ready();
         Console.WriteLine("VersusScene ready");
-        
-        
-        var player1 = GetNode<PlayerBall>("PhysicsBall1");
-        // var player2 = GetNode<PhysicsBall1>("Player2");
-        
-        player1.ControllerId = 0; // First controller
+
+        Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
+
+        // var player1 = GetNode<PlayerBall>("PlayerBall1");
+        // var player2 = GetNode<PhysicsBall1>("PlayerBall2");
+        // player1.ControllerId = 0; // First controller
         // player2.ControllerId = 1; // Second controller
         
     }
@@ -24,10 +24,12 @@ public partial class VersusScene : Node2D
         if (@event is InputEventMouseMotion mouseEvent)
         {
             return;
-        };
+        }
 
-        Console.WriteLine(@event.AsText());
-        
+        ;
+
+        // Console.WriteLine(@event.AsText());
+
         // InputEventJoypadMotion joypadEvent = @event as InputEventJoypadMotion;
         // InputEventJoypadConnection
         // if (@event is InputEventJoypadConnection joypadEvent)
@@ -37,6 +39,5 @@ public partial class VersusScene : Node2D
         //     else
         //         Console.WriteLine($"Controller {joypadEvent.DeviceId} disconnected");
         // }
-
     }
 }

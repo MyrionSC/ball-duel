@@ -10,11 +10,7 @@ public partial class NonPhysicsRef : Area2D
 
     public override void _PhysicsProcess(double delta)
     {
-        // Get input from both analog stick and d-pad
         Vector2 analogInput = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-        // Console.WriteLine(analogInput);
-
-        // If there's analog input, use it
         if (analogInput.Length() > 0.1f) // Small deadzone
         {
             Direction = analogInput.Normalized();
@@ -22,12 +18,6 @@ public partial class NonPhysicsRef : Area2D
         else
         {
             Direction = Vector2.Zero;
-        }
-
-        // If RT is pressed on controller, double direction
-        if (Input.IsActionPressed("trigger_right"))
-        {
-            Direction *= 2;
         }
 
         Position = Position with

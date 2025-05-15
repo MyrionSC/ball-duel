@@ -34,7 +34,7 @@ texture = ExtResource("3_30pw2")
 
 [node name="PlayerBall1" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(200, 0)
+position = Vector2(-400, -200)
 script = ExtResource("5_3n2by")
 metadata/_edit_group_ = true
 
@@ -47,7 +47,7 @@ texture = ExtResource("4_lpbkv")
 
 [node name="PlayerBall2" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(200, 0)
+position = Vector2(400, -200)
 script = ExtResource("5_3n2by")
 ControllerId = 1
 metadata/_edit_group_ = true
@@ -62,7 +62,7 @@ texture = ExtResource("4_lpbkv")
 [node name="PhysicsBall2" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(200, 200)
-linear_velocity = Vector2(-200, 0)
+linear_velocity = Vector2(-200, 3)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBall2"]
