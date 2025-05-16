@@ -1,8 +1,11 @@
 
-More bouncy collision
-
 borders
 
 score
 
-middle bouncy thing
+middle bouncy thing extra bounce somehow?
+
+add players 2 - 3
+
+redo ball sprites, more definition? Smileys?
+
