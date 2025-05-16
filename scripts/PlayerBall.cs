@@ -1,5 +1,5 @@
-using Godot;
 using System;
+using Godot;
 
 public partial class PlayerBall : RigidBody2D
 {
@@ -18,7 +18,7 @@ public partial class PlayerBall : RigidBody2D
         );
 
         // Console.WriteLine($"Controller {ControllerId} input: {analogInput}");
-        
+
         if (Input.IsActionPressed($"device_{ControllerId}_trigger_right"))
         {
             forceMultiplier = 2f;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpduhltgap0qw"]
+[gd_scene load_steps=10 format=3 uid="uid://cpduhltgap0qw"]
 
 [ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://scripts/VersusScene.cs" id="1_3n2by"]
 [ext_resource type="Texture2D" uid="uid://b123b1fma3a5b" path="res://assets/BallDuelBackground.png" id="1_anwit"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b5dlha0kq0kmt" path="res://icon.svg" id="3_30pw2"]
 [ext_resource type="Texture2D" uid="uid://dmi46x0p0rh22" path="res://assets/bowling_ball.png" id="4_lpbkv"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
+[ext_resource type="Texture2D" uid="uid://d0ri81xw1pyjw" path="res://assets/red_ball.png" id="7_tefk0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y32ns"]
 
@@ -57,7 +58,7 @@ scale = Vector2(3.2, 3.2)
 shape = SubResource("CircleShape2D_anwit")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall2"]
-texture = ExtResource("4_lpbkv")
+texture = ExtResource("7_tefk0")
 
 [node name="PhysicsBall2" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
