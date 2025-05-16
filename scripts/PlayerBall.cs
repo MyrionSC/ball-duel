@@ -4,11 +4,21 @@ using Godot;
 public partial class PlayerBall : RigidBody2D
 {
     private float ACCELERATION_CONSTANT = 100;
+    private bool _resetState = false;
+    private Vector2 _newPosition;
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
         base._IntegrateForces(state);
+
+        if (_resetState)
+        {
+            _resetState = false;
+            Position = _newPosition;
+            return;
+        }
+        
         float forceMultiplier = 1f;
 
         // Get input for specific controller
@@ -16,8 +26,6 @@ public partial class PlayerBall : RigidBody2D
             GetClampedJoyAxis(ControllerId, JoyAxis.LeftX),
             GetClampedJoyAxis(ControllerId, JoyAxis.LeftY)
         );
-
-        // Console.WriteLine($"Controller {ControllerId} input: {analogInput}");
 
         if (Input.IsActionPressed($"device_{ControllerId}_trigger_right"))
         {
@@ -38,5 +46,11 @@ public partial class PlayerBall : RigidBody2D
     public bool IsControllerConnected()
     {
         return Input.IsJoyKnown(ControllerId);
+    }
+
+    public void MoveBody(Vector2 targetPosition)
+    {
+        _resetState = true;
+        _newPosition = targetPosition;
     }
 }

@@ -3,6 +3,9 @@ using System;
 
 public partial class VersusScene : Node2D
 {
+    PlayerBall playerBall1 = null;
+    PlayerBall playerBall2 = null;
+
     public override void _Ready()
     {
         base._Ready();
@@ -10,11 +13,20 @@ public partial class VersusScene : Node2D
 
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
-        // var player1 = GetNode<PlayerBall>("PlayerBall1");
-        // var player2 = GetNode<PhysicsBall1>("PlayerBall2");
-        // player1.ControllerId = 0; // First controller
-        // player2.ControllerId = 1; // Second controller
-        
+        playerBall1 = GetNode<PlayerBall>("PlayerBall1");
+
+        Console.WriteLine(playerBall1.IsControllerConnected());
+
+        if (!playerBall1.IsControllerConnected())
+        {
+            playerBall1.Position = new Vector2(100000, 100000);
+        }
+
+        playerBall2 = GetNode<PlayerBall>("PlayerBall2");
+        if (!playerBall2.IsControllerConnected())
+        {
+            playerBall2.Position = new Vector2(100000, 100000);
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -26,18 +38,18 @@ public partial class VersusScene : Node2D
             return;
         }
 
-        ;
+        Console.WriteLine(playerBall1.Position);
+        if (playerBall1 != null && playerBall1.IsControllerConnected() && playerBall1.Position.X > 50000)
+        {
+            Console.WriteLine("Connecting player 1");
+            playerBall1.MoveBody(new Vector2(-400, -200));
+        }
 
-        // Console.WriteLine(@event.AsText());
+        if (playerBall2 != null && playerBall2.IsControllerConnected() && playerBall2.Position.X > 50000)
+        {
+            Console.WriteLine("Connecting player 2");
+            playerBall2.MoveBody(new Vector2(400, -200));
+        }
 
-        // InputEventJoypadMotion joypadEvent = @event as InputEventJoypadMotion;
-        // InputEventJoypadConnection
-        // if (@event is InputEventJoypadConnection joypadEvent)
-        // {
-        //     if (joypadEvent.Connected)
-        //         Console.WriteLine($"Controller {joypadEvent.DeviceId} connected");
-        //     else
-        //         Console.WriteLine($"Controller {joypadEvent.DeviceId} disconnected");
-        // }
     }
 }
