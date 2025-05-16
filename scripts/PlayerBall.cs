@@ -53,4 +53,9 @@ public partial class PlayerBall : RigidBody2D
         _resetState = true;
         _newPosition = targetPosition;
     }
+
+    public void Die()
+    {
+        throw new NotImplementedException();
+    }
 }

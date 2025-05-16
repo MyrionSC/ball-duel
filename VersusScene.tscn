@@ -1,13 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://cpduhltgap0qw"]
+[gd_scene load_steps=19 format=3 uid="uid://cpduhltgap0qw"]
 
 [ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://scripts/VersusScene.cs" id="1_3n2by"]
-[ext_resource type="Texture2D" uid="uid://b123b1fma3a5b" path="res://assets/BallDuelBackground.png" id="1_anwit"]
+[ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
 [ext_resource type="Script" uid="uid://c4t3h6uyc6xu6" path="res://scripts/NonPhysicsRef.cs" id="3_3n2by"]
 [ext_resource type="Texture2D" uid="uid://b5dlha0kq0kmt" path="res://icon.svg" id="3_30pw2"]
+[ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
 [ext_resource type="Texture2D" uid="uid://dmi46x0p0rh22" path="res://assets/bowling_ball.png" id="4_lpbkv"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
 [ext_resource type="Texture2D" uid="uid://d0ri81xw1pyjw" path="res://assets/red_ball.png" id="7_tefk0"]
 [ext_resource type="Texture2D" uid="uid://cw80qptwn7xiu" path="res://assets/black_ball.png" id="8_xyg1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyg1p"]
+size = Vector2(1400, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y32ns"]
 
@@ -36,7 +40,27 @@ script = ExtResource("1_3n2by")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_anwit")
+texture = ExtResource("2_xyg1p")
+
+[node name="UpperBorder" type="Area2D" parent="."]
+position = Vector2(-700, -380)
+script = ExtResource("3_xrdcs")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperBorder"]
+position = Vector2(700, 0)
+shape = SubResource("RectangleShape2D_xyg1p")
+debug_color = Color(0.482241, 0.436579, 1, 0.42)
+
+[node name="ColorRect" type="ColorRect" parent="UpperBorder"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 1400.0
+offset_bottom = 20.0
+grow_vertical = 2
+color = Color(0.809884, 0.415649, 1, 1)
 
 [node name="Reference" type="Area2D" parent="."]
 position = Vector2(-200, 0)
@@ -110,6 +134,7 @@ texture = ExtResource("4_lpbkv")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_gaov6")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 scale = Vector2(8, 8)
@@ -118,3 +143,5 @@ shape = SubResource("CircleShape2D_tefk0")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("8_xyg1p")
+
+[connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
