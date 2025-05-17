@@ -3,7 +3,7 @@ using Godot;
 
 public partial class PlayerBall : RigidBody2D
 {
-    private float ACCELERATION_CONSTANT = 100;
+    private float ACCELERATION_CONSTANT = 150;
     private bool _resetState = false;
     public Vector2 OriginalPosition = Vector2.Zero;
     private Vector2 _newPosition;
@@ -21,20 +21,14 @@ public partial class PlayerBall : RigidBody2D
             LinearVelocity = Vector2.Zero;
             return;
         }
-        
-        
-        float forceMultiplier = 1f;
 
-        // Get input for specific controller
+        float forceMultiplier = 1f;
         Vector2 analogInput = new Vector2(
             GetClampedJoyAxis(ControllerId, JoyAxis.LeftX),
             GetClampedJoyAxis(ControllerId, JoyAxis.LeftY)
         );
-
         if (Input.IsActionPressed($"device_{ControllerId}_trigger_right"))
-        {
             forceMultiplier = 2f;
-        }
 
         // Apply force based on controller input
         ApplyForce(analogInput * forceMultiplier * ACCELERATION_CONSTANT);
