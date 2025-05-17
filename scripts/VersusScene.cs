@@ -66,7 +66,7 @@ public partial class VersusScene : Node2D
             return;
         }
 
-        Console.WriteLine(@event.GetType().Name + ": " + @event.AsText());
+        // Console.WriteLine(@event.GetType().Name + ": " + @event.AsText());
         if (playerBall1 != null && playerBall1.IsControllerConnected() && playerBall1.Position.X > 50000)
         {
             Console.WriteLine("Connecting player 1");
@@ -123,5 +123,8 @@ public partial class VersusScene : Node2D
             if (playerBall.IsControllerConnected())
                 playerBall.Reset();
         }
+        
+        var spinnyThing = GetNode<MiddleSpinnyThing>("MiddleSpinnyThing");
+        spinnyThing.Reset();
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cpduhltgap0qw"]
+[gd_scene load_steps=20 format=3 uid="uid://cpduhltgap0qw"]
 
 [ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://scripts/VersusScene.cs" id="1_3n2by"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cnchnv2cvob8m" path="res://assets/grey_high_res_ball.png" id="7_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_xrdcs"]
+[ext_resource type="Script" uid="uid://dds8y5ni0rj7n" path="res://MiddleSpinnyThing.cs" id="10_gaov6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gaov6"]
 bounce = 10.0
@@ -29,11 +30,10 @@ bounce = 1.0
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrdcs"]
 bounce = 1.0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wlibp"]
-bounce = 1.0
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4lbyv"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f4o1y"]
-bounce = 1.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtonu"]
+size = Vector2(20, 200)
 
 [node name="VersusScene" type="Node2D"]
 script = ExtResource("1_3n2by")
@@ -233,35 +233,8 @@ shape = SubResource("CircleShape2D_anwit")
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall4"]
 texture = ExtResource("9_xrdcs")
 
-[node name="PhysicsBall2" type="RigidBody2D" parent="."]
-modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(200, 330)
-physics_material_override = SubResource("PhysicsMaterial_wlibp")
-linear_velocity = Vector2(-200, 3)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBall2"]
-scale = Vector2(3.2, 3.2)
-shape = SubResource("CircleShape2D_anwit")
-
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsBall2"]
-texture = ExtResource("4_lpbkv")
-
-[node name="PhysicsBall3" type="RigidBody2D" parent="."]
-modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(-400, 330)
-physics_material_override = SubResource("PhysicsMaterial_f4o1y")
-linear_velocity = Vector2(100, 0)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBall3"]
-scale = Vector2(3.2, 3.2)
-shape = SubResource("CircleShape2D_anwit")
-
-[node name="Sprite2D" type="Sprite2D" parent="PhysicsBall3"]
-texture = ExtResource("4_lpbkv")
-
 [node name="MiddleBody" type="StaticBody2D" parent="."]
+position = Vector2(5000, 0)
 physics_material_override = SubResource("PhysicsMaterial_gaov6")
 metadata/_edit_group_ = true
 
@@ -272,6 +245,30 @@ shape = SubResource("CircleShape2D_tefk0")
 [node name="Sprite2D" type="Sprite2D" parent="MiddleBody"]
 scale = Vector2(0.66, 0.66)
 texture = ExtResource("7_xyg1p")
+
+[node name="MiddleSpinnyThing" type="RigidBody2D" parent="."]
+mass = 50.0
+physics_material_override = SubResource("PhysicsMaterial_4lbyv")
+can_sleep = false
+constant_torque = 1e+06
+script = ExtResource("10_gaov6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleSpinnyThing"]
+shape = SubResource("RectangleShape2D_mtonu")
+
+[node name="ColorRect" type="ColorRect" parent="MiddleSpinnyThing"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -100.0
+offset_right = 10.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LowerBorder" to="LowerBorder" method="OnBodyEntered"]
