@@ -7,6 +7,8 @@ public partial class VersusScene : Node2D
 {
     PlayerBall playerBall1 = null;
     PlayerBall playerBall2 = null;
+    PlayerBall playerBall3 = null;
+    PlayerBall playerBall4 = null;
     List<PlayerBall> playerBallList = new();
 
     public override void _Ready()
@@ -32,21 +34,21 @@ public partial class VersusScene : Node2D
             playerBall2.Position = new Vector2(100000, 100000);
         }
 
-        // playerBall3 = GetNode<PlayerBall>("PlayerBall3");
-        // playerBall3.OriginalPosition = new Vector2(-400, 200);
-        // playerBallList.Add(playerBall3);
-        // if (!playerBall3.IsControllerConnected())
-        // {
-        //     playerBall3.Position = new Vector2(100000, 100000);
-        // }
-        //
-        // playerBall4 = GetNode<PlayerBall>("PlayerBall4");
-        // playerBall4.OriginalPosition = new Vector2(400, 200);
-        // playerBallList.Add(playerBall4);
-        // if (!playerBall4.IsControllerConnected())
-        // {
-        //     playerBall4.Position = new Vector2(100000, 100000);
-        // }
+        playerBall3 = GetNode<PlayerBall>("PlayerBall3");
+        playerBall3.OriginalPosition = new Vector2(-400, 200);
+        playerBallList.Add(playerBall3);
+        if (!playerBall3.IsControllerConnected())
+        {
+            playerBall3.Position = new Vector2(100000, 100000);
+        }
+        
+        playerBall4 = GetNode<PlayerBall>("PlayerBall4");
+        playerBall4.OriginalPosition = new Vector2(400, 200);
+        playerBallList.Add(playerBall4);
+        if (!playerBall4.IsControllerConnected())
+        {
+            playerBall4.Position = new Vector2(100000, 100000);
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -76,17 +78,29 @@ public partial class VersusScene : Node2D
             Console.WriteLine("Connecting player 2");
             playerBall2.Reset();
         }
+        
+        if (playerBall3 != null && playerBall3.IsControllerConnected() && playerBall3.Position.X > 50000)
+        {
+            Console.WriteLine("Connecting player 3");
+            playerBall3.Reset();
+        }
+        
+        if (playerBall4 != null && playerBall4.IsControllerConnected() && playerBall4.Position.X > 50000)
+        {
+            Console.WriteLine("Connecting player 4");
+            playerBall4.Reset();
+        }
     }
 
-    public void CheckForWin()
+    private void CheckForWin()
     {
         Console.WriteLine("CheckForWin");
         if (playerBallList.Count == 1) return;
-        List<PlayerBall> remainingPlayerList = playerBallList.Where(b => b.Position.X > -50000).ToList();
+        List<PlayerBall> remainingPlayerList = playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
+        
         if (remainingPlayerList.Count == 1)
         {
-            var remainingPlayer = remainingPlayerList[1];
-            // give score
+            PlayerBall remainingPlayer = remainingPlayerList[0];
             remainingPlayer.Score += 1;
             Console.WriteLine("player " + remainingPlayer.ControllerId + " wins, new score: " + remainingPlayer.Score);
             ResetVersus();

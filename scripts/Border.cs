@@ -8,8 +8,6 @@ public partial class Border : Area2D
         if (body is PlayerBall ball)
         {
             ball.MoveBody(new Vector2(-100000, 0));
-            var versusScene = GetParent() as VersusScene;
-            versusScene!.CheckForWin();
         }
     }
 }
