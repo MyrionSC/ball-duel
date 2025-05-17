@@ -7,7 +7,7 @@ public partial class VersusScene : Node2D
 {
     PlayerBall playerBall1 = null;
     PlayerBall playerBall2 = null;
-    List<PlayerBall> playerBallList = new List<PlayerBall>();
+    List<PlayerBall> playerBallList = new();
 
     public override void _Ready()
     {
@@ -17,24 +17,36 @@ public partial class VersusScene : Node2D
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
+        playerBall1.OriginalPosition = new Vector2(-400, -200);
+        playerBallList.Add(playerBall1);
         if (!playerBall1.IsControllerConnected())
         {
             playerBall1.Position = new Vector2(100000, 100000);
         }
-        else
-        {
-            playerBallList.Add(playerBall1);
-        }
 
         playerBall2 = GetNode<PlayerBall>("PlayerBall2");
+        playerBall2.OriginalPosition = new Vector2(400, -200);
+        playerBallList.Add(playerBall2);
         if (!playerBall2.IsControllerConnected())
         {
             playerBall2.Position = new Vector2(100000, 100000);
         }
-        else
-        {
-            playerBallList.Add(playerBall2);
-        }
+
+        // playerBall3 = GetNode<PlayerBall>("PlayerBall3");
+        // playerBall3.OriginalPosition = new Vector2(-400, 200);
+        // playerBallList.Add(playerBall3);
+        // if (!playerBall3.IsControllerConnected())
+        // {
+        //     playerBall3.Position = new Vector2(100000, 100000);
+        // }
+        //
+        // playerBall4 = GetNode<PlayerBall>("PlayerBall4");
+        // playerBall4.OriginalPosition = new Vector2(400, 200);
+        // playerBallList.Add(playerBall4);
+        // if (!playerBall4.IsControllerConnected())
+        // {
+        //     playerBall4.Position = new Vector2(100000, 100000);
+        // }
     }
 
     public override void _Input(InputEvent @event)
@@ -46,32 +58,56 @@ public partial class VersusScene : Node2D
             return;
         }
 
+        if (@event is InputEventJoypadButton btn && btn.ButtonIndex == JoyButton.Start)
+        {
+            ResetVersus();
+            return;
+        }
+
+        Console.WriteLine(@event.GetType().Name + ": " + @event.AsText());
         if (playerBall1 != null && playerBall1.IsControllerConnected() && playerBall1.Position.X > 50000)
         {
             Console.WriteLine("Connecting player 1");
-            playerBall1.MoveBody(new Vector2(-400, -200));
+            playerBall1.Reset();
         }
 
         if (playerBall2 != null && playerBall2.IsControllerConnected() && playerBall2.Position.X > 50000)
         {
             Console.WriteLine("Connecting player 2");
-            playerBall2.MoveBody(new Vector2(400, -200));
+            playerBall2.Reset();
         }
     }
 
     public void CheckForWin()
     {
         Console.WriteLine("CheckForWin");
-        var remainingPlayerList = playerBallList.Where(b => b.Position.X > -50000).ToList();
+        if (playerBallList.Count == 1) return;
+        List<PlayerBall> remainingPlayerList = playerBallList.Where(b => b.Position.X > -50000).ToList();
         if (remainingPlayerList.Count == 1)
         {
             var remainingPlayer = remainingPlayerList[1];
             // give score
-            Console.WriteLine("player " + remainingPlayer.ControllerId + " wins");
-        } else if (remainingPlayerList.Count == 0)
+            remainingPlayer.Score += 1;
+            Console.WriteLine("player " + remainingPlayer.ControllerId + " wins, new score: " + remainingPlayer.Score);
+            ResetVersus();
+        }
+        else if (remainingPlayerList.Count == 0)
         {
-            // draw
             Console.WriteLine("draw");
+            ResetVersus();
+        }
+        else
+        {
+            Console.WriteLine(remainingPlayerList.Count + " players left");
+        }
+    }
+
+    private void ResetVersus()
+    {
+        foreach (var playerBall in playerBallList)
+        {
+            if (playerBall.IsControllerConnected())
+                playerBall.Reset();
         }
     }
 }

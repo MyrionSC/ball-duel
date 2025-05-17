@@ -1,9 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cpduhltgap0qw"]
+[gd_scene load_steps=16 format=3 uid="uid://cpduhltgap0qw"]
 
 [ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://scripts/VersusScene.cs" id="1_3n2by"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
-[ext_resource type="Script" uid="uid://c4t3h6uyc6xu6" path="res://scripts/NonPhysicsRef.cs" id="3_3n2by"]
-[ext_resource type="Texture2D" uid="uid://b5dlha0kq0kmt" path="res://icon.svg" id="3_30pw2"]
 [ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
 [ext_resource type="Texture2D" uid="uid://dmi46x0p0rh22" path="res://assets/bowling_ball.png" id="4_lpbkv"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
@@ -12,8 +10,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyg1p"]
 size = Vector2(1400, 40)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_y32ns"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xyg1p"]
 bounce = 1.0
@@ -61,19 +57,6 @@ offset_right = 1400.0
 offset_bottom = 20.0
 grow_vertical = 2
 color = Color(0.809884, 0.415649, 1, 1)
-
-[node name="Reference" type="Area2D" parent="."]
-position = Vector2(-200, 0)
-script = ExtResource("3_3n2by")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Reference"]
-modulate = Color(0.48084, 0.592684, 1, 1)
-shape = SubResource("CircleShape2D_y32ns")
-one_way_collision_margin = 30.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Reference"]
-texture = ExtResource("3_30pw2")
 
 [node name="PlayerBall1" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)

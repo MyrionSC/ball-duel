@@ -9,7 +9,7 @@ public partial class Border : Area2D
         {
             ball.MoveBody(new Vector2(-100000, 0));
             var versusScene = GetParent() as VersusScene;
-            versusScene.CheckForWin();
+            versusScene!.CheckForWin();
         }
     }
 }

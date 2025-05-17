@@ -1,11 +1,9 @@
 
-borders
-
 score
 
 middle bouncy thing extra bounce somehow?
+- maybe paddle thing
 
 add players 2 - 3
 
 redo ball sprites, more definition? Smileys?
-

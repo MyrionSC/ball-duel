@@ -5,8 +5,10 @@ public partial class PlayerBall : RigidBody2D
 {
     private float ACCELERATION_CONSTANT = 100;
     private bool _resetState = false;
+    public Vector2 OriginalPosition = Vector2.Zero;
     private Vector2 _newPosition;
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
+    [Export] public int Score { get; set; } = 0;
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
@@ -16,8 +18,10 @@ public partial class PlayerBall : RigidBody2D
         {
             _resetState = false;
             Position = _newPosition;
+            LinearVelocity = Vector2.Zero;
             return;
         }
+        
         
         float forceMultiplier = 1f;
 
@@ -48,14 +52,14 @@ public partial class PlayerBall : RigidBody2D
         return Input.IsJoyKnown(ControllerId);
     }
 
+    public void Reset()
+    {
+        MoveBody(OriginalPosition);
+    }
+
     public void MoveBody(Vector2 targetPosition)
     {
         _resetState = true;
         _newPosition = targetPosition;
-    }
-
-    public void Die()
-    {
-        throw new NotImplementedException();
     }
 }
