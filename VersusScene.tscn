@@ -6,7 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dmi46x0p0rh22" path="res://assets/bowling_ball.png" id="4_lpbkv"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
 [ext_resource type="Texture2D" uid="uid://d0ri81xw1pyjw" path="res://assets/red_ball.png" id="7_tefk0"]
-[ext_resource type="Texture2D" uid="uid://cw80qptwn7xiu" path="res://assets/black_ball.png" id="8_xyg1p"]
+[ext_resource type="Texture2D" uid="uid://cnchnv2cvob8m" path="res://assets/grey_high_res_ball.png" id="7_xyg1p"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gaov6"]
+bounce = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tefk0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyg1p"]
 size = Vector2(1400, 40)
@@ -28,11 +33,6 @@ bounce = 1.0
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f4o1y"]
 bounce = 1.0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gaov6"]
-bounce = 10.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tefk0"]
-
 [node name="VersusScene" type="Node2D"]
 script = ExtResource("1_3n2by")
 
@@ -40,6 +40,58 @@ script = ExtResource("1_3n2by")
 
 [node name="Background2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_xyg1p")
+
+[node name="LeftTopStatic" type="StaticBody2D" parent="."]
+position = Vector2(-680, -380)
+physics_material_override = SubResource("PhysicsMaterial_gaov6")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTopStatic"]
+scale = Vector2(8, 8)
+shape = SubResource("CircleShape2D_tefk0")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftTopStatic"]
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("7_xyg1p")
+
+[node name="RightTopStatic" type="StaticBody2D" parent="."]
+position = Vector2(680, -380)
+physics_material_override = SubResource("PhysicsMaterial_gaov6")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightTopStatic"]
+scale = Vector2(8, 8)
+shape = SubResource("CircleShape2D_tefk0")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightTopStatic"]
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("7_xyg1p")
+
+[node name="LeftBottomStatic" type="StaticBody2D" parent="."]
+position = Vector2(-680, 380)
+physics_material_override = SubResource("PhysicsMaterial_gaov6")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBottomStatic"]
+scale = Vector2(8, 8)
+shape = SubResource("CircleShape2D_tefk0")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftBottomStatic"]
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("7_xyg1p")
+
+[node name="RightBottomStatic2" type="StaticBody2D" parent="."]
+position = Vector2(680, 380)
+physics_material_override = SubResource("PhysicsMaterial_gaov6")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBottomStatic2"]
+scale = Vector2(8, 8)
+shape = SubResource("CircleShape2D_tefk0")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightBottomStatic2"]
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("7_xyg1p")
 
 [node name="UpperBorder" type="Area2D" parent="."]
 position = Vector2(-700, -380)
@@ -177,17 +229,17 @@ shape = SubResource("CircleShape2D_anwit")
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsBall3"]
 texture = ExtResource("4_lpbkv")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="MiddleBody" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_gaov6")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleBody"]
 scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_tefk0")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("8_xyg1p")
+[node name="Sprite2D" type="Sprite2D" parent="MiddleBody"]
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("7_xyg1p")
 
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LowerBorder" to="LowerBorder" method="OnBodyEntered"]
