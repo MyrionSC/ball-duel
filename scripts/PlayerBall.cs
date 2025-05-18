@@ -3,7 +3,7 @@ using Godot;
 
 public partial class PlayerBall : RigidBody2D
 {
-    private float ACCELERATION_CONSTANT = 150;
+    public static float ACCELERATION_CONSTANT = 250;
     private bool _resetState = false;
     public Vector2 OriginalPosition = Vector2.Zero;
     private Vector2 _newPosition;

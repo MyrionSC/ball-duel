@@ -9,6 +9,7 @@ public partial class VersusScene : Node2D
     PlayerBall playerBall2 = null;
     PlayerBall playerBall3 = null;
     PlayerBall playerBall4 = null;
+    TextEdit AccelerationEdit = null;
     List<PlayerBall> playerBallList = new();
 
     public override void _Ready()
@@ -17,6 +18,8 @@ public partial class VersusScene : Node2D
         Console.WriteLine("VersusScene ready");
 
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
+        
+        AccelerationEdit = GetNode<TextEdit>("AccelerationEdit");
 
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
         playerBall1.OriginalPosition = new Vector2(-400, -200);
