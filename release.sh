@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-zip -r ballDuelRelease.zip release
-marshare ballDuelRelease.zip
-rm ballDuelRelease.zip
+zip -r BallDuelRelease.zip release
+marshare BallDuelRelease.zip
+rm BallDuelRelease.zip
 
