@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://cpduhltgap0qw"]
 
-[ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://scripts/VersusScene.cs" id="1_3n2by"]
+[ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://Scenes/Versus/VersusScene.cs" id="1_f4o1y"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
 [ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
 [ext_resource type="Texture2D" uid="uid://dmi46x0p0rh22" path="res://assets/bowling_ball.png" id="4_lpbkv"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cnchnv2cvob8m" path="res://assets/grey_high_res_ball.png" id="7_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_xrdcs"]
-[ext_resource type="Script" uid="uid://dds8y5ni0rj7n" path="res://MiddleSpinnyThing.cs" id="10_gaov6"]
+[ext_resource type="Script" uid="uid://dds8y5ni0rj7n" path="res://scripts/MiddleSpinnyThing.cs" id="10_f4o1y"]
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="11_wlibp"]
 [ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="12_f4o1y"]
 
@@ -38,7 +38,7 @@ bounce = 1.0
 size = Vector2(20, 200)
 
 [node name="VersusScene" type="Node2D"]
-script = ExtResource("1_3n2by")
+script = ExtResource("1_f4o1y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -253,7 +253,7 @@ mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_4lbyv")
 can_sleep = false
 constant_torque = 1e+06
-script = ExtResource("10_gaov6")
+script = ExtResource("10_f4o1y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleSpinnyThing"]
 shape = SubResource("RectangleShape2D_mtonu")
