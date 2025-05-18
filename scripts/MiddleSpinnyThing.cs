@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace BallDuel.scripts;
 
 public partial class MiddleSpinnyThing : RigidBody2D
 {
