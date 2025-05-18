@@ -7,6 +7,7 @@ public partial class PlayerBall : RigidBody2D
     private bool _resetState = false;
     public Vector2 OriginalPosition = Vector2.Zero;
     private Vector2 _newPosition;
+    public static float FORCE_MULTIPLIER_CONSTANT = 2;
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
     [Export] public int Score { get; set; } = 0;
 
@@ -28,7 +29,7 @@ public partial class PlayerBall : RigidBody2D
             GetClampedJoyAxis(ControllerId, JoyAxis.LeftY)
         );
         if (Input.IsActionPressed($"device_{ControllerId}_trigger_right"))
-            forceMultiplier = 2f;
+            forceMultiplier = FORCE_MULTIPLIER_CONSTANT;
 
         // Apply force based on controller input
         ApplyForce(analogInput * forceMultiplier * ACCELERATION_CONSTANT);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cpduhltgap0qw"]
+[gd_scene load_steps=22 format=3 uid="uid://cpduhltgap0qw"]
 
 [ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://scripts/VersusScene.cs" id="1_3n2by"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_xrdcs"]
 [ext_resource type="Script" uid="uid://dds8y5ni0rj7n" path="res://MiddleSpinnyThing.cs" id="10_gaov6"]
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="11_wlibp"]
+[ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="12_f4o1y"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gaov6"]
 bounce = 10.0
@@ -279,8 +280,17 @@ offset_bottom = 395.0
 text = "250"
 script = ExtResource("11_wlibp")
 
+[node name="ForceMultiplierEdit" type="TextEdit" parent="."]
+offset_left = -509.0
+offset_top = 363.0
+offset_right = -467.0
+offset_bottom = 395.0
+text = "2"
+script = ExtResource("12_f4o1y")
+
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LowerBorder" to="LowerBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LeftBorder" to="LeftBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="RightBorder" to="RightBorder" method="OnBodyEntered"]
 [connection signal="text_changed" from="ForceEdit" to="ForceEdit" method="CustomTextChanged"]
+[connection signal="text_changed" from="ForceMultiplierEdit" to="ForceMultiplierEdit" method="ForceMultiplierTextChanged"]
