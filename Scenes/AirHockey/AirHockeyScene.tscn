@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cexpxyq6sx1xi"]
+[gd_scene load_steps=22 format=3 uid="uid://cexpxyq6sx1xi"]
 
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_54fx0"]
+[ext_resource type="Script" uid="uid://crij1ehh0fdgx" path="res://Scenes/AirHockey/AirHockeyScene.cs" id="1_nbuwi"]
 [ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="3_nbuwi"]
 [ext_resource type="Texture2D" uid="uid://cfpoj252gt5qj" path="res://assets/darkred_ball.png" id="4_nbuwi"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="4_s4mny"]
@@ -41,6 +42,7 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_nbuwi"]
 
 [node name="AirHockeyScene" type="Node2D"]
+script = ExtResource("1_nbuwi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -214,6 +216,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_nbuwi")
 
 [node name="Puck" type="RigidBody2D" parent="."]
+mass = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Puck"]
 scale = Vector2(2, 2)

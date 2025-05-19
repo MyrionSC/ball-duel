@@ -1,6 +1,6 @@
-using Godot;
 using System;
 using System.Collections.Generic;
+using Godot;
 
 public partial class StartScene : Node2D
 {
@@ -13,8 +13,6 @@ public partial class StartScene : Node2D
     public override void _Ready()
     {
         base._Ready();
-        Console.WriteLine("VersusScene ready");
-
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");

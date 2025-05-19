@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using BallDuel.scripts;
 using Godot;
 
-public partial class VersusScene : Node2D
+public partial class AirHockeyScene : Node2D
 {
     PlayerBall playerBall1 = null;
     PlayerBall playerBall2 = null;
@@ -18,7 +16,7 @@ public partial class VersusScene : Node2D
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
-        playerBall1.OriginalPosition = new Vector2(-400, -200);
+        playerBall1.OriginalPosition = new Vector2(-400, -100);
         playerBallList.Add(playerBall1);
         if (!playerBall1.IsControllerConnected())
         {
@@ -26,7 +24,7 @@ public partial class VersusScene : Node2D
         }
 
         playerBall2 = GetNode<PlayerBall>("PlayerBall2");
-        playerBall2.OriginalPosition = new Vector2(400, -200);
+        playerBall2.OriginalPosition = new Vector2(400, -100);
         playerBallList.Add(playerBall2);
         if (!playerBall2.IsControllerConnected())
         {
@@ -34,7 +32,7 @@ public partial class VersusScene : Node2D
         }
 
         playerBall3 = GetNode<PlayerBall>("PlayerBall3");
-        playerBall3.OriginalPosition = new Vector2(-400, 200);
+        playerBall3.OriginalPosition = new Vector2(-400, 100);
         playerBallList.Add(playerBall3);
         if (!playerBall3.IsControllerConnected())
         {
@@ -42,7 +40,7 @@ public partial class VersusScene : Node2D
         }
 
         playerBall4 = GetNode<PlayerBall>("PlayerBall4");
-        playerBall4.OriginalPosition = new Vector2(400, 200);
+        playerBall4.OriginalPosition = new Vector2(400, 100);
         playerBallList.Add(playerBall4);
         if (!playerBall4.IsControllerConnected())
         {
@@ -61,7 +59,7 @@ public partial class VersusScene : Node2D
 
         if (@event is InputEventJoypadButton btn && btn.ButtonIndex == JoyButton.Start)
         {
-            ResetVersus();
+            ResetScene();
             return;
         }
 
@@ -96,39 +94,12 @@ public partial class VersusScene : Node2D
         }
     }
 
-    private void CheckForWin()
-    {
-        Console.WriteLine("CheckForWin");
-        if (playerBallList.Count == 1) return;
-        List<PlayerBall> remainingPlayerList =
-            playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
-
-        if (remainingPlayerList.Count == 1)
-        {
-            PlayerBall remainingPlayer = remainingPlayerList[0];
-            remainingPlayer.Score += 1;
-            Console.WriteLine("player " + remainingPlayer.ControllerId + " wins, new score: " + remainingPlayer.Score);
-            ResetVersus();
-        }
-        else if (remainingPlayerList.Count == 0)
-        {
-            Console.WriteLine("draw");
-            ResetVersus();
-        }
-        else
-        {
-            Console.WriteLine(remainingPlayerList.Count + " players left");
-        }
-    }
-
-    private void ResetVersus()
+    private void ResetScene()
     {
         foreach (var playerBall in playerBallList)
         {
             if (playerBall.IsControllerConnected())
                 playerBall.Reset();
         }
-
-        GetNode<MiddleSpinnyThing>("MiddleSpinnyThing").Reset();
     }
 }
