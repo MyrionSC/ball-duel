@@ -1,12 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://nl1677c00ii0"]
+[gd_scene load_steps=15 format=3 uid="uid://nl1677c00ii0"]
 
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_dr8cw"]
+[ext_resource type="Script" uid="uid://btaxqi66hi34s" path="res://Scenes/Start/StartScene.cs" id="1_gxtbs"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="2_rhv0p"]
+[ext_resource type="Script" uid="uid://c3y2n06kn7sgn" path="res://Scenes/Start/VersusSelect.cs" id="3_7bvpp"]
 [ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="3_gxtbs"]
 [ext_resource type="Texture2D" uid="uid://cfpoj252gt5qj" path="res://assets/darkred_ball.png" id="4_7bvpp"]
 [ext_resource type="Texture2D" uid="uid://cqaai3duwax2c" path="res://assets/lightblue_ball.png" id="5_ftqdq"]
+[ext_resource type="Script" uid="uid://54cyb1t1hgea" path="res://Scenes/Start/AirHockeySelect.cs" id="5_po4a3"]
 [ext_resource type="Texture2D" uid="uid://bsohetrjwrls3" path="res://assets/lightred_ball.png" id="6_po4a3"]
 [ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="7_rhv0p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dr8cw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3j15m"]
 bounce = 1.0
@@ -16,14 +21,55 @@ bounce = 1.0
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lpo4g"]
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dr8cw"]
-
 [node name="StartScene" type="Node2D"]
+script = ExtResource("1_gxtbs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dr8cw")
+
+[node name="VersusSelect" type="Area2D" parent="."]
+position = Vector2(-400, 0)
+script = ExtResource("3_7bvpp")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VersusSelect"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="VersusSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VersusSelect"]
+offset_left = -40.0
+offset_top = -20.0
+offset_right = 53.0
+offset_bottom = 20.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "Versus"
+
+[node name="AirHockeySelect" type="Area2D" parent="."]
+position = Vector2(400, 0)
+script = ExtResource("5_po4a3")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AirHockeySelect"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="AirHockeySelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AirHockeySelect"]
+offset_left = -55.0
+offset_top = -19.0
+offset_right = 68.0
+offset_bottom = 21.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "Airhockey"
 
 [node name="PlayerBall1" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
@@ -88,41 +134,5 @@ shape = SubResource("CircleShape2D_iroav")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_po4a3")
 
-[node name="VersusSelect" type="Area2D" parent="."]
-position = Vector2(-400, 0)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VersusSelect"]
-scale = Vector2(10, 10)
-shape = SubResource("CircleShape2D_dr8cw")
-
-[node name="Sprite2D" type="Sprite2D" parent="VersusSelect"]
-texture = ExtResource("7_rhv0p")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VersusSelect"]
-offset_left = -40.0
-offset_top = -20.0
-offset_right = 53.0
-offset_bottom = 20.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-text = "Versus"
-
-[node name="VersusSelect2" type="Area2D" parent="."]
-position = Vector2(400, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VersusSelect2"]
-scale = Vector2(10, 10)
-shape = SubResource("CircleShape2D_dr8cw")
-
-[node name="Sprite2D" type="Sprite2D" parent="VersusSelect2"]
-texture = ExtResource("7_rhv0p")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VersusSelect2"]
-offset_left = -55.0
-offset_top = -19.0
-offset_right = 68.0
-offset_bottom = 21.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-text = "Airhockey"
+[connection signal="body_entered" from="VersusSelect" to="VersusSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="AirHockeySelect" to="AirHockeySelect" method="OnBodyEntered"]
