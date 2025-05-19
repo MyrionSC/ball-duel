@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BallDuel.Scenes.AirHockey;
 using Godot;
 
 public partial class AirHockeyScene : Node2D
@@ -8,12 +9,15 @@ public partial class AirHockeyScene : Node2D
     PlayerBall playerBall2 = null;
     PlayerBall playerBall3 = null;
     PlayerBall playerBall4 = null;
+    BallDuel.Scenes.AirHockey.Puck puck = null;
     List<PlayerBall> playerBallList = new();
 
     public override void _Ready()
     {
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
+        
+        puck = GetNode<BallDuel.Scenes.AirHockey.Puck>("Puck");
 
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
         playerBall1.OriginalPosition = new Vector2(-400, -100);
@@ -94,12 +98,36 @@ public partial class AirHockeyScene : Node2D
         }
     }
 
-    private void ResetScene()
+    public void ResetScene()
     {
         foreach (var playerBall in playerBallList)
         {
             if (playerBall.IsControllerConnected())
                 playerBall.Reset();
         }
+        puck.Reset();
     }
+    
+    public void BlueGoal(Node2D body)
+    {
+        if (body is Puck ball)
+        {
+            var RightScore = GetNode<RichTextLabel>("RightScore");
+            RightScore.Text = (int.Parse(RightScore.Text) + 1).ToString();
+            
+            ResetScene();
+        }
+    }
+    
+    public void RedGoal(Node2D body)
+    {
+        if (body is Puck ball)
+        {
+            var leftScore = GetNode<RichTextLabel>("LeftScore");
+            leftScore.Text = (int.Parse(leftScore.Text) + 1).ToString();
+            
+            ResetScene();
+        }
+    }
+    
 }

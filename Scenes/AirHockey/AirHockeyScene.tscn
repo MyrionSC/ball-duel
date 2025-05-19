@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cexpxyq6sx1xi"]
+[gd_scene load_steps=23 format=3 uid="uid://cexpxyq6sx1xi"]
 
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_54fx0"]
 [ext_resource type="Script" uid="uid://crij1ehh0fdgx" path="res://Scenes/AirHockey/AirHockeyScene.cs" id="1_nbuwi"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cqaai3duwax2c" path="res://assets/lightblue_ball.png" id="5_nbuwi"]
 [ext_resource type="Texture2D" uid="uid://bsohetrjwrls3" path="res://assets/lightred_ball.png" id="6_nbuwi"]
 [ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="8_54fx0"]
+[ext_resource type="Script" uid="uid://ddgctap2u6kae" path="res://Scenes/AirHockey/Puck.cs" id="8_d7q08"]
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="10_rp8ir"]
 [ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="11_t14sq"]
 
@@ -217,6 +218,7 @@ texture = ExtResource("6_nbuwi")
 
 [node name="Puck" type="RigidBody2D" parent="."]
 mass = 0.5
+script = ExtResource("8_d7q08")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Puck"]
 scale = Vector2(2, 2)
@@ -242,5 +244,25 @@ offset_bottom = 395.0
 text = "2"
 script = ExtResource("11_t14sq")
 
+[node name="LeftScore" type="RichTextLabel" parent="."]
+offset_left = -687.0
+offset_top = -397.0
+offset_right = -653.0
+offset_bottom = -358.0
+theme_override_colors/default_color = Color(0, 0, 1, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "0"
+
+[node name="RightScore" type="RichTextLabel" parent="."]
+offset_left = 673.0
+offset_top = -398.0
+offset_right = 707.0
+offset_bottom = -359.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "0"
+
+[connection signal="body_entered" from="BlueGoal" to="." method="BlueGoal"]
+[connection signal="body_entered" from="RedGoal" to="." method="RedGoal"]
 [connection signal="text_changed" from="ForceEdit" to="ForceEdit" method="CustomTextChanged"]
 [connection signal="text_changed" from="ForceMultiplierEdit" to="ForceMultiplierEdit" method="ForceMultiplierTextChanged"]
