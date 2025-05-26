@@ -246,6 +246,11 @@ shape = SubResource("CircleShape2D_anwit")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("7_kjp4p")
 
+[node name="Player2BlueFlag" type="Sprite2D" parent="PlayerBall2"]
+visible = false
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("6_kjp4p")
+
 [node name="PlayerBall3" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(-400, 100)
@@ -262,6 +267,11 @@ shape = SubResource("CircleShape2D_anwit")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("12_kjp4p")
 
+[node name="Player3RedFlag" type="Sprite2D" parent="PlayerBall3"]
+visible = false
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("8_qy1ro")
+
 [node name="PlayerBall4" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(400, 100)
@@ -277,6 +287,11 @@ shape = SubResource("CircleShape2D_anwit")
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall4"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("13_qy1ro")
+
+[node name="Player4BlueFlag" type="Sprite2D" parent="PlayerBall4"]
+visible = false
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("6_kjp4p")
 
 [node name="ForceEdit" type="TextEdit" parent="."]
 offset_left = -576.0

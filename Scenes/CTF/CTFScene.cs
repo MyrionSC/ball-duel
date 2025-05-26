@@ -11,11 +11,16 @@ public partial class CTFScene : Node2D
     PlayerBallWithFlag playerBall4 = null;
 
     List<PlayerBallWithFlag> playerBallList = new();
+    CTFBlueGoal _blueGoal = null;
+    CTFRedGoal _redGoal = null;
 
     public override void _Ready()
     {
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
+        
+        _blueGoal = GetNode<CTFBlueGoal>("BlueGoal");
+        _redGoal = GetNode<CTFRedGoal>("RedGoal");
 
         playerBall1 = GetNode<PlayerBallWithFlag>("PlayerBall1");
         playerBall1.OriginalPosition = new Vector2(-400, -100);
@@ -28,6 +33,7 @@ public partial class CTFScene : Node2D
 
         playerBall2 = GetNode<PlayerBallWithFlag>("PlayerBall2");
         playerBall2.OriginalPosition = new Vector2(400, -100);
+        playerBall2.flagSprite = GetNode<Sprite2D>("PlayerBall2/Player2BlueFlag");
         playerBallList.Add(playerBall2);
         if (!playerBall2.IsControllerConnected())
         {
@@ -36,6 +42,7 @@ public partial class CTFScene : Node2D
 
         playerBall3 = GetNode<PlayerBallWithFlag>("PlayerBall3");
         playerBall3.OriginalPosition = new Vector2(-400, 100);
+        playerBall3.flagSprite = GetNode<Sprite2D>("PlayerBall3/Player3RedFlag");
         playerBallList.Add(playerBall3);
         if (!playerBall3.IsControllerConnected())
         {
@@ -44,6 +51,7 @@ public partial class CTFScene : Node2D
 
         playerBall4 = GetNode<PlayerBallWithFlag>("PlayerBall4");
         playerBall4.OriginalPosition = new Vector2(400, 100);
+        playerBall4.flagSprite = GetNode<Sprite2D>("PlayerBall4/Player4BlueFlag");
         playerBallList.Add(playerBall4);
         if (!playerBall4.IsControllerConnected())
         {
@@ -99,12 +107,34 @@ public partial class CTFScene : Node2D
 
     public void BallTouchedBlueGoal(PlayerBallWithFlag ballWithFlag)
     {
+        
+        // if ball is red and flag is here, pick up flag
+        
+        // if ball is blue and has red flag and blue flag is here, increment score
+        
         Console.WriteLine("BallTouchedBlueGoal: " + ballWithFlag.ControllerId);
     }
 
     public void BallTouchedRedGoal(PlayerBallWithFlag ballWithFlag)
     {
         Console.WriteLine("BallTouchedRedGoal: " + ballWithFlag.ControllerId);
+        
+        // if ball is blue and flag is here, pick up flag
+        if (ballWithFlag.isBlue())
+        {
+            bool flagIsFree = !playerBallList.Exists(b => b.HasFlag());
+            if (flagIsFree)
+            {
+                ballWithFlag.SetHasFlag(true);
+                _redGoal.flagSprite.SetVisible(false);
+            }
+        }
+        else
+        {
+            
+        }
+        
+        
     }
 
     private void ResetVersus()

@@ -9,10 +9,20 @@ public partial class PlayerBallWithFlag : RigidBody2D
     private bool _resetState = false;
     public Vector2 OriginalPosition = Vector2.Zero;
     private Vector2 _newPosition;
-    public Sprite2D flagSprite = null; 
+    public Sprite2D flagSprite = null;
     public static float FORCE_MULTIPLIER_CONSTANT = 2;
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
     [Export] public int Score { get; set; } = 0;
+
+    public void SetHasFlag(bool hasFlag)
+    {
+        flagSprite.Visible = hasFlag;
+    }
+
+    public bool HasFlag()
+    {
+        return flagSprite.IsVisible();
+    }
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
@@ -59,5 +69,10 @@ public partial class PlayerBallWithFlag : RigidBody2D
     {
         _resetState = true;
         _newPosition = targetPosition;
+    }
+
+    public bool isBlue()
+    {
+        return ControllerId == 0 || ControllerId == 2;
     }
 }
