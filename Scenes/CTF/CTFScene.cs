@@ -17,7 +17,7 @@ public partial class CTFScene : Node2D
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
-        playerBall1.OriginalPosition = new Vector2(-400, -200);
+        playerBall1.OriginalPosition = new Vector2(-400, -100);
         playerBallList.Add(playerBall1);
         if (!playerBall1.IsControllerConnected())
         {
@@ -25,7 +25,7 @@ public partial class CTFScene : Node2D
         }
 
         playerBall2 = GetNode<PlayerBall>("PlayerBall2");
-        playerBall2.OriginalPosition = new Vector2(400, -200);
+        playerBall2.OriginalPosition = new Vector2(400, -100);
         playerBallList.Add(playerBall2);
         if (!playerBall2.IsControllerConnected())
         {
@@ -33,7 +33,7 @@ public partial class CTFScene : Node2D
         }
 
         playerBall3 = GetNode<PlayerBall>("PlayerBall3");
-        playerBall3.OriginalPosition = new Vector2(-400, 200);
+        playerBall3.OriginalPosition = new Vector2(-400, 100);
         playerBallList.Add(playerBall3);
         if (!playerBall3.IsControllerConnected())
         {
@@ -41,7 +41,7 @@ public partial class CTFScene : Node2D
         }
 
         playerBall4 = GetNode<PlayerBall>("PlayerBall4");
-        playerBall4.OriginalPosition = new Vector2(400, 200);
+        playerBall4.OriginalPosition = new Vector2(400, 100);
         playerBallList.Add(playerBall4);
         if (!playerBall4.IsControllerConnected())
         {
