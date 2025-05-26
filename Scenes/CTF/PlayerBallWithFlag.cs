@@ -1,12 +1,15 @@
 using System;
 using Godot;
 
-public partial class PlayerBall : RigidBody2D
+namespace BallDuel.Scenes.CTF;
+
+public partial class PlayerBallWithFlag : RigidBody2D
 {
     public static float ACCELERATION_CONSTANT = 250;
     private bool _resetState = false;
     public Vector2 OriginalPosition = Vector2.Zero;
     private Vector2 _newPosition;
+    public Sprite2D flagSprite = null; 
     public static float FORCE_MULTIPLIER_CONSTANT = 2;
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
     [Export] public int Score { get; set; } = 0;

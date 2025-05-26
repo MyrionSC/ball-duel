@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://44xseu6tkovu" path="res://Scenes/CTF/CTFScene.cs" id="1_qy1ro"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
 [ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
-[ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
 [ext_resource type="Texture2D" uid="uid://dwhmipoltvves" path="res://assets/BlueFlag.png" id="6_kjp4p"]
 [ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="6_qy1ro"]
 [ext_resource type="Script" uid="uid://6qwvv35dkkgx" path="res://Scenes/CTF/CTFBlueGoal.cs" id="7_ey2qt"]
@@ -11,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cnchnv2cvob8m" path="res://assets/grey_high_res_ball.png" id="7_xyg1p"]
 [ext_resource type="Script" uid="uid://c1k0lvrovlts6" path="res://Scenes/CTF/CTFRedGoal.cs" id="8_5jtnm"]
 [ext_resource type="Texture2D" uid="uid://brn146ej3gqxi" path="res://assets/RedFlag.png" id="8_qy1ro"]
+[ext_resource type="Script" uid="uid://varbkk8momno" path="res://Scenes/CTF/PlayerBallWithFlag.cs" id="11_5jtnm"]
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="11_wlibp"]
 [ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="12_f4o1y"]
 [ext_resource type="Texture2D" uid="uid://cqaai3duwax2c" path="res://assets/lightblue_ball.png" id="12_kjp4p"]
@@ -214,7 +214,7 @@ texture = ExtResource("8_qy1ro")
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(-400, -100)
 physics_material_override = SubResource("PhysicsMaterial_xyg1p")
-script = ExtResource("5_3n2by")
+script = ExtResource("11_5jtnm")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall1"]
@@ -234,7 +234,7 @@ texture = ExtResource("8_qy1ro")
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(400, -100)
 physics_material_override = SubResource("PhysicsMaterial_xrdcs")
-script = ExtResource("5_3n2by")
+script = ExtResource("11_5jtnm")
 ControllerId = 1
 metadata/_edit_group_ = true
 
@@ -250,7 +250,7 @@ texture = ExtResource("7_kjp4p")
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(-400, 100)
 physics_material_override = SubResource("PhysicsMaterial_xrdcs")
-script = ExtResource("5_3n2by")
+script = ExtResource("11_5jtnm")
 ControllerId = 2
 metadata/_edit_group_ = true
 
@@ -266,8 +266,8 @@ texture = ExtResource("12_kjp4p")
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(400, 100)
 physics_material_override = SubResource("PhysicsMaterial_xrdcs")
-script = ExtResource("5_3n2by")
-ControllerId = 2
+script = ExtResource("11_5jtnm")
+ControllerId = 3
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall4"]

@@ -1,27 +1,23 @@
 using System;
 using System.Collections.Generic;
+using BallDuel.Scenes.CTF;
 using Godot;
 
 public partial class CTFScene : Node2D
 {
-    PlayerBall playerBall1 = null;
-    PlayerBall playerBall2 = null;
-    PlayerBall playerBall3 = null;
-    PlayerBall playerBall4 = null;
-    // CTFBlueGoal _blueBlueGoal = null;
-    // CTFRedGoal _redBlueGoal = null;
+    PlayerBallWithFlag playerBall1 = null;
+    PlayerBallWithFlag playerBall2 = null;
+    PlayerBallWithFlag playerBall3 = null;
+    PlayerBallWithFlag playerBall4 = null;
 
-    List<PlayerBall> playerBallList = new();
+    List<PlayerBallWithFlag> playerBallList = new();
 
     public override void _Ready()
     {
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
-        // _blueBlueGoal = GetNode<CTFBlueGoal>("BlueGoal");
-        // _redBlueGoal = GetNode<CTFRedGoal>("RedGoal");
-
-        playerBall1 = GetNode<PlayerBall>("PlayerBall1");
+        playerBall1 = GetNode<PlayerBallWithFlag>("PlayerBall1");
         playerBall1.OriginalPosition = new Vector2(-400, -100);
         playerBall1.flagSprite = GetNode<Sprite2D>("PlayerBall1/Player1RedFlag");
         playerBallList.Add(playerBall1);
@@ -30,7 +26,7 @@ public partial class CTFScene : Node2D
             playerBall1.Position = new Vector2(100000, 100000);
         }
 
-        playerBall2 = GetNode<PlayerBall>("PlayerBall2");
+        playerBall2 = GetNode<PlayerBallWithFlag>("PlayerBall2");
         playerBall2.OriginalPosition = new Vector2(400, -100);
         playerBallList.Add(playerBall2);
         if (!playerBall2.IsControllerConnected())
@@ -38,7 +34,7 @@ public partial class CTFScene : Node2D
             playerBall2.Position = new Vector2(100000, 100000);
         }
 
-        playerBall3 = GetNode<PlayerBall>("PlayerBall3");
+        playerBall3 = GetNode<PlayerBallWithFlag>("PlayerBall3");
         playerBall3.OriginalPosition = new Vector2(-400, 100);
         playerBallList.Add(playerBall3);
         if (!playerBall3.IsControllerConnected())
@@ -46,7 +42,7 @@ public partial class CTFScene : Node2D
             playerBall3.Position = new Vector2(100000, 100000);
         }
 
-        playerBall4 = GetNode<PlayerBall>("PlayerBall4");
+        playerBall4 = GetNode<PlayerBallWithFlag>("PlayerBall4");
         playerBall4.OriginalPosition = new Vector2(400, 100);
         playerBallList.Add(playerBall4);
         if (!playerBall4.IsControllerConnected())
@@ -101,14 +97,14 @@ public partial class CTFScene : Node2D
         }
     }
 
-    public void BallTouchedBlueGoal(PlayerBall ball)
+    public void BallTouchedBlueGoal(PlayerBallWithFlag ballWithFlag)
     {
-        Console.WriteLine(ball);
+        Console.WriteLine("BallTouchedBlueGoal: " + ballWithFlag.ControllerId);
     }
 
-    public void BallTouchedRedGoal(PlayerBall ball)
+    public void BallTouchedRedGoal(PlayerBallWithFlag ballWithFlag)
     {
-        Console.WriteLine(ball);
+        Console.WriteLine("BallTouchedRedGoal: " + ballWithFlag.ControllerId);
     }
 
     private void ResetVersus()
