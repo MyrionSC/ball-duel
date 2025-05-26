@@ -63,6 +63,7 @@ public partial class PlayerBallWithFlag : RigidBody2D
     public void Reset()
     {
         MoveBody(OriginalPosition);
+        SetHasFlag(false);
     }
 
     public void MoveBody(Vector2 targetPosition)
