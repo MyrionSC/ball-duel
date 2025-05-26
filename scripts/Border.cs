@@ -22,6 +22,10 @@ public partial class Border : Area2D
             {
                 currentScene.BlueGoal.flagSprite.SetVisible(true);
             }
+            GetTree().CreateTimer(3).Timeout += () =>
+            {
+                ballWithFlag.Reset();
+            };
         }
     }
 }
