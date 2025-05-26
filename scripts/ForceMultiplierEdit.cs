@@ -1,4 +1,5 @@
 using System;
+using BallDuel.Scenes.CTF;
 using Godot;
 
 namespace BallDuel.scripts;
@@ -13,6 +14,7 @@ public partial class ForceMultiplierEdit : TextEdit
         {
             var old = PlayerBall.FORCE_MULTIPLIER_CONSTANT;
             PlayerBall.FORCE_MULTIPLIER_CONSTANT = float.Parse(text);
+            PlayerBallWithFlag.ACCELERATION_CONSTANT = float.Parse(text);
             Console.WriteLine(
                 $"PlayerBall.FORCE_MULTIPLIER_CONSTANT set from {old} to {PlayerBall.FORCE_MULTIPLIER_CONSTANT}");
         }

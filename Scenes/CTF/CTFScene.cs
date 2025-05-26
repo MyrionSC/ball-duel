@@ -115,7 +115,8 @@ public partial class CTFScene : Node2D
             if (ballWithFlag.HasFlag() && BlueGoal.flagSprite.IsVisible())
             {
                 // inc score
-
+                var leftScore = GetNode<RichTextLabel>("LeftScore");
+                leftScore.Text = (int.Parse(leftScore.Text) + 1).ToString();
                 ballWithFlag.SetHasFlag(false);
                 RedGoal.flagSprite.SetVisible(true);
             }
@@ -149,6 +150,8 @@ public partial class CTFScene : Node2D
             if (ballWithFlag.HasFlag() && RedGoal.flagSprite.IsVisible())
             {
                 // inc score
+                var rightScore = GetNode<RichTextLabel>("RightScore");
+                rightScore.Text = (int.Parse(rightScore.Text) + 1).ToString();
                 ballWithFlag.SetHasFlag(false);
                 BlueGoal.flagSprite.SetVisible(true);
             }
