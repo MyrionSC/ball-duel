@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using BallDuel.scripts;
 using Godot;
 
 public partial class CTFScene : Node2D
@@ -9,6 +8,9 @@ public partial class CTFScene : Node2D
     PlayerBall playerBall2 = null;
     PlayerBall playerBall3 = null;
     PlayerBall playerBall4 = null;
+    // CTFBlueGoal _blueBlueGoal = null;
+    // CTFRedGoal _redBlueGoal = null;
+
     List<PlayerBall> playerBallList = new();
 
     public override void _Ready()
@@ -16,8 +18,12 @@ public partial class CTFScene : Node2D
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
+        // _blueBlueGoal = GetNode<CTFBlueGoal>("BlueGoal");
+        // _redBlueGoal = GetNode<CTFRedGoal>("RedGoal");
+
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
         playerBall1.OriginalPosition = new Vector2(-400, -100);
+        playerBall1.flagSprite = GetNode<Sprite2D>("PlayerBall1/Player1RedFlag");
         playerBallList.Add(playerBall1);
         if (!playerBall1.IsControllerConnected())
         {
@@ -95,6 +101,16 @@ public partial class CTFScene : Node2D
         }
     }
 
+    public void BallTouchedBlueGoal(PlayerBall ball)
+    {
+        Console.WriteLine(ball);
+    }
+
+    public void BallTouchedRedGoal(PlayerBall ball)
+    {
+        Console.WriteLine(ball);
+    }
+
     private void ResetVersus()
     {
         foreach (var playerBall in playerBallList)
@@ -102,7 +118,5 @@ public partial class CTFScene : Node2D
             if (playerBall.IsControllerConnected())
                 playerBall.Reset();
         }
-
-        GetNode<MiddleSpinnyThing>("MiddleSpinnyThing").Reset();
     }
 }

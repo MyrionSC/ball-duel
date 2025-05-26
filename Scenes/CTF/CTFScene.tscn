@@ -1,13 +1,15 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddvqqrxrn5sfa"]
+[gd_scene load_steps=24 format=3 uid="uid://ddvqqrxrn5sfa"]
 
-[ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://Scenes/Versus/VersusScene.cs" id="1_f4o1y"]
+[ext_resource type="Script" uid="uid://44xseu6tkovu" path="res://Scenes/CTF/CTFScene.cs" id="1_qy1ro"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
 [ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
 [ext_resource type="Texture2D" uid="uid://dwhmipoltvves" path="res://assets/BlueFlag.png" id="6_kjp4p"]
 [ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="6_qy1ro"]
+[ext_resource type="Script" uid="uid://6qwvv35dkkgx" path="res://Scenes/CTF/CTFBlueGoal.cs" id="7_ey2qt"]
 [ext_resource type="Texture2D" uid="uid://cfpoj252gt5qj" path="res://assets/darkred_ball.png" id="7_kjp4p"]
 [ext_resource type="Texture2D" uid="uid://cnchnv2cvob8m" path="res://assets/grey_high_res_ball.png" id="7_xyg1p"]
+[ext_resource type="Script" uid="uid://c1k0lvrovlts6" path="res://Scenes/CTF/CTFRedGoal.cs" id="8_5jtnm"]
 [ext_resource type="Texture2D" uid="uid://brn146ej3gqxi" path="res://assets/RedFlag.png" id="8_qy1ro"]
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="11_wlibp"]
 [ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="12_f4o1y"]
@@ -36,7 +38,7 @@ bounce = 1.0
 bounce = 1.0
 
 [node name="CTFScene" type="Node2D"]
-script = ExtResource("1_f4o1y")
+script = ExtResource("1_qy1ro")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -176,6 +178,7 @@ debug_color = Color(1, 1, 1, 0.42)
 
 [node name="BlueGoal" type="Area2D" parent="."]
 position = Vector2(-550, 0)
+script = ExtResource("7_ey2qt")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlueGoal"]
@@ -192,6 +195,7 @@ texture = ExtResource("6_kjp4p")
 
 [node name="RedGoal" type="Area2D" parent="."]
 position = Vector2(550, 0)
+script = ExtResource("8_5jtnm")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RedGoal"]
@@ -220,6 +224,11 @@ shape = SubResource("CircleShape2D_anwit")
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall1"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_qy1ro")
+
+[node name="Player1RedFlag" type="Sprite2D" parent="PlayerBall1"]
+visible = false
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("8_qy1ro")
 
 [node name="PlayerBall2" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
@@ -289,5 +298,7 @@ script = ExtResource("12_f4o1y")
 [connection signal="body_entered" from="LowerBorder" to="LowerBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LeftBorder" to="LeftBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="RightBorder" to="RightBorder" method="OnBodyEntered"]
+[connection signal="body_entered" from="BlueGoal" to="BlueGoal" method="OnBodyEntered"]
+[connection signal="body_entered" from="RedGoal" to="RedGoal" method="OnBodyEntered"]
 [connection signal="text_changed" from="ForceEdit" to="ForceEdit" method="CustomTextChanged"]
 [connection signal="text_changed" from="ForceMultiplierEdit" to="ForceMultiplierEdit" method="ForceMultiplierTextChanged"]
