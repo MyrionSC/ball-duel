@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ddvqqrxrn5sfa"]
+[gd_scene load_steps=25 format=3 uid="uid://ddvqqrxrn5sfa"]
 
 [ext_resource type="Script" uid="uid://44xseu6tkovu" path="res://Scenes/CTF/CTFScene.cs" id="1_qy1ro"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="12_f4o1y"]
 [ext_resource type="Texture2D" uid="uid://cqaai3duwax2c" path="res://assets/lightblue_ball.png" id="12_kjp4p"]
 [ext_resource type="Texture2D" uid="uid://bsohetrjwrls3" path="res://assets/lightred_ball.png" id="13_qy1ro"]
+[ext_resource type="Script" uid="uid://bcsjepw2m0eyg" path="res://scripts/RespawnTimeEdit.cs" id="16_tsp6l"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gaov6"]
 bounce = 10.0
@@ -309,6 +310,14 @@ offset_bottom = 395.0
 text = "2"
 script = ExtResource("12_f4o1y")
 
+[node name="RespawnTimeEdit" type="TextEdit" parent="."]
+offset_left = -400.0
+offset_top = 363.0
+offset_right = -358.0
+offset_bottom = 395.0
+text = "3"
+script = ExtResource("16_tsp6l")
+
 [node name="LeftScore" type="RichTextLabel" parent="."]
 offset_left = -687.0
 offset_top = -397.0
@@ -335,3 +344,4 @@ text = "0"
 [connection signal="body_entered" from="RedGoal" to="RedGoal" method="OnBodyEntered"]
 [connection signal="text_changed" from="ForceEdit" to="ForceEdit" method="CustomTextChanged"]
 [connection signal="text_changed" from="ForceMultiplierEdit" to="ForceMultiplierEdit" method="ForceMultiplierTextChanged"]
+[connection signal="text_changed" from="RespawnTimeEdit" to="RespawnTimeEdit" method="CustomTextChanged"]
