@@ -109,9 +109,7 @@ public partial class CTFScene : Node2D
     {
         Console.WriteLine("BallTouchedBlueGoal: " + ballWithFlag.ControllerId);
 
-        // if ball is red and flag is here, pick up flag
         // if ball is blue and has red flag and blue flag is here, increment score
-
         if (ballWithFlag.isBlue())
         {
             if (ballWithFlag.HasFlag() && BlueGoal.flagSprite.IsVisible())
@@ -121,15 +119,15 @@ public partial class CTFScene : Node2D
                 ballWithFlag.SetHasFlag(false);
                 RedGoal.flagSprite.SetVisible(true);
             }
-            // bool flagIsFree = !playerBallList.Exists(b => b.HasFlag());
-            // if (flagIsFree)
-            // {
-            //     ballWithFlag.SetHasFlag(true);
-            //     _redGoal.flagSprite.SetVisible(false);
-            // }
         }
         else
         {
+            // if ball is red and flag is here, pick up flag
+            if (BlueGoal.flagSprite.IsVisible())
+            {
+                ballWithFlag.SetHasFlag(true);
+                BlueGoal.flagSprite.SetVisible(false);
+            }
         }
     }
 
@@ -140,8 +138,7 @@ public partial class CTFScene : Node2D
         // if ball is blue and flag is here, pick up flag
         if (ballWithFlag.isBlue())
         {
-            bool flagIsFree = !playerBallList.Exists(b => b.HasFlag());
-            if (flagIsFree)
+            if (RedGoal.flagSprite.IsVisible())
             {
                 ballWithFlag.SetHasFlag(true);
                 RedGoal.flagSprite.SetVisible(false);
@@ -149,6 +146,12 @@ public partial class CTFScene : Node2D
         }
         else
         {
+            if (ballWithFlag.HasFlag() && RedGoal.flagSprite.IsVisible())
+            {
+                // inc score
+                ballWithFlag.SetHasFlag(false);
+                BlueGoal.flagSprite.SetVisible(true);
+            }
         }
     }
 
