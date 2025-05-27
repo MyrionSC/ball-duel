@@ -1,4 +1,5 @@
 using BallDuel.Scenes.CTF;
+using BallDuel.scripts;
 using Godot;
 
 public partial class Border : Area2D
@@ -8,6 +9,13 @@ public partial class Border : Area2D
         if (body is PlayerBall ball)
         {
             ball.MoveBody(new Vector2(-100000, 0));
+            if (ball.IsRespawning)
+            {
+                GetTree().CreateTimer(Globals.RespawnTimeSeconds).Timeout += () =>
+                {
+                    ball.Reset();
+                };
+            }
         }
         if (body is PlayerBallWithFlag ballWithFlag)
         {
@@ -22,7 +30,7 @@ public partial class Border : Area2D
             {
                 currentScene.BlueGoal.flagSprite.SetVisible(true);
             }
-            GetTree().CreateTimer(CTFScene.RespawnTimeSeconds).Timeout += () =>
+            GetTree().CreateTimer(Globals.RespawnTimeSeconds).Timeout += () =>
             {
                 ballWithFlag.Reset();
             };

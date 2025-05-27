@@ -14,8 +14,6 @@ public partial class CTFScene : Node2D
     public CTFBlueGoal BlueGoal = null;
     public CTFRedGoal RedGoal = null;
 
-    public static float RespawnTimeSeconds = 3.0f;
-
     public override void _Ready()
     {
         base._Ready();

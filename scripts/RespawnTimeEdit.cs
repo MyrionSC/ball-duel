@@ -11,7 +11,7 @@ public partial class RespawnTimeEdit : TextEdit
         Console.WriteLine("RespawnTimeEdit text changed to " + text);
         try
         {
-            CTFScene.RespawnTimeSeconds = float.Parse(text);
+            Globals.RespawnTimeSeconds = float.Parse(text);
         }
         catch (Exception e)
         {
