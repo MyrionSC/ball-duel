@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://nl1677c00ii0"]
+[gd_scene load_steps=17 format=3 uid="uid://nl1677c00ii0"]
 
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_dr8cw"]
 [ext_resource type="Script" uid="uid://btaxqi66hi34s" path="res://Scenes/Start/StartScene.cs" id="1_gxtbs"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cqaai3duwax2c" path="res://assets/lightblue_ball.png" id="5_ftqdq"]
 [ext_resource type="Script" uid="uid://54cyb1t1hgea" path="res://Scenes/Start/AirHockeySelect.cs" id="5_po4a3"]
 [ext_resource type="Texture2D" uid="uid://bsohetrjwrls3" path="res://assets/lightred_ball.png" id="6_po4a3"]
+[ext_resource type="Script" uid="uid://0c608aojboyo" path="res://Scenes/Start/MinionSwarmSelect.cs" id="7_3j15m"]
 [ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="7_rhv0p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dr8cw"]
@@ -36,7 +37,7 @@ script = ExtResource("3_7bvpp")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VersusSelect"]
-scale = Vector2(10, 10)
+scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="VersusSelect"]
@@ -57,7 +58,7 @@ script = ExtResource("5_3j15m")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CTF"]
-scale = Vector2(10, 10)
+scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="CTF"]
@@ -73,12 +74,12 @@ theme_override_font_sizes/normal_font_size = 24
 text = "Capture the flag"
 
 [node name="AirHockeySelect" type="Area2D" parent="."]
-position = Vector2(400, 0)
+position = Vector2(400, 200)
 script = ExtResource("5_po4a3")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AirHockeySelect"]
-scale = Vector2(10, 10)
+scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="AirHockeySelect"]
@@ -92,6 +93,27 @@ offset_bottom = 21.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 text = "Airhockey"
+
+[node name="MinionSwarmSelect" type="Area2D" parent="."]
+position = Vector2(400, -200)
+script = ExtResource("7_3j15m")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinionSwarmSelect"]
+scale = Vector2(12.5, 12.5)
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="MinionSwarmSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MinionSwarmSelect"]
+offset_left = -43.0
+offset_top = -36.0
+offset_right = 43.0
+offset_bottom = 32.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "Minion Swarm"
 
 [node name="PlayerBall1" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
@@ -159,3 +181,4 @@ texture = ExtResource("6_po4a3")
 [connection signal="body_entered" from="VersusSelect" to="VersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="CTF" to="CTF" method="OnBodyEntered"]
 [connection signal="body_entered" from="AirHockeySelect" to="AirHockeySelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="MinionSwarmSelect" to="MinionSwarmSelect" method="OnBodyEntered"]
