@@ -1,5 +1,4 @@
 using System;
-using BallDuel.Scenes.CTF;
 using Godot;
 
 namespace BallDuel.scripts;

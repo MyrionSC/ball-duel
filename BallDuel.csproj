@@ -8,6 +8,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scenes\CTF\CTFScene.tscn" />
+    <Content Include="Scenes\MinionSwarm\MinionSwarmScene.tscn" />
     <Content Include="Scenes\Versus\VersusScene.tscn" />
   </ItemGroup>
 </Project>
