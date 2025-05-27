@@ -9,6 +9,8 @@ public partial class MinionSwarmScene : Node2D
     PlayerBall playerBall3 = null;
     PlayerBall playerBall4 = null;
 
+    private PackedScene _ballScene = GD.Load<PackedScene>("res://Scenes/Shared/ball.tscn");
+
     List<PlayerBall> playerBallList = new();
 
     // public MinionSwarmBlueGoal BlueGoal = null;
@@ -44,6 +46,14 @@ public partial class MinionSwarmScene : Node2D
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);
         }
+        
+        GetTree().CreateTimer(3).Timeout += () =>
+        {
+            var instantiate = _ballScene.Instantiate() as RigidBody2D;
+            instantiate.GlobalPosition = new Vector2(-200, -200);
+            AddChild(instantiate);
+        };
+        
     }
 
     public override void _Input(InputEvent @event)
@@ -92,14 +102,14 @@ public partial class MinionSwarmScene : Node2D
         }
     }
 
-    public void BallTouchedBlueGoal(PlayerBall ballWithFlag)
+    public void BallTouchedBlueGoal(PlayerBall ball)
     {
-        Console.WriteLine("BallTouchedBlueGoal: " + ballWithFlag.ControllerId);
+        Console.WriteLine("BallTouchedBlueGoal: " + ball.ControllerId);
     }
 
-    public void BallTouchedRedGoal(PlayerBall ballWithFlag)
+    public void BallTouchedRedGoal(PlayerBall ball)
     {
-        Console.WriteLine("BallTouchedRedGoal: " + ballWithFlag.ControllerId);
+        Console.WriteLine("BallTouchedRedGoal: " + ball.ControllerId);
     }
 
     private void ResetScene()

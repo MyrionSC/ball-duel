@@ -4,6 +4,8 @@ using System.Linq;
 using BallDuel.scripts;
 using Godot;
 
+namespace BallDuel.Scenes.Versus;
+
 public partial class VersusScene : Node2D
 {
     PlayerBall playerBall1 = null;
