@@ -18,33 +18,23 @@ public partial class StartScene : Node2D
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
         playerBall1.OriginalPosition = new Vector2(0, -200);
         playerBallList.Add(playerBall1);
-        if (!playerBall1.IsControllerConnected())
-        {
-            playerBall1.Position = new Vector2(100000, 100000);
-        }
 
         playerBall2 = GetNode<PlayerBall>("PlayerBall2");
         playerBall2.OriginalPosition = new Vector2(0, -100);
         playerBallList.Add(playerBall2);
-        if (!playerBall2.IsControllerConnected())
-        {
-            playerBall2.Position = new Vector2(100000, 100000);
-        }
 
         playerBall3 = GetNode<PlayerBall>("PlayerBall3");
         playerBall3.OriginalPosition = new Vector2(0, 100);
         playerBallList.Add(playerBall3);
-        if (!playerBall3.IsControllerConnected())
-        {
-            playerBall3.Position = new Vector2(100000, 100000);
-        }
 
         playerBall4 = GetNode<PlayerBall>("PlayerBall4");
         playerBall4.OriginalPosition = new Vector2(0, 200);
         playerBallList.Add(playerBall4);
-        if (!playerBall4.IsControllerConnected())
+
+        foreach (var playerBall in playerBallList)
         {
-            playerBall4.Position = new Vector2(100000, 100000);
+            if (!playerBall.IsControllerConnected())
+                playerBall.Position = new Vector2(100000, 100000);
         }
     }
 
