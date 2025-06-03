@@ -22,33 +22,23 @@ public partial class AirHockeyScene : Node2D
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
         playerBall1.OriginalPosition = new Vector2(-400, -100);
         playerBallList.Add(playerBall1);
-        if (!playerBall1.IsControllerConnected())
-        {
-            playerBall1.Position = new Vector2(100000, 100000);
-        }
 
         playerBall2 = GetNode<PlayerBall>("PlayerBall2");
         playerBall2.OriginalPosition = new Vector2(400, -100);
         playerBallList.Add(playerBall2);
-        if (!playerBall2.IsControllerConnected())
-        {
-            playerBall2.Position = new Vector2(100000, 100000);
-        }
 
         playerBall3 = GetNode<PlayerBall>("PlayerBall3");
         playerBall3.OriginalPosition = new Vector2(-400, 100);
         playerBallList.Add(playerBall3);
-        if (!playerBall3.IsControllerConnected())
-        {
-            playerBall3.Position = new Vector2(100000, 100000);
-        }
 
         playerBall4 = GetNode<PlayerBall>("PlayerBall4");
         playerBall4.OriginalPosition = new Vector2(400, 100);
         playerBallList.Add(playerBall4);
-        if (!playerBall4.IsControllerConnected())
+        
+        foreach (var playerBall in playerBallList)
         {
-            playerBall4.Position = new Vector2(100000, 100000);
+            if (!playerBall.IsControllerConnected())
+                playerBall.Position = new Vector2(100000, 100000);
         }
     }
 
@@ -72,29 +62,14 @@ public partial class AirHockeyScene : Node2D
             GetTree().ChangeSceneToFile("res://Scenes/Start/StartScene.tscn");
             return;
         }
-
-        if (playerBall1 != null && playerBall1.IsControllerConnected() && playerBall1.Position.X > 50000)
+        
+        foreach (var playerBall in playerBallList)
         {
-            Console.WriteLine("Connecting player 1");
-            playerBall1.Reset();
-        }
-
-        if (playerBall2 != null && playerBall2.IsControllerConnected() && playerBall2.Position.X > 50000)
-        {
-            Console.WriteLine("Connecting player 2");
-            playerBall2.Reset();
-        }
-
-        if (playerBall3 != null && playerBall3.IsControllerConnected() && playerBall3.Position.X > 50000)
-        {
-            Console.WriteLine("Connecting player 3");
-            playerBall3.Reset();
-        }
-
-        if (playerBall4 != null && playerBall4.IsControllerConnected() && playerBall4.Position.X > 50000)
-        {
-            Console.WriteLine("Connecting player 4");
-            playerBall4.Reset();
+            if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
+            {
+                Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
+                playerBall.Reset();
+            }
         }
     }
 

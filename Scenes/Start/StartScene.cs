@@ -58,28 +58,13 @@ public partial class StartScene : Node2D
         }
 
         // Console.WriteLine(@event.GetType().Name + ": " + @event.AsText());
-        if (playerBall1 != null && playerBall1.IsControllerConnected() && playerBall1.Position.X > 50000)
+        foreach (var playerBall in playerBallList)
         {
-            Console.WriteLine("Connecting player 1");
-            playerBall1.Reset();
-        }
-
-        if (playerBall2 != null && playerBall2.IsControllerConnected() && playerBall2.Position.X > 50000)
-        {
-            Console.WriteLine("Connecting player 2");
-            playerBall2.Reset();
-        }
-
-        if (playerBall3 != null && playerBall3.IsControllerConnected() && playerBall3.Position.X > 50000)
-        {
-            Console.WriteLine("Connecting player 3");
-            playerBall3.Reset();
-        }
-
-        if (playerBall4 != null && playerBall4.IsControllerConnected() && playerBall4.Position.X > 50000)
-        {
-            Console.WriteLine("Connecting player 4");
-            playerBall4.Reset();
+            if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
+            {
+                Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
+                playerBall.Reset();
+            }
         }
     }
 }

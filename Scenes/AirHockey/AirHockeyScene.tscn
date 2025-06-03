@@ -205,7 +205,7 @@ modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(400, 100)
 physics_material_override = SubResource("PhysicsMaterial_hgi2p")
 script = ExtResource("4_s4mny")
-ControllerId = 2
+ControllerId = 3
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall4"]
