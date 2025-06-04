@@ -95,7 +95,7 @@ theme_override_font_sizes/normal_font_size = 24
 text = "Airhockey"
 
 [node name="MinionSwarmSelect" type="Area2D" parent="."]
-position = Vector2(400, -200)
+position = Vector2(-22400, -200)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/MinionSwarm/MinionSwarmScene.tscn"
 metadata/_edit_group_ = true

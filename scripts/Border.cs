@@ -1,9 +1,12 @@
+using System;
 using BallDuel.Scenes.CTF;
 using BallDuel.scripts;
 using Godot;
 
 public partial class Border : Area2D
 {
+    public static Action<Node2D> CollisionCallback { get; set; } = null;
+    
     public void OnBodyEntered(Node2D body)
     {
         if (body is PlayerBall ball)
@@ -35,5 +38,7 @@ public partial class Border : Area2D
                 ballWithFlag.Reset();
             };
         }
+
+        CollisionCallback?.Invoke(body);
     }
 }

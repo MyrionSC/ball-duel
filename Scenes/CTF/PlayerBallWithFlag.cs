@@ -37,17 +37,12 @@ public partial class PlayerBallWithFlag : RigidBody2D
             return;
         }
         
-        // if (Globals.InputDisabled) return;
-
-        float forceMultiplier = 1f;
         Vector2 analogInput = new Vector2(
             GetClampedJoyAxis(ControllerId, JoyAxis.LeftX),
             GetClampedJoyAxis(ControllerId, JoyAxis.LeftY)
         );
-        if (Input.IsActionPressed($"device_{ControllerId}_trigger_right"))
-            forceMultiplier = FORCE_MULTIPLIER_CONSTANT;
-
-        // Apply force based on controller input
+        float forceMultiplier = Input.IsActionPressed($"device_{ControllerId}_trigger_right") ? FORCE_MULTIPLIER_CONSTANT : 1f;
+        
         ApplyForce(Globals.InputDisabled
             ? Vector2.Zero
             : analogInput * forceMultiplier * ACCELERATION_CONSTANT);

@@ -50,6 +50,15 @@ public partial class VersusScene : Node2D
 
         CountdownController.Init(this);
         CountdownController.StartCountdown();
+
+        Border.CollisionCallback = body =>
+        {
+            if (body is PlayerBall ball)
+            {
+                Console.WriteLine("ball: " + ball.ControllerId + " touched border");
+                GetTree().CreateTimer(0.1).Timeout += CheckForWin;
+            }
+        };
     }
 
     public override void _Input(InputEvent @event)
@@ -86,16 +95,19 @@ public partial class VersusScene : Node2D
 
     private void CheckForWin()
     {
-        Console.WriteLine("CheckForWin");
-        if (playerBallList.Count == 1) return;
+        Console.WriteLine("Checking for win...");
+        
         List<PlayerBall> remainingPlayerList =
             playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
-
+        
         if (remainingPlayerList.Count == 1)
         {
             PlayerBall remainingPlayer = remainingPlayerList[0];
-            remainingPlayer.Score += 1;
-            Console.WriteLine("player " + remainingPlayer.ControllerId + " wins, new score: " + remainingPlayer.Score);
+            var scoreLabel = GetNode<RichTextLabel>("Player" + (remainingPlayer.ControllerId + 1) + "Score");
+            var oldScore = int.Parse(scoreLabel.Text);
+            Console.WriteLine(
+                $"player {remainingPlayer.ControllerId} wins, old score: {oldScore} new score: {oldScore + 1}");
+            scoreLabel.Text = (oldScore + 1).ToString();
             ResetScene();
         }
         else if (remainingPlayerList.Count == 0)

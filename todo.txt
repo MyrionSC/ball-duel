@@ -1,25 +1,12 @@
 
 
-Countdown
 
-=== Versus
-
-score
-
-middle bouncy thing extra bounce somehow?
-- maybe paddle thing
-
-redo ball sprites, more definition? Smileys?
-
-teams?
-
-=== Air Hockey
+Versus teams
 
 
 
 
 === Minion swarm
-
 each team has a home base. 
 Team minions spawn on the side and go towards opposing base. 
 If minion touches enemy base it explodes

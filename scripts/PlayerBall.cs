@@ -12,7 +12,6 @@ public partial class PlayerBall : RigidBody2D
     public bool IsRespawning = false;
     
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
-    [Export] public int Score { get; set; } = 0;
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
@@ -26,15 +25,12 @@ public partial class PlayerBall : RigidBody2D
             return;
         }
 
-        float forceMultiplier = 1f;
         Vector2 analogInput = new Vector2(
             GetClampedJoyAxis(ControllerId, JoyAxis.LeftX),
             GetClampedJoyAxis(ControllerId, JoyAxis.LeftY)
         );
-        if (Input.IsActionPressed($"device_{ControllerId}_trigger_right"))
-            forceMultiplier = FORCE_MULTIPLIER_CONSTANT;
-
-        // Apply force based on controller input
+        float forceMultiplier = Input.IsActionPressed($"device_{ControllerId}_trigger_right") ? FORCE_MULTIPLIER_CONSTANT : 1f;
+        
         ApplyForce(Globals.InputDisabled
             ? Vector2.Zero
             : analogInput * forceMultiplier * ACCELERATION_CONSTANT);
