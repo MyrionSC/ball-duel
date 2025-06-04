@@ -14,16 +14,11 @@ public partial class VersusScene : Node2D
     PlayerBall playerBall3 = null;
     PlayerBall playerBall4 = null;
     List<PlayerBall> playerBallList = new();
-    private Timer _countdownTimer;
-    private Label _countDownLabel;
 
     public override void _Ready()
     {
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
-
-        CountdownController.Init(this);
-        CountdownController.StartCountdown();
 
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
         playerBall1.OriginalPosition = new Vector2(-400, -200);
@@ -46,6 +41,9 @@ public partial class VersusScene : Node2D
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);
         }
+
+        CountdownController.Init(this);
+        CountdownController.StartCountdown();
     }
 
     public override void _Input(InputEvent @event)
@@ -59,16 +57,16 @@ public partial class VersusScene : Node2D
 
         if (@event is InputEventJoypadButton btn && btn.ButtonIndex == JoyButton.Start)
         {
-            ResetVersus();
+            ResetScene();
             return;
         }
 
         if (@event is InputEventJoypadButton btn1 && btn1.ButtonIndex == JoyButton.Back)
         {
-            GetTree().CallDeferred("change_scene_to_packed", "res://Scenes/Start/StartScene.tscn");
+            GetTree().ChangeSceneToFile("res://Scenes/Start/StartScene.tscn");
             return;
         }
-        
+
         foreach (var playerBall in playerBallList)
         {
             if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
@@ -91,12 +89,12 @@ public partial class VersusScene : Node2D
             PlayerBall remainingPlayer = remainingPlayerList[0];
             remainingPlayer.Score += 1;
             Console.WriteLine("player " + remainingPlayer.ControllerId + " wins, new score: " + remainingPlayer.Score);
-            ResetVersus();
+            ResetScene();
         }
         else if (remainingPlayerList.Count == 0)
         {
             Console.WriteLine("draw");
-            ResetVersus();
+            ResetScene();
         }
         else
         {
@@ -104,12 +102,13 @@ public partial class VersusScene : Node2D
         }
     }
 
-    private void ResetVersus()
+    private void ResetScene()
     {
         foreach (var playerBall in playerBallList)
         {
             if (playerBall.IsControllerConnected())
                 playerBall.Reset();
+            CountdownController.StartCountdown();
         }
 
         GetNode<MiddleSpinnyThing>("MiddleSpinnyThing").Reset();

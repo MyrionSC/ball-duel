@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using BallDuel.Scenes.CTF;
+using BallDuel.Scenes.Shared;
 using Godot;
 
 public partial class CTFScene : Node2D
@@ -26,36 +27,28 @@ public partial class CTFScene : Node2D
         playerBall1.OriginalPosition = new Vector2(-400, -100);
         playerBall1.flagSprite = GetNode<Sprite2D>("PlayerBall1/Player1RedFlag");
         playerBallList.Add(playerBall1);
-        if (!playerBall1.IsControllerConnected())
-        {
-            playerBall1.Position = new Vector2(100000, 100000);
-        }
 
         playerBall2 = GetNode<PlayerBallWithFlag>("PlayerBall2");
         playerBall2.OriginalPosition = new Vector2(400, -100);
         playerBall2.flagSprite = GetNode<Sprite2D>("PlayerBall2/Player2BlueFlag");
         playerBallList.Add(playerBall2);
-        if (!playerBall2.IsControllerConnected())
-        {
-            playerBall2.Position = new Vector2(100000, 100000);
-        }
 
         playerBall3 = GetNode<PlayerBallWithFlag>("PlayerBall3");
         playerBall3.OriginalPosition = new Vector2(-400, 100);
         playerBall3.flagSprite = GetNode<Sprite2D>("PlayerBall3/Player3RedFlag");
         playerBallList.Add(playerBall3);
-        if (!playerBall3.IsControllerConnected())
-        {
-            playerBall3.Position = new Vector2(100000, 100000);
-        }
 
         playerBall4 = GetNode<PlayerBallWithFlag>("PlayerBall4");
         playerBall4.OriginalPosition = new Vector2(400, 100);
         playerBall4.flagSprite = GetNode<Sprite2D>("PlayerBall4/Player4BlueFlag");
-        playerBallList.Add(playerBall4);
-        if (!playerBall4.IsControllerConnected())
+
+        foreach (var playerBall in playerBallList)
         {
-            playerBall4.Position = new Vector2(100000, 100000);
+            if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
+            {
+                Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
+                playerBall.Reset();
+            }
         }
     }
 
@@ -70,7 +63,7 @@ public partial class CTFScene : Node2D
 
         if (@event is InputEventJoypadButton btn && btn.ButtonIndex == JoyButton.Start)
         {
-            ResetVersus();
+            ResetScene();
             return;
         }
 
@@ -79,7 +72,7 @@ public partial class CTFScene : Node2D
             GetTree().ChangeSceneToFile("res://Scenes/Start/StartScene.tscn");
             return;
         }
-        
+
         foreach (var playerBall in playerBallList)
         {
             if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
@@ -143,7 +136,7 @@ public partial class CTFScene : Node2D
         }
     }
 
-    private void ResetVersus()
+    private void ResetScene()
     {
         foreach (var playerBall in playerBallList)
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using BallDuel.Scenes.AirHockey;
+using BallDuel.Scenes.Shared;
 using Godot;
 
 public partial class AirHockeyScene : Node2D
@@ -34,12 +35,15 @@ public partial class AirHockeyScene : Node2D
         playerBall4 = GetNode<PlayerBall>("PlayerBall4");
         playerBall4.OriginalPosition = new Vector2(400, 100);
         playerBallList.Add(playerBall4);
-        
+
         foreach (var playerBall in playerBallList)
         {
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);
         }
+
+        CountdownController.Init(this);
+        CountdownController.StartCountdown();
     }
 
     public override void _Input(InputEvent @event)
@@ -62,7 +66,7 @@ public partial class AirHockeyScene : Node2D
             GetTree().ChangeSceneToFile("res://Scenes/Start/StartScene.tscn");
             return;
         }
-        
+
         foreach (var playerBall in playerBallList)
         {
             if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
@@ -81,6 +85,7 @@ public partial class AirHockeyScene : Node2D
                 playerBall.Reset();
         }
 
+        CountdownController.StartCountdown();
         puck.Reset();
     }
 
@@ -88,8 +93,8 @@ public partial class AirHockeyScene : Node2D
     {
         if (body is Puck ball)
         {
-            var RightScore = GetNode<RichTextLabel>("RightScore");
-            RightScore.Text = (int.Parse(RightScore.Text) + 1).ToString();
+            var rightScore = GetNode<RichTextLabel>("RightScore");
+            rightScore.Text = (int.Parse(rightScore.Text) + 1).ToString();
 
             ResetScene();
         }
