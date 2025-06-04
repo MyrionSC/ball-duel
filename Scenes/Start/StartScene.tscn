@@ -26,6 +26,7 @@ script = ExtResource("1_gxtbs")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background2D" type="Sprite2D" parent="."]
+position = Vector2(-15, 2)
 texture = ExtResource("1_dr8cw")
 
 [node name="VersusSelect" type="Area2D" parent="."]
@@ -50,8 +51,31 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 text = "Versus"
 
-[node name="CTF" type="Area2D" parent="."]
+[node name="VersusTeamSelect" type="Area2D" parent="."]
 position = Vector2(-400, 200)
+script = ExtResource("7_3j15m")
+resString = "gres://Scenes/VersusTeam/VersusTeamScene.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VersusTeamSelect"]
+scale = Vector2(12.5, 12.5)
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="VersusTeamSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VersusTeamSelect"]
+offset_left = -40.0
+offset_top = -37.0
+offset_right = 70.0
+offset_bottom = 35.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "Versus
+Team"
+
+[node name="CTF" type="Area2D" parent="."]
+position = Vector2(400, -200)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/CTF/CTFScene.tscn"
 metadata/_edit_group_ = true
@@ -180,6 +204,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_po4a3")
 
 [connection signal="body_entered" from="VersusSelect" to="VersusSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="VersusTeamSelect" to="VersusTeamSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="CTF" to="CTF" method="OnBodyEntered"]
 [connection signal="body_entered" from="AirHockeySelect" to="AirHockeySelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="MinionSwarmSelect" to="MinionSwarmSelect" method="OnBodyEntered"]
