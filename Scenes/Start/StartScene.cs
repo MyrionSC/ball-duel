@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BallDuel.scripts;
 using Godot;
 
 public partial class StartScene : Node2D
@@ -13,6 +14,7 @@ public partial class StartScene : Node2D
     public override void _Ready()
     {
         base._Ready();
+        Globals.InputDisabled = false;
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
         
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");

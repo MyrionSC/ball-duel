@@ -287,7 +287,7 @@ theme_override_colors/font_color = Color(1, 0.190212, 0.840881, 1)
 theme_override_font_sizes/font_size = 400
 text = "3"
 
-[node name="Player1Score" type="RichTextLabel" parent="."]
+[node name="BlueTeamScore" type="RichTextLabel" parent="."]
 offset_left = -656.0
 offset_top = -372.0
 offset_right = -610.0
@@ -296,7 +296,7 @@ theme_override_colors/default_color = Color(0, 0, 1, 1)
 theme_override_font_sizes/normal_font_size = 48
 text = "0"
 
-[node name="Player2Score" type="RichTextLabel" parent="."]
+[node name="RedTeamScore" type="RichTextLabel" parent="."]
 offset_left = 629.0
 offset_top = -372.0
 offset_right = 684.0

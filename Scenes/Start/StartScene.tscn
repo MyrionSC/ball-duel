@@ -26,7 +26,6 @@ script = ExtResource("1_gxtbs")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background2D" type="Sprite2D" parent="."]
-position = Vector2(-15, 2)
 texture = ExtResource("1_dr8cw")
 
 [node name="VersusSelect" type="Area2D" parent="."]
@@ -54,7 +53,7 @@ text = "Versus"
 [node name="VersusTeamSelect" type="Area2D" parent="."]
 position = Vector2(-400, 200)
 script = ExtResource("7_3j15m")
-resString = "gres://Scenes/VersusTeam/VersusTeamScene.tscn"
+resString = "res://Scenes/VersusTeam/VersusTeamScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VersusTeamSelect"]

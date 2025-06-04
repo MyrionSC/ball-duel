@@ -83,7 +83,6 @@ public partial class VersusTeamScene : Node2D
             if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
             {
                 Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
-                GetNode<RichTextLabel>("Player" + (playerBall.ControllerId + 1) + "Score").Visible = true;
                 playerBall.ResetPosition();
             }
         }
@@ -92,25 +91,26 @@ public partial class VersusTeamScene : Node2D
     private void CheckForWin()
     {
         Console.WriteLine("Checking for win...");
-        
+
         List<PlayerBall> remainingPlayerList =
             playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
-        
-        // TODO: check teams
-        
-        if (remainingPlayerList.Count == 1)
+        var allBlue = remainingPlayerList.Count > 0 && remainingPlayerList.All(b => b.ControllerId == 0 || b.ControllerId == 2);
+        var allRed = remainingPlayerList.Count > 0 && remainingPlayerList.All(b => b.ControllerId == 1 || b.ControllerId == 3);
+
+        if (allBlue)
         {
-            PlayerBall remainingPlayer = remainingPlayerList[0];
-            var scoreLabel = GetNode<RichTextLabel>("Player" + (remainingPlayer.ControllerId + 1) + "Score");
+            var scoreLabel = GetNode<RichTextLabel>("BlueTeamScore");
             var oldScore = int.Parse(scoreLabel.Text);
-            Console.WriteLine(
-                $"player {remainingPlayer.ControllerId} wins, old score: {oldScore} new score: {oldScore + 1}");
+            Console.WriteLine($"blue team wins, old score: {oldScore} new score: {oldScore + 1}");
             scoreLabel.Text = (oldScore + 1).ToString();
             ResetScene();
         }
-        else if (remainingPlayerList.Count == 0)
+        else if (allRed)
         {
-            Console.WriteLine("draw");
+            var scoreLabel = GetNode<RichTextLabel>("RedTeamScore");
+            var oldScore = int.Parse(scoreLabel.Text);
+            Console.WriteLine($"red team wins, old score: {oldScore} new score: {oldScore + 1}");
+            scoreLabel.Text = (oldScore + 1).ToString();
             ResetScene();
         }
         else
