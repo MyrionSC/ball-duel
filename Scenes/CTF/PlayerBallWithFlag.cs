@@ -1,4 +1,5 @@
 using System;
+using BallDuel.scripts;
 using Godot;
 
 namespace BallDuel.Scenes.CTF;
@@ -35,6 +36,8 @@ public partial class PlayerBallWithFlag : RigidBody2D
             LinearVelocity = Vector2.Zero;
             return;
         }
+        
+        // if (Globals.InputDisabled) return;
 
         float forceMultiplier = 1f;
         Vector2 analogInput = new Vector2(
@@ -45,7 +48,9 @@ public partial class PlayerBallWithFlag : RigidBody2D
             forceMultiplier = FORCE_MULTIPLIER_CONSTANT;
 
         // Apply force based on controller input
-        ApplyForce(analogInput * forceMultiplier * ACCELERATION_CONSTANT);
+        ApplyForce(Globals.InputDisabled
+            ? Vector2.Zero
+            : analogInput * forceMultiplier * ACCELERATION_CONSTANT);
     }
 
     private float GetClampedJoyAxis(int controllerId, JoyAxis axis)

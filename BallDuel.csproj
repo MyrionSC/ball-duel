@@ -5,7 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="assets\" />
-    <Folder Include="Scenes\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scenes\CTF\CTFScene.tscn" />

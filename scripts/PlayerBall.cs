@@ -1,4 +1,5 @@
 using System;
+using BallDuel.scripts;
 using Godot;
 
 public partial class PlayerBall : RigidBody2D
@@ -9,6 +10,7 @@ public partial class PlayerBall : RigidBody2D
     private Vector2 _newPosition;
     public static float FORCE_MULTIPLIER_CONSTANT = 2;
     public bool IsRespawning = false;
+    
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
     [Export] public int Score { get; set; } = 0;
 
@@ -33,7 +35,9 @@ public partial class PlayerBall : RigidBody2D
             forceMultiplier = FORCE_MULTIPLIER_CONSTANT;
 
         // Apply force based on controller input
-        ApplyForce(analogInput * forceMultiplier * ACCELERATION_CONSTANT);
+        ApplyForce(Globals.InputDisabled
+            ? Vector2.Zero
+            : analogInput * forceMultiplier * ACCELERATION_CONSTANT);
     }
 
     private float GetClampedJoyAxis(int controllerId, JoyAxis axis)

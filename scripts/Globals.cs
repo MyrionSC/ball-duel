@@ -1,6 +1,7 @@
 namespace BallDuel.scripts;
 
-public class Globals
+public static class Globals
 {
     public static float RespawnTimeSeconds { get; set; } = 3.0f;
+    public static bool InputDisabled { get; set; } = false;
 }
