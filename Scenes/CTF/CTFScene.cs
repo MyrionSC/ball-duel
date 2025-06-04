@@ -41,14 +41,12 @@ public partial class CTFScene : Node2D
         playerBall4 = GetNode<PlayerBallWithFlag>("PlayerBall4");
         playerBall4.OriginalPosition = new Vector2(400, 100);
         playerBall4.flagSprite = GetNode<Sprite2D>("PlayerBall4/Player4BlueFlag");
-
+        playerBallList.Add(playerBall4);
+        
         foreach (var playerBall in playerBallList)
         {
-            if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
-            {
-                Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
-                playerBall.Reset();
-            }
+            if (!playerBall.IsControllerConnected())
+                playerBall.Position = new Vector2(100000, 100000);
         }
     }
 

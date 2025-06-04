@@ -245,21 +245,21 @@ text = "2"
 script = ExtResource("11_t14sq")
 
 [node name="LeftScore" type="RichTextLabel" parent="."]
-offset_left = -687.0
-offset_top = -397.0
-offset_right = -653.0
-offset_bottom = -358.0
+offset_left = -693.0
+offset_top = -414.0
+offset_right = -647.0
+offset_bottom = -345.0
 theme_override_colors/default_color = Color(0, 0, 1, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 48
 text = "0"
 
 [node name="RightScore" type="RichTextLabel" parent="."]
-offset_left = 673.0
-offset_top = -398.0
-offset_right = 707.0
-offset_bottom = -359.0
+offset_left = 666.0
+offset_top = -414.0
+offset_right = 721.0
+offset_bottom = -344.0
 theme_override_colors/default_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 48
 text = "0"
 
 [node name="CountdownLabel" type="Label" parent="."]

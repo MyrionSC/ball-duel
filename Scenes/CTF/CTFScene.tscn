@@ -319,21 +319,21 @@ text = "3"
 script = ExtResource("16_tsp6l")
 
 [node name="LeftScore" type="RichTextLabel" parent="."]
-offset_left = -687.0
-offset_top = -397.0
-offset_right = -653.0
-offset_bottom = -358.0
+offset_left = -694.0
+offset_top = -415.0
+offset_right = -639.0
+offset_bottom = -344.0
 theme_override_colors/default_color = Color(0, 0, 1, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 48
 text = "0"
 
 [node name="RightScore" type="RichTextLabel" parent="."]
-offset_left = 673.0
-offset_top = -398.0
-offset_right = 707.0
-offset_bottom = -359.0
+offset_left = 667.0
+offset_top = -414.0
+offset_right = 726.0
+offset_bottom = -347.0
 theme_override_colors/default_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 48
 text = "0"
 
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
