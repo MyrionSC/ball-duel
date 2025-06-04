@@ -13,7 +13,7 @@ public partial class Border : Area2D
             {
                 GetTree().CreateTimer(Globals.RespawnTimeSeconds).Timeout += () =>
                 {
-                    ball.Reset();
+                    ball.ResetPosition();
                 };
             }
         }

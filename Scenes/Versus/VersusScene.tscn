@@ -285,6 +285,46 @@ theme_override_colors/font_color = Color(1, 0.190212, 0.840881, 1)
 theme_override_font_sizes/font_size = 400
 text = "3"
 
+[node name="Player1Score" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -656.0
+offset_top = -372.0
+offset_right = -610.0
+offset_bottom = -303.0
+theme_override_colors/default_color = Color(0, 0, 1, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="Player2Score" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 629.0
+offset_top = -372.0
+offset_right = 684.0
+offset_bottom = -302.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="Player3Score" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -657.0
+offset_top = 303.0
+offset_right = -611.0
+offset_bottom = 372.0
+theme_override_colors/default_color = Color(0, 0.862745, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="Player4Score" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 629.0
+offset_top = 303.0
+offset_right = 675.0
+offset_bottom = 372.0
+theme_override_colors/default_color = Color(0.880472, 0.880472, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LowerBorder" to="LowerBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LeftBorder" to="LeftBorder" method="OnBodyEntered"]

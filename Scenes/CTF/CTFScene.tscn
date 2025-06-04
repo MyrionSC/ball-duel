@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ddvqqrxrn5sfa"]
+[gd_scene load_steps=27 format=3 uid="uid://ddvqqrxrn5sfa"]
 
 [ext_resource type="Script" uid="uid://44xseu6tkovu" path="res://Scenes/CTF/CTFScene.cs" id="1_qy1ro"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
@@ -37,6 +37,10 @@ bounce = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrdcs"]
 bounce = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efmsk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsp6l"]
 
 [node name="CTFScene" type="Node2D"]
 script = ExtResource("1_qy1ro")
@@ -319,21 +323,23 @@ text = "3"
 script = ExtResource("16_tsp6l")
 
 [node name="LeftScore" type="RichTextLabel" parent="."]
-offset_left = -694.0
-offset_top = -415.0
-offset_right = -639.0
-offset_bottom = -344.0
+offset_left = -657.0
+offset_top = -371.0
+offset_right = -602.0
+offset_bottom = -300.0
 theme_override_colors/default_color = Color(0, 0, 1, 1)
 theme_override_font_sizes/normal_font_size = 48
 text = "0"
 
 [node name="RightScore" type="RichTextLabel" parent="."]
-offset_left = 667.0
-offset_top = -414.0
-offset_right = 726.0
-offset_bottom = -347.0
+offset_left = 630.0
+offset_top = -371.0
+offset_right = 689.0
+offset_bottom = -304.0
 theme_override_colors/default_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 48
+theme_override_styles/fill = SubResource("StyleBoxFlat_efmsk")
+theme_override_styles/background = SubResource("StyleBoxFlat_tsp6l")
 text = "0"
 
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]

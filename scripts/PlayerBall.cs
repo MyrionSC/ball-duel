@@ -52,7 +52,7 @@ public partial class PlayerBall : RigidBody2D
         return Input.IsJoyKnown(ControllerId);
     }
 
-    public void Reset()
+    public void ResetPosition()
     {
         MoveBody(OriginalPosition);
     }

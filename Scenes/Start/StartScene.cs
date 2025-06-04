@@ -51,7 +51,7 @@ public partial class StartScene : Node2D
         {
             foreach (var playerBall in playerBallList)
             {
-                if (playerBall.IsControllerConnected()) playerBall.Reset();
+                if (playerBall.IsControllerConnected()) playerBall.ResetPosition();
             }
 
             return;
@@ -60,10 +60,10 @@ public partial class StartScene : Node2D
         // Console.WriteLine(@event.GetType().Name + ": " + @event.AsText());
         foreach (var playerBall in playerBallList)
         {
-            if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
+            if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
             {
                 Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
-                playerBall.Reset();
+                playerBall.ResetPosition();
             }
         }
     }

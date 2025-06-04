@@ -39,7 +39,13 @@ public partial class VersusScene : Node2D
         foreach (var playerBall in playerBallList)
         {
             if (!playerBall.IsControllerConnected())
+            {
                 playerBall.Position = new Vector2(100000, 100000);
+            }
+            else
+            {
+                GetNode<RichTextLabel>("Player" + (playerBall.ControllerId + 1) + "Score").Visible = true;
+            }
         }
 
         CountdownController.Init(this);
@@ -69,10 +75,11 @@ public partial class VersusScene : Node2D
 
         foreach (var playerBall in playerBallList)
         {
-            if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
+            if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
             {
                 Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
-                playerBall.Reset();
+                GetNode<RichTextLabel>("Player" + (playerBall.ControllerId + 1) + "Score").Visible = true;
+                playerBall.ResetPosition();
             }
         }
     }
@@ -107,7 +114,7 @@ public partial class VersusScene : Node2D
         foreach (var playerBall in playerBallList)
         {
             if (playerBall.IsControllerConnected())
-                playerBall.Reset();
+                playerBall.ResetPosition();
             CountdownController.StartCountdown();
         }
 

@@ -73,7 +73,7 @@ public partial class CTFScene : Node2D
 
         foreach (var playerBall in playerBallList)
         {
-            if (playerBall != null && playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
+            if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
             {
                 Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
                 playerBall.Reset();
