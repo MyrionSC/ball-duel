@@ -11,6 +11,6 @@ public partial class SceneSelect : Area2D
     {
         if (resString == null) throw new Exception("resString is null");
         var newScene = ResourceLoader.Load<PackedScene>(resString);
-        GetTree().ChangeSceneToPacked(newScene);
+        GetTree().CallDeferred("change_scene_to_packed", newScene);
     }
 }

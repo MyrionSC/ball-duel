@@ -14,7 +14,7 @@ public partial class StartScene : Node2D
     {
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
-
+        
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
         playerBall1.OriginalPosition = new Vector2(0, -200);
         playerBallList.Add(playerBall1);

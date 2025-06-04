@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://Scenes/Versus/VersusScene.cs" id="1_f4o1y"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
 [ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
-[ext_resource type="Texture2D" uid="uid://dmi46x0p0rh22" path="res://assets/bowling_ball.png" id="4_lpbkv"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
+[ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="6_tin34"]
 [ext_resource type="Texture2D" uid="uid://d0ri81xw1pyjw" path="res://assets/red_ball.png" id="7_tefk0"]
 [ext_resource type="Texture2D" uid="uid://cnchnv2cvob8m" path="res://assets/grey_high_res_ball.png" id="7_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_xyg1p"]
@@ -188,7 +188,8 @@ scale = Vector2(3.2, 3.2)
 shape = SubResource("CircleShape2D_anwit")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall1"]
-texture = ExtResource("4_lpbkv")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_tin34")
 
 [node name="PlayerBall2" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)

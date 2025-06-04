@@ -1,7 +1,6 @@
 
 
-Fullscreen
-
+Countdown
 
 === Versus
 

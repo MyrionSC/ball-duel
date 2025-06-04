@@ -110,8 +110,8 @@ texture = ExtResource("7_rhv0p")
 [node name="RichTextLabel" type="RichTextLabel" parent="MinionSwarmSelect"]
 offset_left = -43.0
 offset_top = -36.0
-offset_right = 43.0
-offset_bottom = 32.0
+offset_right = 59.0
+offset_bottom = 43.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 text = "Minion Swarm"
