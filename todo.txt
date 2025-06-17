@@ -1,10 +1,6 @@
 
 
 
-Versus teams
-
-
-
 
 === Minion swarm
 each team has a home base. 

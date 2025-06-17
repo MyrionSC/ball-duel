@@ -7,6 +7,7 @@
     <Folder Include="assets\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scenes\CrabBucket\CrabBucketScene.tscn" />
     <Content Include="Scenes\CTF\CTFScene.tscn" />
     <Content Include="Scenes\MinionSwarm\MinionSwarmScene.tscn" />
     <Content Include="Scenes\VersusTeam\VersusTeamScene.tscn" />
