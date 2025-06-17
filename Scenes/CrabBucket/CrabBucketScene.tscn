@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ddvqqrxrn5sfa"]
+[gd_scene load_steps=18 format=3 uid="uid://ddvqqrxrn5sfa"]
 
 [ext_resource type="Script" uid="uid://clo4hi7p61etl" path="res://Scenes/CrabBucket/CrabBucketScene.cs" id="1_u4ac0"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_xrdcs"]
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="11_wlibp"]
 [ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="12_f4o1y"]
+[ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="12_lry12"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyg1p"]
 size = Vector2(1400, 40)
@@ -24,6 +25,8 @@ bounce = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrdcs"]
 bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7sn3n"]
 
 [node name="CrabBucketScene" type="Node2D"]
 script = ExtResource("1_u4ac0")
@@ -209,7 +212,28 @@ offset_bottom = 395.0
 text = "2"
 script = ExtResource("12_f4o1y")
 
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(610, 311)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+scale = Vector2(4.1, 4.1)
+shape = SubResource("CircleShape2D_7sn3n")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("12_lry12")
+
+[node name="Label" type="Label" parent="Goal"]
+offset_left = -18.0
+offset_top = -12.0
+offset_right = 19.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Goal"
+
 [node name="CountdownLabel" type="Label" parent="."]
+visible = false
 offset_left = -109.0
 offset_top = -279.0
 offset_right = 119.0
@@ -218,6 +242,25 @@ theme_override_colors/font_color = Color(1, 0.190212, 0.840881, 1)
 theme_override_font_sizes/font_size = 400
 text = "3"
 
+[node name="BlockingMessageLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -402.0
+offset_right = 698.0
+offset_bottom = 399.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "blocking text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="BigBox" to="BigBox" method="OnBodyEntered"]
 [connection signal="body_entered" from="LowerBorder" to="LowerBorder" method="OnBodyEntered"]
@@ -225,3 +268,4 @@ text = "3"
 [connection signal="body_entered" from="RightBorder" to="RightBorder" method="OnBodyEntered"]
 [connection signal="text_changed" from="ForceEdit" to="ForceEdit" method="CustomTextChanged"]
 [connection signal="text_changed" from="ForceMultiplierEdit" to="ForceMultiplierEdit" method="ForceMultiplierTextChanged"]
+[connection signal="body_entered" from="Goal" to="." method="OnBodyEntered"]

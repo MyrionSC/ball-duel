@@ -58,4 +58,21 @@ public partial class PlayerBall : RigidBody2D
         _resetState = true;
         _newPosition = targetPosition;
     }
+
+    public string GetColorName()
+    {
+        switch (ControllerId)
+        {
+            case 0:
+                return "blue";
+            case 1:
+                return "red";
+            case 2:
+                return "green";
+            case 3:
+                return "yellow";
+            default:
+                throw new Exception($"controller id {ControllerId} has no defined color");
+        }
+    }
 }

@@ -45,9 +45,12 @@ public partial class CrabBucketScene : Node2D
             }
         }
 
+        BlockingMessageController.Init(this);
+        BlockingMessageController.HideBlockingMessage();
+
         CountdownController.Init(this);
         CountdownController.StartCountdown();
-
+        
         Border.CollisionCallback = body =>
         {
             if (body is PlayerBall ball)
@@ -58,7 +61,6 @@ public partial class CrabBucketScene : Node2D
                 };
             }
         };
-        
     }
 
     public override void _Input(InputEvent @event)
@@ -73,6 +75,7 @@ public partial class CrabBucketScene : Node2D
         if (@event is InputEventJoypadButton btn && btn.ButtonIndex == JoyButton.Start)
         {
             ResetScene();
+            BlockingMessageController.HideBlockingMessage();
             return;
         }
 
@@ -87,37 +90,18 @@ public partial class CrabBucketScene : Node2D
             if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
             {
                 Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
-                GetNode<RichTextLabel>("Player" + (playerBall.ControllerId + 1) + "Score").Visible = true;
                 playerBall.ResetPosition();
             }
         }
     }
-
-    private void CheckForWin()
+    
+    public void OnBodyEntered(Node2D body)
     {
-        Console.WriteLine("Checking for win...");
-        
-        List<PlayerBall> remainingPlayerList =
-            playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
-        
-        if (remainingPlayerList.Count == 1)
+        if (body is PlayerBall ball)
         {
-            PlayerBall remainingPlayer = remainingPlayerList[0];
-            var scoreLabel = GetNode<RichTextLabel>("Player" + (remainingPlayer.ControllerId + 1) + "Score");
-            var oldScore = int.Parse(scoreLabel.Text);
-            Console.WriteLine(
-                $"player {remainingPlayer.ControllerId} wins, old score: {oldScore} new score: {oldScore + 1}");
-            scoreLabel.Text = (oldScore + 1).ToString();
-            ResetScene();
-        }
-        else if (remainingPlayerList.Count == 0)
-        {
-            Console.WriteLine("draw");
-            ResetScene();
-        }
-        else
-        {
-            Console.WriteLine(remainingPlayerList.Count + " players left");
+            ball.ResetPosition();
+            Globals.InputDisabled = true;
+            BlockingMessageController.ShowBlockingMessage($"{ball.GetColorName()} ball wins!");
         }
     }
 
@@ -129,7 +113,5 @@ public partial class CrabBucketScene : Node2D
                 playerBall.ResetPosition();
             CountdownController.StartCountdown();
         }
-
-        GetNode<MiddleSpinnyThing>("MiddleSpinnyThing").Reset();
     }
 }
