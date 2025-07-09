@@ -1,6 +1,11 @@
 
 
 
+Rene bugreport in CTF:
+
+we found a bug in CTF when 3 players, if both flags are captured if the 3rd player (blue) is killed, then a new flag spawns on the
+opposite team (red) allowing them to capture (while the original red flag is still held by the living blue player)
+
 
 === Minion swarm
 each team has a home base. 
