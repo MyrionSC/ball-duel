@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="7_rhv0p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dr8cw"]
+radius = 6.08053
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3j15m"]
 bounce = 1.0
@@ -120,7 +121,7 @@ theme_override_font_sizes/normal_font_size = 24
 text = "Airhockey"
 
 [node name="CrabBucketSelect" type="Area2D" parent="."]
-position = Vector2(-400, 200)
+position = Vector2(-550, 100)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/CrabBucket/CrabBucketScene.tscn"
 metadata/_edit_group_ = true
@@ -130,16 +131,40 @@ scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="CrabBucketSelect"]
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CrabBucketSelect"]
-offset_left = -71.0
-offset_top = -19.0
-offset_right = 72.0
-offset_bottom = 17.0
+offset_left = -42.0
+offset_top = -35.0
+offset_right = 58.0
+offset_bottom = 41.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 text = "Crab Bucket"
+
+[node name="RoadKillSelect" type="Area2D" parent="."]
+position = Vector2(-400, 300)
+script = ExtResource("7_3j15m")
+resString = "gres://Scenes/RoadKill/RoadKillScene.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadKillSelect"]
+scale = Vector2(12.5, 12.5)
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="RoadKillSelect"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RoadKillSelect"]
+offset_left = -54.0
+offset_top = -19.0
+offset_right = 61.0
+offset_bottom = 17.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "Road Kill"
 
 [node name="MinionSwarmSelect" type="Area2D" parent="."]
 position = Vector2(-22400, -200)
@@ -231,4 +256,5 @@ texture = ExtResource("6_po4a3")
 [connection signal="body_entered" from="CTF" to="CTF" method="OnBodyEntered"]
 [connection signal="body_entered" from="AirHockeySelect" to="AirHockeySelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="CrabBucketSelect" to="CrabBucketSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="RoadKillSelect" to="RoadKillSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="MinionSwarmSelect" to="MinionSwarmSelect" method="OnBodyEntered"]
