@@ -9,6 +9,7 @@ public class CountdownController
     private static Label _label;
     private static Timer _countdownTimer;
     private static Node2D _scene;
+    public static bool IsInitted = false;
 
     public static void Init(Node2D scene)
     {
@@ -20,6 +21,7 @@ public class CountdownController
         _countdownTimer.WaitTime = 1.0f; // 1 second intervals
         _countdownTimer.OneShot = false; // Will fire repeatedly
         _countdownTimer.Timeout += OnCountdownTimerOnTimeout;
+        IsInitted = true;
     }
 
     private static void OnCountdownTimerOnTimeout()

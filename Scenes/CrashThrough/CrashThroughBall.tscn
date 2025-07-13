@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3acn3cxanp0c"]
+
+[ext_resource type="Script" uid="uid://cw4pxrwlo428y" path="res://Scenes/CrashThrough/CrashThroughBall.cs" id="1_n4rif"]
+[ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="1_vp8ql"]
+
+[sub_resource type="PhysicsMaterial" id="1"]
+bounce = 0.4
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 128.035
+
+[node name="Ball" type="RigidBody2D"]
+physics_material_override = SubResource("1")
+script = ExtResource("1_n4rif")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_vp8ql")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.15, 0.15)
+shape = SubResource("2")

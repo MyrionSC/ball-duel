@@ -4,9 +4,9 @@ using BallDuel.Scenes.Shared;
 using BallDuel.scripts;
 using Godot;
 
-namespace BallDuel.Scenes.RoadKill;
+namespace BallDuel.Scenes.CrashThrough;
 
-public partial class RoadKillScene : Node2D
+public partial class CrashThroughScene : Node2D
 {
     PlayerBall playerBall1 = null;
     PlayerBall playerBall2 = null;
@@ -14,8 +14,8 @@ public partial class RoadKillScene : Node2D
     PlayerBall playerBall4 = null;
     List<PlayerBall> playerBallList = new();
 
-    private static string roadKillBallScenePath = "res://Scenes/RoadKill/RoadKillBall.tscn";
-    private PackedScene _ballScene = GD.Load<PackedScene>(roadKillBallScenePath);
+    private static string CrashThroughBallScenePath = "res://Scenes/CrashThrough/CrashThroughBall.tscn";
+    private PackedScene _ballScene = GD.Load<PackedScene>(CrashThroughBallScenePath);
 
     public override void _Ready()
     {
@@ -44,49 +44,27 @@ public partial class RoadKillScene : Node2D
                 GetTree().CreateTimer(1).Timeout += () => { ball.ResetPosition(); };
             }
 
-            if (body is RigidBody2D roadKillBall && roadKillBall.SceneFilePath == roadKillBallScenePath)
+            if (body is RigidBody2D CrashThroughBall && CrashThroughBall.SceneFilePath == CrashThroughBallScenePath)
             {
-                RemoveChild(roadKillBall);
+                RemoveChild(CrashThroughBall);
             }
         };
 
         
-        // === SPAWN BALL LANES ===
-        void SpawnBall(int x, int y, int dir_x, int dir_y)
-        {
-            RigidBody2D ball = _ballScene.Instantiate() as RigidBody2D;
-            ball.GlobalPosition = new Vector2(x, y);
-            ball.LinearVelocity = new Vector2(dir_x, dir_y);
-            AddChild(ball);
-        }
+        // // === SPAWN BALL LANES ===
+        // void SpawnBall(int x, int y, int dir_x, int dir_y)
+        // {
+        //     RigidBody2D ball = _ballScene.Instantiate() as RigidBody2D;
+        //     ball.GlobalPosition = new Vector2(x, y);
+        //     ball.LinearVelocity = new Vector2(dir_x, dir_y);
+        //     AddChild(ball);
+        // }
 
-        // Spawn ball leftside
-        foreach (var y in new[] { -200, 000, 200 })
-        {
-            void SpawnBallLaneLoop()
-            {
-                SpawnBall(-750, y, 200, 0);
-                var newTimer = GetTree().CreateTimer(0.75f);
-                newTimer.Timeout += SpawnBallLaneLoop;
-            }
+        CrashThroughBall ball = _ballScene.Instantiate() as CrashThroughBall;
+        ball.GlobalPosition = new Vector2(0,0);
+        ball.OriginalPosition = ball.GetPosition();
+        AddChild(ball);
 
-            var timer = GetTree().CreateTimer(0.75f);
-            timer.Timeout += SpawnBallLaneLoop;
-        }
-
-        // Spawn ball rightside
-        foreach (var y in new[] { -100, 100 })
-        {
-            void SpawnBallLaneLoop()
-            {
-                SpawnBall(750, y, -200, 0);
-                var newTimer = GetTree().CreateTimer(0.75f);
-                newTimer.Timeout += SpawnBallLaneLoop;
-            }
-
-            var timer = GetTree().CreateTimer(0.75f);
-            timer.Timeout += SpawnBallLaneLoop;
-        }
     }
 
     public override void _Input(InputEvent @event)
