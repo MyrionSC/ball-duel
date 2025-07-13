@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using BallDuel.Scenes.CTF;
-using BallDuel.Scenes.Shared;
 using Godot;
 
 public partial class CTFScene : Node2D

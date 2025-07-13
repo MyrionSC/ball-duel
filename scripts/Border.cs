@@ -6,7 +6,7 @@ using Godot;
 public partial class Border : Area2D
 {
     public static Action<Node2D> CollisionCallback { get; set; } = null;
-    
+
     public void OnBodyEntered(Node2D body)
     {
         if (body is PlayerBall ball)
@@ -14,29 +14,23 @@ public partial class Border : Area2D
             ball.MoveBody(new Vector2(-100000, 0));
             if (ball.IsRespawning)
             {
-                GetTree().CreateTimer(Globals.RespawnTimeSeconds).Timeout += () =>
-                {
-                    ball.ResetPosition();
-                };
+                GetTree().CreateTimer(Globals.RespawnTimeSeconds).Timeout += () => { ball.ResetPosition(); };
             }
         }
+
         if (body is PlayerBallWithFlag ballWithFlag)
         {
             ballWithFlag.MoveBody(new Vector2(-100000, 0));
-            ballWithFlag.SetHasFlag(false);
             var currentScene = GetTree().GetCurrentScene() as CTFScene;
-            if (ballWithFlag.IsBlue())
+            if (ballWithFlag.HasFlag())
             {
-                currentScene.RedGoal.flagSprite.SetVisible(true);
+                if (ballWithFlag.IsBlue())
+                    currentScene.RedGoal.flagSprite.SetVisible(true);
+                else
+                    currentScene.BlueGoal.flagSprite.SetVisible(true);
             }
-            else
-            {
-                currentScene.BlueGoal.flagSprite.SetVisible(true);
-            }
-            GetTree().CreateTimer(Globals.RespawnTimeSeconds).Timeout += () =>
-            {
-                ballWithFlag.Reset();
-            };
+
+            GetTree().CreateTimer(Globals.RespawnTimeSeconds).Timeout += () => { ballWithFlag.Reset(); };
         }
 
         CollisionCallback?.Invoke(body);
