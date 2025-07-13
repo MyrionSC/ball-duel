@@ -23,27 +23,24 @@ public partial class CTFScene : Node2D
         RedGoal = GetNode<CTFRedGoal>("RedGoal");
 
         playerBall1 = GetNode<PlayerBallWithFlag>("PlayerBall1");
-        playerBall1.OriginalPosition = new Vector2(-400, -100);
         playerBall1.flagSprite = GetNode<Sprite2D>("PlayerBall1/Player1RedFlag");
         playerBallList.Add(playerBall1);
 
         playerBall2 = GetNode<PlayerBallWithFlag>("PlayerBall2");
-        playerBall2.OriginalPosition = new Vector2(400, -100);
         playerBall2.flagSprite = GetNode<Sprite2D>("PlayerBall2/Player2BlueFlag");
         playerBallList.Add(playerBall2);
 
         playerBall3 = GetNode<PlayerBallWithFlag>("PlayerBall3");
-        playerBall3.OriginalPosition = new Vector2(-400, 100);
         playerBall3.flagSprite = GetNode<Sprite2D>("PlayerBall3/Player3RedFlag");
         playerBallList.Add(playerBall3);
 
         playerBall4 = GetNode<PlayerBallWithFlag>("PlayerBall4");
-        playerBall4.OriginalPosition = new Vector2(400, 100);
         playerBall4.flagSprite = GetNode<Sprite2D>("PlayerBall4/Player4BlueFlag");
         playerBallList.Add(playerBall4);
         
         foreach (var playerBall in playerBallList)
         {
+            playerBall.OriginalPosition = playerBall.GetPosition();
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);
         }

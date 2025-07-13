@@ -17,27 +17,15 @@ public partial class StartScene : Node2D
         Globals.InputDisabled = false;
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
         
-        playerBall1 = GetNode<PlayerBall>("PlayerBall1");
-        playerBall1.OriginalPosition = new Vector2(0, -200);
-        playerBallList.Add(playerBall1);
-
-        playerBall2 = GetNode<PlayerBall>("PlayerBall2");
-        playerBall2.OriginalPosition = new Vector2(0, -100);
-        playerBallList.Add(playerBall2);
-
-        playerBall3 = GetNode<PlayerBall>("PlayerBall3");
-        playerBall3.OriginalPosition = new Vector2(0, 100);
-        playerBallList.Add(playerBall3);
-
-        playerBall4 = GetNode<PlayerBall>("PlayerBall4");
-        playerBall4.OriginalPosition = new Vector2(0, 200);
-        playerBallList.Add(playerBall4);
-
-        foreach (var playerBall in playerBallList)
+        foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
         {
+            var playerBall = GetNode<PlayerBall>(s);
+            playerBall.OriginalPosition = playerBall.GetPosition();
+            playerBallList.Add(playerBall);
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);
         }
+        
     }
 
     public override void _Input(InputEvent @event)

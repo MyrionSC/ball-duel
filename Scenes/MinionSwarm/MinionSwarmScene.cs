@@ -24,36 +24,22 @@ public partial class MinionSwarmScene : Node2D
         // BlueGoal = GetNode<MinionSwarmBlueGoal>("BlueGoal");
         // RedGoal = GetNode<MinionSwarmRedGoal>("RedGoal");
 
-        playerBall1 = GetNode<PlayerBall>("PlayerBall1");
-        playerBall1.OriginalPosition = new Vector2(-400, -100);
-        playerBallList.Add(playerBall1);
-
-        playerBall2 = GetNode<PlayerBall>("PlayerBall2");
-        playerBall2.OriginalPosition = new Vector2(400, -100);
-        playerBallList.Add(playerBall2);
-
-        playerBall3 = GetNode<PlayerBall>("PlayerBall3");
-        playerBall3.OriginalPosition = new Vector2(-400, 100);
-        playerBallList.Add(playerBall3);
-
-        playerBall4 = GetNode<PlayerBall>("PlayerBall4");
-        playerBall4.OriginalPosition = new Vector2(400, 100);
-        playerBallList.Add(playerBall4);
-
-        foreach (var playerBall in playerBallList)
+        foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
         {
+            var playerBall = GetNode<PlayerBall>(s);
+            playerBall.OriginalPosition = playerBall.GetPosition();
+            playerBallList.Add(playerBall);
             playerBall.IsRespawning = true;
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);
         }
-        
+
         GetTree().CreateTimer(3).Timeout += () =>
         {
             var instantiate = _ballScene.Instantiate() as RigidBody2D;
             instantiate.GlobalPosition = new Vector2(-200, -200);
             AddChild(instantiate);
         };
-        
     }
 
     public override void _Input(InputEvent @event)
@@ -76,7 +62,7 @@ public partial class MinionSwarmScene : Node2D
             GetTree().ChangeSceneToFile("res://Scenes/Start/StartScene.tscn");
             return;
         }
-        
+
         foreach (var playerBall in playerBallList)
         {
             if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)

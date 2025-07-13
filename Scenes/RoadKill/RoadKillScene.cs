@@ -14,53 +14,78 @@ public partial class RoadKillScene : Node2D
     PlayerBall playerBall4 = null;
     List<PlayerBall> playerBallList = new();
 
+    private static string roadKillBallScenePath = "res://Scenes/RoadKill/RoadKillBall.tscn";
+    private PackedScene _ballScene = GD.Load<PackedScene>(roadKillBallScenePath);
+
     public override void _Ready()
     {
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
-        playerBall1 = GetNode<PlayerBall>("PlayerBall1");
-        // playerBall1.OriginalPosition = new Vector2(-600, -300);
-        playerBallList.Add(playerBall1);
-
-        playerBall2 = GetNode<PlayerBall>("PlayerBall2");
-        // playerBall2.OriginalPosition = new Vector2(-600, -210);
-        playerBallList.Add(playerBall2);
-
-        playerBall3 = GetNode<PlayerBall>("PlayerBall3");
-        // playerBall3.OriginalPosition = new Vector2(-600, -120);
-        playerBallList.Add(playerBall3);
-
-        playerBall4 = GetNode<PlayerBall>("PlayerBall4");
-        // playerBall4.OriginalPosition = new Vector2(-600, -30);
-        playerBallList.Add(playerBall4);
-
-        // foreach (var playerBall in playerBallList)
-        // {
-        //     playerBall.IsRespawning = false;
-        //     if (!playerBall.IsControllerConnected())
-        //     {
-        //         playerBall.Position = new Vector2(100000, 100000);
-        //     }
-        // }
+        foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
+        {
+            var playerBall = GetNode<PlayerBall>(s);
+            playerBall.OriginalPosition = playerBall.GetPosition();
+            playerBallList.Add(playerBall);
+            playerBall.IsRespawning = true;
+            if (!playerBall.IsControllerConnected())
+                playerBall.Position = new Vector2(100000, 100000);
+        }
 
         // BlockingMessageController.Init(this);
         // BlockingMessageController.HideBlockingMessage();
 
         // CountdownController.Init(this);
         // CountdownController.StartCountdown();
-        
+
         Border.CollisionCallback = body =>
         {
             if (body is PlayerBall ball)
             {
-                GetTree().CreateTimer(1).Timeout += () =>
-                {
-                    ball.ResetPosition();
-                };
+                GetTree().CreateTimer(1).Timeout += () => { ball.ResetPosition(); };
+            }
+
+            if (body is RigidBody2D roadKillBall && roadKillBall.SceneFilePath == roadKillBallScenePath)
+            {
+                RemoveChild(roadKillBall);
             }
         };
-        
+
+        void SpawnBall(int x, int y, int dir_x, int dir_y)
+        {
+            RigidBody2D ball = _ballScene.Instantiate() as RigidBody2D;
+            ball.GlobalPosition = new Vector2(x, y);
+            ball.LinearVelocity = new Vector2(dir_x, dir_y);
+            AddChild(ball);
+        }
+
+        // Spawn ball leftside
+        foreach (var y in new[] { -200, 000 })
+        {
+            void SpawnBallLaneLoop()
+            {
+                SpawnBall(-600, y, 200, 0);
+                var newTimer = GetTree().CreateTimer(1);
+                newTimer.Timeout += SpawnBallLaneLoop;
+            }
+
+            var timer = GetTree().CreateTimer(1);
+            timer.Timeout += SpawnBallLaneLoop;
+        }
+
+        // Spawn ball rightside
+        foreach (var y in new[] { -100, 100 })
+        {
+            void SpawnBallLaneLoop()
+            {
+                SpawnBall(600, y, -200, 0);
+                var newTimer = GetTree().CreateTimer(1);
+                newTimer.Timeout += SpawnBallLaneLoop;
+            }
+
+            var timer = GetTree().CreateTimer(1);
+            timer.Timeout += SpawnBallLaneLoop;
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -94,7 +119,7 @@ public partial class RoadKillScene : Node2D
             }
         }
     }
-    
+
     public void OnBodyEntered(Node2D body)
     {
         if (body is PlayerBall ball)

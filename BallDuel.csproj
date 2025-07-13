@@ -10,6 +10,7 @@
     <Content Include="Scenes\CrabBucket\CrabBucketScene.tscn" />
     <Content Include="Scenes\CTF\CTFScene.tscn" />
     <Content Include="Scenes\MinionSwarm\MinionSwarmScene.tscn" />
+    <Content Include="Scenes\RoadKill\RoadKillBall.tscn" />
     <Content Include="Scenes\RoadKill\RoadKillScene.tscn" />
     <Content Include="Scenes\VersusTeam\VersusTeamScene.tscn" />
     <Content Include="Scenes\Versus\VersusScene.tscn" />

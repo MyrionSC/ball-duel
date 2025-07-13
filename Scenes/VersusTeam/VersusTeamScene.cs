@@ -20,28 +20,13 @@ public partial class VersusTeamScene : Node2D
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
-        playerBall1 = GetNode<PlayerBall>("PlayerBall1");
-        playerBall1.OriginalPosition = new Vector2(-400, -200);
-        playerBallList.Add(playerBall1);
-
-        playerBall2 = GetNode<PlayerBall>("PlayerBall2");
-        playerBall2.OriginalPosition = new Vector2(400, -200);
-        playerBallList.Add(playerBall2);
-
-        playerBall3 = GetNode<PlayerBall>("PlayerBall3");
-        playerBall3.OriginalPosition = new Vector2(-400, 200);
-        playerBallList.Add(playerBall3);
-
-        playerBall4 = GetNode<PlayerBall>("PlayerBall4");
-        playerBall4.OriginalPosition = new Vector2(400, 200);
-        playerBallList.Add(playerBall4);
-
-        foreach (var playerBall in playerBallList)
+        foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
         {
+            var playerBall = GetNode<PlayerBall>(s);
+            playerBall.OriginalPosition = playerBall.GetPosition();
+            playerBallList.Add(playerBall);
             if (!playerBall.IsControllerConnected())
-            {
                 playerBall.Position = new Vector2(100000, 100000);
-            }
         }
 
         CountdownController.Init(this);
@@ -94,8 +79,10 @@ public partial class VersusTeamScene : Node2D
 
         List<PlayerBall> remainingPlayerList =
             playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
-        var allBlue = remainingPlayerList.Count > 0 && remainingPlayerList.All(b => b.ControllerId == 0 || b.ControllerId == 2);
-        var allRed = remainingPlayerList.Count > 0 && remainingPlayerList.All(b => b.ControllerId == 1 || b.ControllerId == 3);
+        var allBlue = remainingPlayerList.Count > 0 &&
+                      remainingPlayerList.All(b => b.ControllerId == 0 || b.ControllerId == 2);
+        var allRed = remainingPlayerList.Count > 0 &&
+                     remainingPlayerList.All(b => b.ControllerId == 1 || b.ControllerId == 3);
 
         if (allBlue)
         {
