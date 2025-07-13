@@ -158,13 +158,36 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="RoadKillSelect"]
-offset_left = -54.0
+offset_left = -51.0
 offset_top = -19.0
 offset_right = 61.0
 offset_bottom = 17.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 text = "Road Kill"
+
+[node name="TetherBallzSelect" type="Area2D" parent="."]
+position = Vector2(-153, 323)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/TetherBallz/TetherBallzScene.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TetherBallzSelect"]
+scale = Vector2(12.5, 12.5)
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="TetherBallzSelect"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TetherBallzSelect"]
+offset_left = -69.0
+offset_top = -18.0
+offset_right = 76.0
+offset_bottom = 21.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "Tether Ballz"
 
 [node name="MinionSwarmSelect" type="Area2D" parent="."]
 position = Vector2(-22400, -200)
@@ -257,4 +280,5 @@ texture = ExtResource("6_po4a3")
 [connection signal="body_entered" from="AirHockeySelect" to="AirHockeySelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="CrabBucketSelect" to="CrabBucketSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="RoadKillSelect" to="RoadKillSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="TetherBallzSelect" to="TetherBallzSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="MinionSwarmSelect" to="MinionSwarmSelect" method="OnBodyEntered"]
