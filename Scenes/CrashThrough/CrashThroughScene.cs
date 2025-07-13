@@ -14,9 +14,6 @@ public partial class CrashThroughScene : Node2D
     PlayerBall playerBall4 = null;
     List<PlayerBall> playerBallList = new();
 
-    private static string CrashThroughBallScenePath = "res://Scenes/CrashThrough/CrashThroughBall.tscn";
-    private PackedScene _ballScene = GD.Load<PackedScene>(CrashThroughBallScenePath);
-
     public override void _Ready()
     {
         base._Ready();
@@ -34,8 +31,8 @@ public partial class CrashThroughScene : Node2D
         BlockingMessageController.Init(this);
         BlockingMessageController.HideBlockingMessage();
 
-        // CountdownController.Init(this);
-        // CountdownController.StartCountdown();
+        CountdownController.Init(this);
+        CountdownController.StartCountdown();
 
         Border.CollisionCallback = body =>
         {
@@ -44,20 +41,6 @@ public partial class CrashThroughScene : Node2D
                 GetTree().CreateTimer(1).Timeout += () => { ball.ResetPosition(); };
             }
         };
-
-        // // === SPAWN BALL LANES ===
-        // void SpawnBall(int x, int y, int dir_x, int dir_y)
-        // {
-        //     RigidBody2D ball = _ballScene.Instantiate() as RigidBody2D;
-        //     ball.GlobalPosition = new Vector2(x, y);
-        //     ball.LinearVelocity = new Vector2(dir_x, dir_y);
-        //     AddChild(ball);
-        // }
-
-        CrashThroughBall ball = _ballScene.Instantiate() as CrashThroughBall;
-        ball.GlobalPosition = new Vector2(0,0);
-        AddChild(ball);
-        
     }
 
     public override void _Input(InputEvent @event)
@@ -92,7 +75,7 @@ public partial class CrashThroughScene : Node2D
         }
     }
 
-    public void OnBodyEntered(Node2D body)
+    public void GoalEntered(Node2D body)
     {
         if (body is PlayerBall ball)
         {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ddvqqrxrn5sfa"]
+[gd_scene load_steps=20 format=3 uid="uid://ddvqqrxrn5sfa"]
 
 [ext_resource type="Script" uid="uid://si17vfsslg8a" path="res://Scenes/CrashThrough/CrashThroughScene.cs" id="1_taq8h"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
@@ -11,11 +11,13 @@
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="11_wlibp"]
 [ext_resource type="PackedScene" uid="uid://b3acn3cxanp0c" path="res://Scenes/CrashThrough/CrashThroughBall.tscn" id="11_xtx14"]
 [ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="12_f4o1y"]
+[ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="12_gkugx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyg1p"]
 size = Vector2(1900, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_taq8h"]
+size = Vector2(527, 493)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefk0"]
 size = Vector2(40, 800)
@@ -27,6 +29,8 @@ bounce = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrdcs"]
 bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6yq6a"]
 
 [node name="CrashThroughScene" type="Node2D"]
 script = ExtResource("1_taq8h")
@@ -57,11 +61,12 @@ grow_vertical = 2
 color = Color(0.809884, 0.415649, 1, 1)
 
 [node name="MiddleBlock" type="Area2D" parent="."]
-position = Vector2(-224, -82)
+position = Vector2(-335, -120)
 script = ExtResource("3_xrdcs")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleBlock"]
+position = Vector2(253.5, 236.5)
 shape = SubResource("RectangleShape2D_taq8h")
 
 [node name="ColorRect" type="ColorRect" parent="MiddleBlock"]
@@ -72,8 +77,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -10.0
 offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+offset_right = 518.0
+offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.809884, 0.415649, 1, 1)
@@ -213,6 +218,95 @@ offset_bottom = 395.0
 text = "2"
 script = ExtResource("12_f4o1y")
 
+[node name="TetherBall1" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-22, -189)
+
+[node name="TetherBall2" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(57, -297)
+
+[node name="TetherBall3" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(286, -230)
+
+[node name="TetherBall7" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(384, -285)
+
+[node name="TetherBall4" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(152, -193)
+
+[node name="TetherBall5" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(238, -105)
+
+[node name="TetherBall6" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(360, -152)
+
+[node name="TetherBall9" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-142, -292)
+
+[node name="TetherBall10" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(188, -298)
+
+[node name="TetherBall12" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-225, -195)
+
+[node name="TetherBall13" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-321, -299)
+
+[node name="TetherBall14" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-404, -111)
+
+[node name="TetherBall25" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-356, -187)
+
+[node name="TetherBall15" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-471, -241)
+
+[node name="TetherBall16" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-565, -119)
+
+[node name="TetherBall17" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-434, -22)
+
+[node name="TetherBall18" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-556, 30)
+
+[node name="TetherBall19" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-437, 151)
+
+[node name="TetherBall23" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-516, 108)
+
+[node name="TetherBall24" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-598, 148)
+
+[node name="TetherBall20" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-512, 196)
+
+[node name="TetherBall21" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-602, 238)
+
+[node name="TetherBall22" parent="." instance=ExtResource("11_xtx14")]
+position = Vector2(-428, 244)
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(-519, 295)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+scale = Vector2(4.1, 4.1)
+shape = SubResource("CircleShape2D_6yq6a")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("12_gkugx")
+
+[node name="Label" type="Label" parent="Goal"]
+offset_left = -18.0
+offset_top = -12.0
+offset_right = 19.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Goal"
+
 [node name="CountdownLabel" type="Label" parent="."]
 visible = false
 offset_left = -109.0
@@ -242,9 +336,6 @@ text = "blocking text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ball" parent="." instance=ExtResource("11_xtx14")]
-position = Vector2(-402, 76)
-
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="MiddleBlock" to="MiddleBlock" method="OnBodyEntered"]
 [connection signal="body_entered" from="LowerBorder" to="LowerBorder" method="OnBodyEntered"]
@@ -252,3 +343,4 @@ position = Vector2(-402, 76)
 [connection signal="body_entered" from="RightBorder" to="RightBorder" method="OnBodyEntered"]
 [connection signal="text_changed" from="ForceEdit" to="ForceEdit" method="CustomTextChanged"]
 [connection signal="text_changed" from="ForceMultiplierEdit" to="ForceMultiplierEdit" method="ForceMultiplierTextChanged"]
+[connection signal="body_entered" from="Goal" to="." method="GoalEntered"]
