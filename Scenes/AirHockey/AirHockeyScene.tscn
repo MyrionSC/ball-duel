@@ -15,21 +15,25 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fiux"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rkb7c"]
+friction = 0.0
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gaae"]
 size = Vector2(40, 800)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbuwi"]
+friction = 0.0
 bounce = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_54fx0"]
+friction = 0.0
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mngp"]
 size = Vector2(1400, 40)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d7q08"]
+friction = 0.0
 bounce = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dojh8"]
