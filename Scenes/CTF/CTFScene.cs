@@ -86,7 +86,7 @@ public partial class CTFScene : Node2D
         Console.WriteLine("BallTouchedBlueGoal: " + ballWithFlag.ControllerId);
 
         // if ball is blue and has red flag and blue flag is here, increment score
-        if (ballWithFlag.isBlue())
+        if (ballWithFlag.IsBlue())
         {
             if (ballWithFlag.HasFlag() && BlueGoal.flagSprite.IsVisible())
             {
@@ -113,7 +113,7 @@ public partial class CTFScene : Node2D
         Console.WriteLine("BallTouchedRedGoal: " + ballWithFlag.ControllerId);
 
         // if ball is blue and flag is here, pick up flag
-        if (ballWithFlag.isBlue())
+        if (ballWithFlag.IsBlue())
         {
             if (RedGoal.flagSprite.IsVisible())
             {

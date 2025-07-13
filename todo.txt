@@ -1,6 +1,13 @@
 
 
 
+
+
+Score in Crab Bucket
+
+
+
+
 Rene bugreport in CTF:
 
 we found a bug in CTF when 3 players, if both flags are captured if the 3rd player (blue) is killed, then a new flag spawns on the

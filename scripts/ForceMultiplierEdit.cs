@@ -12,11 +12,10 @@ public partial class ForceMultiplierEdit : TextEdit
         Console.WriteLine("ForceMultiplierEdit text changed to " + text);
         try
         {
-            var old = PlayerBall.FORCE_MULTIPLIER_CONSTANT;
-            PlayerBall.FORCE_MULTIPLIER_CONSTANT = float.Parse(text);
-            PlayerBallWithFlag.FORCE_MULTIPLIER_CONSTANT = float.Parse(text);
+            var old = Globals.BALL_FORCE_MULTIPLIER_CONSTANT;
+            Globals.BALL_FORCE_MULTIPLIER_CONSTANT = float.Parse(text);
             Console.WriteLine(
-                $"PlayerBall.FORCE_MULTIPLIER_CONSTANT set from {old} to {PlayerBall.FORCE_MULTIPLIER_CONSTANT}");
+                $"PlayerBall.FORCE_MULTIPLIER_CONSTANT set from {old} to {Globals.BALL_FORCE_MULTIPLIER_CONSTANT}");
         }
         catch (Exception e)
         {

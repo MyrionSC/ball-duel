@@ -25,7 +25,7 @@ public partial class Border : Area2D
             ballWithFlag.MoveBody(new Vector2(-100000, 0));
             ballWithFlag.SetHasFlag(false);
             var currentScene = GetTree().GetCurrentScene() as CTFScene;
-            if (ballWithFlag.isBlue())
+            if (ballWithFlag.IsBlue())
             {
                 currentScene.RedGoal.flagSprite.SetVisible(true);
             }
