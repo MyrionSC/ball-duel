@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using BallDuel.Scenes.Shared;
 using BallDuel.scripts;
 using Godot;
@@ -21,35 +20,35 @@ public partial class RoadKillScene : Node2D
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         playerBall1 = GetNode<PlayerBall>("PlayerBall1");
-        playerBall1.OriginalPosition = new Vector2(-600, -300);
+        // playerBall1.OriginalPosition = new Vector2(-600, -300);
         playerBallList.Add(playerBall1);
 
         playerBall2 = GetNode<PlayerBall>("PlayerBall2");
-        playerBall2.OriginalPosition = new Vector2(-600, -210);
+        // playerBall2.OriginalPosition = new Vector2(-600, -210);
         playerBallList.Add(playerBall2);
 
         playerBall3 = GetNode<PlayerBall>("PlayerBall3");
-        playerBall3.OriginalPosition = new Vector2(-600, -120);
+        // playerBall3.OriginalPosition = new Vector2(-600, -120);
         playerBallList.Add(playerBall3);
 
         playerBall4 = GetNode<PlayerBall>("PlayerBall4");
-        playerBall4.OriginalPosition = new Vector2(-600, -30);
+        // playerBall4.OriginalPosition = new Vector2(-600, -30);
         playerBallList.Add(playerBall4);
 
-        foreach (var playerBall in playerBallList)
-        {
-            playerBall.IsRespawning = false;
-            if (!playerBall.IsControllerConnected())
-            {
-                playerBall.Position = new Vector2(100000, 100000);
-            }
-        }
+        // foreach (var playerBall in playerBallList)
+        // {
+        //     playerBall.IsRespawning = false;
+        //     if (!playerBall.IsControllerConnected())
+        //     {
+        //         playerBall.Position = new Vector2(100000, 100000);
+        //     }
+        // }
 
-        BlockingMessageController.Init(this);
-        BlockingMessageController.HideBlockingMessage();
+        // BlockingMessageController.Init(this);
+        // BlockingMessageController.HideBlockingMessage();
 
-        CountdownController.Init(this);
-        CountdownController.StartCountdown();
+        // CountdownController.Init(this);
+        // CountdownController.StartCountdown();
         
         Border.CollisionCallback = body =>
         {
@@ -61,6 +60,7 @@ public partial class RoadKillScene : Node2D
                 };
             }
         };
+        
     }
 
     public override void _Input(InputEvent @event)

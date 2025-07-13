@@ -146,7 +146,7 @@ text = "Crab Bucket"
 [node name="RoadKillSelect" type="Area2D" parent="."]
 position = Vector2(-400, 300)
 script = ExtResource("7_3j15m")
-resString = "gres://Scenes/RoadKill/RoadKillScene.tscn"
+resString = "res://Scenes/RoadKill/RoadKillScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoadKillSelect"]
