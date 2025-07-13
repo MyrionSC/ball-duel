@@ -27,7 +27,6 @@ public partial class RoadKillScene : Node2D
             var playerBall = GetNode<PlayerBall>(s);
             playerBall.OriginalPosition = playerBall.GetPosition();
             playerBallList.Add(playerBall);
-            playerBall.IsRespawning = true;
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);
         }
@@ -51,6 +50,8 @@ public partial class RoadKillScene : Node2D
             }
         };
 
+        
+        // === SPAWN BALL LANES ===
         void SpawnBall(int x, int y, int dir_x, int dir_y)
         {
             RigidBody2D ball = _ballScene.Instantiate() as RigidBody2D;
@@ -60,16 +61,16 @@ public partial class RoadKillScene : Node2D
         }
 
         // Spawn ball leftside
-        foreach (var y in new[] { -200, 000 })
+        foreach (var y in new[] { -200, 000, 200 })
         {
             void SpawnBallLaneLoop()
             {
-                SpawnBall(-600, y, 200, 0);
-                var newTimer = GetTree().CreateTimer(1);
+                SpawnBall(-750, y, 200, 0);
+                var newTimer = GetTree().CreateTimer(0.75f);
                 newTimer.Timeout += SpawnBallLaneLoop;
             }
 
-            var timer = GetTree().CreateTimer(1);
+            var timer = GetTree().CreateTimer(0.75f);
             timer.Timeout += SpawnBallLaneLoop;
         }
 
@@ -78,12 +79,12 @@ public partial class RoadKillScene : Node2D
         {
             void SpawnBallLaneLoop()
             {
-                SpawnBall(600, y, -200, 0);
-                var newTimer = GetTree().CreateTimer(1);
+                SpawnBall(750, y, -200, 0);
+                var newTimer = GetTree().CreateTimer(0.75f);
                 newTimer.Timeout += SpawnBallLaneLoop;
             }
 
-            var timer = GetTree().CreateTimer(1);
+            var timer = GetTree().CreateTimer(0.75f);
             timer.Timeout += SpawnBallLaneLoop;
         }
     }
