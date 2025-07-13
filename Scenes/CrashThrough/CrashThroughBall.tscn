@@ -7,14 +7,15 @@
 bounce = 0.4
 
 [sub_resource type="CircleShape2D" id="2"]
-radius = 128.035
+radius = 213.333
 
 [node name="Ball" type="RigidBody2D"]
+mass = 2.0
 physics_material_override = SubResource("1")
 script = ExtResource("1_n4rif")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_vp8ql")
 
 [node name="Collision" type="CollisionShape2D" parent="."]

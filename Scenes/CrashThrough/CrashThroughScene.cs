@@ -43,14 +43,8 @@ public partial class CrashThroughScene : Node2D
             {
                 GetTree().CreateTimer(1).Timeout += () => { ball.ResetPosition(); };
             }
-
-            if (body is RigidBody2D CrashThroughBall && CrashThroughBall.SceneFilePath == CrashThroughBallScenePath)
-            {
-                RemoveChild(CrashThroughBall);
-            }
         };
 
-        
         // // === SPAWN BALL LANES ===
         // void SpawnBall(int x, int y, int dir_x, int dir_y)
         // {
@@ -64,7 +58,7 @@ public partial class CrashThroughScene : Node2D
         ball.GlobalPosition = new Vector2(0,0);
         ball.OriginalPosition = ball.GetPosition();
         AddChild(ball);
-
+        ball.InitLine(this);
     }
 
     public override void _Input(InputEvent @event)
