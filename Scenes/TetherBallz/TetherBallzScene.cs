@@ -4,9 +4,9 @@ using BallDuel.Scenes.Shared;
 using BallDuel.scripts;
 using Godot;
 
-namespace BallDuel.Scenes.CrashThrough;
+namespace BallDuel.Scenes.TetherBallz;
 
-public partial class CrashThroughScene : Node2D
+public partial class TetherBallzScene : Node2D
 {
     PlayerBall playerBall1 = null;
     PlayerBall playerBall2 = null;
