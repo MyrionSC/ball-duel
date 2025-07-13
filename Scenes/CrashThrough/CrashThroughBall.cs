@@ -4,8 +4,22 @@ using Godot;
 
 public partial class CrashThroughBall : RigidBody2D
 {
-    public Vector2 OriginalPosition = Vector2.Zero;
-    private Line2D _line = new();
+    public Vector2 OriginalPosition;
+    private Line2D _line;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        OriginalPosition = Position;
+
+        _line = new Line2D();
+        var r = new Random();
+        _line.DefaultColor = Color.Color8((byte)(r.NextInt64() % 256), (byte)(r.NextInt64() % 256),
+            (byte)(r.NextInt64() % 256));
+        _line.Width = 1.5f;
+        var crashThroughScene = GetParent<CrashThroughScene>();
+        crashThroughScene.CallDeferred("add_child", _line);
+    }
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
@@ -13,7 +27,6 @@ public partial class CrashThroughBall : RigidBody2D
 
         // try to return to original position
         var newVel = OriginalPosition - GetPosition();
-        Console.WriteLine(newVel);
 
         if (newVel.Length() > 1f)
         {
@@ -23,12 +36,4 @@ public partial class CrashThroughBall : RigidBody2D
             _line.AddPoint(GetPosition());
         }
     }
-
-    public void InitLine(CrashThroughScene crashThroughScene)
-    {
-        _line.DefaultColor = Colors.Red;
-        _line.Width = 1.5f;
-        crashThroughScene.AddChild(_line);
-    }
-    
 }

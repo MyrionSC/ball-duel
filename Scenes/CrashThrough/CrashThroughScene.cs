@@ -56,9 +56,8 @@ public partial class CrashThroughScene : Node2D
 
         CrashThroughBall ball = _ballScene.Instantiate() as CrashThroughBall;
         ball.GlobalPosition = new Vector2(0,0);
-        ball.OriginalPosition = ball.GetPosition();
         AddChild(ball);
-        ball.InitLine(this);
+        
     }
 
     public override void _Input(InputEvent @event)
