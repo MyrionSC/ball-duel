@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="7_rhv0p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dr8cw"]
-radius = 6.08053
+radius = 10.1342
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3j15m"]
 bounce = 1.0
@@ -27,6 +27,7 @@ script = ExtResource("1_gxtbs")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background2D" type="Sprite2D" parent="."]
+position = Vector2(212, -16)
 texture = ExtResource("1_dr8cw")
 
 [node name="VersusSelect" type="Area2D" parent="."]
@@ -51,6 +52,30 @@ offset_bottom = 23.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 36
 text = "Versus"
+
+[node name="TetherVersusSelect" type="Area2D" parent="."]
+position = Vector2(-147, -322)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/TetherVersus/TetherVersusScene.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TetherVersusSelect"]
+scale = Vector2(12.5, 12.5)
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="TetherVersusSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TetherVersusSelect"]
+offset_left = -58.0
+offset_top = -50.0
+offset_right = 80.0
+offset_bottom = 65.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Tether
+Versus"
 
 [node name="VersusTeamSelect" type="Area2D" parent="."]
 position = Vector2(-550, -100)
@@ -275,6 +300,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_po4a3")
 
 [connection signal="body_entered" from="VersusSelect" to="VersusSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="TetherVersusSelect" to="TetherVersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="VersusTeamSelect" to="VersusTeamSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="CTF" to="CTF" method="OnBodyEntered"]
 [connection signal="body_entered" from="AirHockeySelect" to="AirHockeySelect" method="OnBodyEntered"]
