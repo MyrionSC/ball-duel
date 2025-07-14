@@ -11,12 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="7_rhv0p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dr8cw"]
-radius = 10.1342
+radius = 127.193
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3j15m"]
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iroav"]
+radius = 32.0624
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lpo4g"]
 bounce = 1.0
@@ -27,7 +28,6 @@ script = ExtResource("1_gxtbs")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background2D" type="Sprite2D" parent="."]
-position = Vector2(212, -16)
 texture = ExtResource("1_dr8cw")
 
 [node name="VersusSelect" type="Area2D" parent="."]
@@ -38,7 +38,6 @@ resString = "res://Scenes/Versus/VersusScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VersusSelect"]
-scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="VersusSelect"]
@@ -61,7 +60,6 @@ resString = "res://Scenes/TetherVersus/TetherVersusScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TetherVersusSelect"]
-scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="TetherVersusSelect"]
@@ -85,7 +83,6 @@ resString = "res://Scenes/VersusTeam/VersusTeamScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VersusTeamSelect"]
-scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="VersusTeamSelect"]
@@ -108,7 +105,6 @@ resString = "res://Scenes/CTF/CTFScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CTF"]
-scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="CTF"]
@@ -130,7 +126,6 @@ resString = "res://Scenes/AirHockey/AirHockeyScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AirHockeySelect"]
-scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="AirHockeySelect"]
@@ -147,16 +142,15 @@ text = "Airhockey"
 
 [node name="CrabBucketSelect" type="Area2D" parent="."]
 position = Vector2(-550, 100)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/CrabBucket/CrabBucketScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrabBucketSelect"]
-scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="CrabBucketSelect"]
-scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CrabBucketSelect"]
@@ -170,16 +164,15 @@ text = "Crab Bucket"
 
 [node name="RoadKillSelect" type="Area2D" parent="."]
 position = Vector2(-400, 300)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/RoadKill/RoadKillScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoadKillSelect"]
-scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="RoadKillSelect"]
-scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="RoadKillSelect"]
@@ -193,16 +186,15 @@ text = "Road Kill"
 
 [node name="TetherBallzSelect" type="Area2D" parent="."]
 position = Vector2(-153, 323)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/TetherBallz/TetherBallzScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TetherBallzSelect"]
-scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="TetherBallzSelect"]
-scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TetherBallzSelect"]
@@ -216,12 +208,12 @@ text = "Tether Ballz"
 
 [node name="MinionSwarmSelect" type="Area2D" parent="."]
 position = Vector2(-22400, -200)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/MinionSwarm/MinionSwarmScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MinionSwarmSelect"]
-scale = Vector2(12.5, 12.5)
 shape = SubResource("CircleShape2D_dr8cw")
 
 [node name="Sprite2D" type="Sprite2D" parent="MinionSwarmSelect"]
@@ -244,7 +236,6 @@ script = ExtResource("2_rhv0p")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall1"]
-scale = Vector2(3.2, 3.2)
 shape = SubResource("CircleShape2D_iroav")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall1"]
@@ -260,7 +251,6 @@ ControllerId = 1
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall2"]
-scale = Vector2(3.2, 3.2)
 shape = SubResource("CircleShape2D_iroav")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall2"]
@@ -276,7 +266,6 @@ ControllerId = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall3"]
-scale = Vector2(3.2, 3.2)
 shape = SubResource("CircleShape2D_iroav")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall3"]
@@ -292,7 +281,6 @@ ControllerId = 3
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall4"]
-scale = Vector2(3.2, 3.2)
 shape = SubResource("CircleShape2D_iroav")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall4"]
