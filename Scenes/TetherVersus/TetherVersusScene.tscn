@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://ddvqqrxrn5sfa"]
+[gd_scene load_steps=21 format=3 uid="uid://ddvqqrxrn5sfa"]
 
-[ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://Scenes/Versus/VersusScene.cs" id="1_f4o1y"]
+[ext_resource type="Script" uid="uid://d0a1xterl5npd" path="res://Scenes/TetherVersus/TetherVersusScene.cs" id="1_uavs1"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
+[ext_resource type="PackedScene" uid="uid://b3acn3cxanp0c" path="res://Scenes/TetherBallz/TetherBall.tscn" id="3_02gb2"]
 [ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
 [ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="6_tin34"]
 [ext_resource type="Texture2D" uid="uid://d0ri81xw1pyjw" path="res://assets/red_ball.png" id="7_tefk0"]
 [ext_resource type="Texture2D" uid="uid://cnchnv2cvob8m" path="res://assets/grey_high_res_ball.png" id="7_xyg1p"]
+[ext_resource type="Script" uid="uid://ccti4hmnlljrm" path="res://Scenes/TetherVersus/TetherVersusBall.cs" id="8_uavs1"]
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_xrdcs"]
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="11_wlibp"]
@@ -16,6 +18,7 @@
 bounce = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tefk0"]
+radius = 12.0007
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyg1p"]
 size = Vector2(1400, 40)
@@ -32,7 +35,7 @@ bounce = 1.0
 bounce = 1.0
 
 [node name="TetherVersusScene" type="Node2D"]
-script = ExtResource("1_f4o1y")
+script = ExtResource("1_uavs1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -49,7 +52,7 @@ scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_tefk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftTopStatic"]
-scale = Vector2(0.66, 0.66)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_xyg1p")
 
 [node name="RightTopStatic" type="StaticBody2D" parent="."]
@@ -62,7 +65,7 @@ scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_tefk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightTopStatic"]
-scale = Vector2(0.66, 0.66)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_xyg1p")
 
 [node name="LeftBottomStatic" type="StaticBody2D" parent="."]
@@ -75,7 +78,7 @@ scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_tefk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftBottomStatic"]
-scale = Vector2(0.66, 0.66)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_xyg1p")
 
 [node name="RightBottomStatic2" type="StaticBody2D" parent="."]
@@ -88,7 +91,7 @@ scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_tefk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightBottomStatic2"]
-scale = Vector2(0.66, 0.66)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_xyg1p")
 
 [node name="UpperBorder" type="Area2D" parent="."]
@@ -184,6 +187,10 @@ shape = SubResource("CircleShape2D_anwit")
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall1"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_tin34")
+
+[node name="TetherBall1" parent="." instance=ExtResource("3_02gb2")]
+position = Vector2(-200, -200)
+script = ExtResource("8_uavs1")
 
 [node name="PlayerBall2" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)

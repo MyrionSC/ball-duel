@@ -17,6 +17,7 @@
 bounce = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tefk0"]
+radius = 12.0007
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyg1p"]
 size = Vector2(1400, 40)
@@ -55,7 +56,7 @@ scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_tefk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftTopStatic"]
-scale = Vector2(0.66, 0.66)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_xyg1p")
 
 [node name="RightTopStatic" type="StaticBody2D" parent="."]
@@ -68,7 +69,7 @@ scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_tefk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightTopStatic"]
-scale = Vector2(0.66, 0.66)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_xyg1p")
 
 [node name="LeftBottomStatic" type="StaticBody2D" parent="."]
@@ -81,7 +82,7 @@ scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_tefk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftBottomStatic"]
-scale = Vector2(0.66, 0.66)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_xyg1p")
 
 [node name="RightBottomStatic2" type="StaticBody2D" parent="."]
@@ -94,7 +95,7 @@ scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_tefk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightBottomStatic2"]
-scale = Vector2(0.66, 0.66)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_xyg1p")
 
 [node name="UpperBorder" type="Area2D" parent="."]

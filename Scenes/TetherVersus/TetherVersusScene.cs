@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BallDuel.Scenes.Shared;
-using BallDuel.scripts;
 using Godot;
 
 namespace BallDuel.Scenes.TetherVersus;
@@ -14,17 +13,23 @@ public partial class TetherVersusScene : Node2D
     PlayerBall playerBall3 = null;
     PlayerBall playerBall4 = null;
     List<PlayerBall> playerBallList = new();
+    Dictionary<PlayerBall, TetherVersusBall> tetherBallMap = new();
 
     public override void _Ready()
     {
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
-        foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
+        // foreach (var ballNum in new[] { "1", "2", "3", "4" })
+        foreach (var ballNum in new[] { "1" })
         {
-            var playerBall = GetNode<PlayerBall>(s);
+            var playerBall = GetNode<PlayerBall>("PlayerBall" + ballNum);
             playerBall.OriginalPosition = playerBall.GetPosition();
             playerBallList.Add(playerBall);
+            var tetherBall = GetNode<TetherVersusBall>("TetherBall" + ballNum);
+            tetherBall.TetherToPlayer(playerBall);
+            tetherBallMap.Add(playerBall, tetherBall);
+            
             if (!playerBall.IsControllerConnected())
             {
                 playerBall.Position = new Vector2(100000, 100000);
@@ -114,6 +119,7 @@ public partial class TetherVersusScene : Node2D
         {
             if (playerBall.IsControllerConnected())
                 playerBall.ResetPosition();
+            tetherBallMap[playerBall].Reset();
             CountdownController.StartCountdown();
         }
     }
