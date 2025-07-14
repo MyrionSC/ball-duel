@@ -8,6 +8,8 @@ public partial class TetherVersusBall : RigidBody2D
     public Vector2 OriginalPosition;
     private Line2D _line;
     private PlayerBall _playerBall;
+    private bool _resetState;
+    private Vector2 _newPosition;
 
     public override void _Ready()
     {
@@ -31,20 +33,36 @@ public partial class TetherVersusBall : RigidBody2D
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
         base._IntegrateForces(state);
+        
+        if (_resetState)
+        {
+            _resetState = false;
+            Position = _newPosition;
+            LinearVelocity = Vector2.Zero;
+            return;
+        }
 
         if (_playerBall == null) return;
         var newVel = _playerBall.GetPosition() - GetPosition();
         if (newVel.Length() > 1f)
         {
-            ApplyForce(newVel * 5);
+            ApplyForce(newVel * 3);
             _line.ClearPoints();
-            _line.AddPoint(OriginalPosition);
+            _line.AddPoint(_playerBall.GetPosition());
             _line.AddPoint(GetPosition());
         }
     }
 
     public void Reset()
     {
-        throw new NotImplementedException();
+        Freeze = false;
+        _resetState = true;
+        _newPosition = OriginalPosition;
+    }
+
+    public void MoveBody(int x, int y)
+    {
+        _resetState = true;
+        _newPosition = new Vector2(x, y);
     }
 }

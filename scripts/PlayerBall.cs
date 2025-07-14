@@ -11,6 +11,13 @@ public partial class PlayerBall : RigidBody2D
 
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
 
+
+    public override void _Ready()
+    {
+        base._Ready();
+        OriginalPosition = Position;
+    }
+
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
         base._IntegrateForces(state);

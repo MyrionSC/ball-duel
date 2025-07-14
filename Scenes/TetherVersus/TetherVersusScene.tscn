@@ -207,6 +207,10 @@ shape = SubResource("CircleShape2D_anwit")
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall2"]
 texture = ExtResource("7_tefk0")
 
+[node name="TetherBall2" parent="." instance=ExtResource("3_02gb2")]
+position = Vector2(200, -200)
+script = ExtResource("8_uavs1")
+
 [node name="PlayerBall3" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(-50, 50)
@@ -222,6 +226,10 @@ shape = SubResource("CircleShape2D_anwit")
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall3"]
 texture = ExtResource("8_xyg1p")
 
+[node name="TetherBall3" parent="." instance=ExtResource("3_02gb2")]
+position = Vector2(-200, 200)
+script = ExtResource("8_uavs1")
+
 [node name="PlayerBall4" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(50, 50)
@@ -236,6 +244,10 @@ shape = SubResource("CircleShape2D_anwit")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall4"]
 texture = ExtResource("9_xrdcs")
+
+[node name="TetherBall4" parent="." instance=ExtResource("3_02gb2")]
+position = Vector2(200, 200)
+script = ExtResource("8_uavs1")
 
 [node name="ForceEdit" type="TextEdit" parent="."]
 offset_left = -576.0

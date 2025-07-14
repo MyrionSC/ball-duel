@@ -40,7 +40,6 @@ public partial class CTFScene : Node2D
         
         foreach (var playerBall in playerBallList)
         {
-            playerBall.OriginalPosition = playerBall.GetPosition();
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);
         }

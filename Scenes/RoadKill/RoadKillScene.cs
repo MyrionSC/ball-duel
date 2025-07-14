@@ -25,7 +25,6 @@ public partial class RoadKillScene : Node2D
         foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
         {
             var playerBall = GetNode<PlayerBall>(s);
-            playerBall.OriginalPosition = playerBall.GetPosition();
             playerBallList.Add(playerBall);
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);

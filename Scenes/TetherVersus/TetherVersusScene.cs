@@ -20,11 +20,9 @@ public partial class TetherVersusScene : Node2D
         base._Ready();
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
-        // foreach (var ballNum in new[] { "1", "2", "3", "4" })
-        foreach (var ballNum in new[] { "1" })
+        foreach (var ballNum in new[] { "1", "2", "3", "4" })
         {
             var playerBall = GetNode<PlayerBall>("PlayerBall" + ballNum);
-            playerBall.OriginalPosition = playerBall.GetPosition();
             playerBallList.Add(playerBall);
             var tetherBall = GetNode<TetherVersusBall>("TetherBall" + ballNum);
             tetherBall.TetherToPlayer(playerBall);
@@ -33,6 +31,7 @@ public partial class TetherVersusScene : Node2D
             if (!playerBall.IsControllerConnected())
             {
                 playerBall.Position = new Vector2(100000, 100000);
+                tetherBall.Position = new Vector2(100000, 100000);
             }
             else
             {
@@ -48,6 +47,10 @@ public partial class TetherVersusScene : Node2D
             if (body is PlayerBall ball)
             {
                 Console.WriteLine("ball: " + ball.ControllerId + " touched border");
+                
+                tetherBallMap[ball].MoveBody(100000, 100000);
+                tetherBallMap[ball].Freeze = true;
+                
                 GetTree().CreateTimer(0.1).Timeout += CheckForWin;
             }
         };
@@ -118,8 +121,10 @@ public partial class TetherVersusScene : Node2D
         foreach (var playerBall in playerBallList)
         {
             if (playerBall.IsControllerConnected())
+            {
                 playerBall.ResetPosition();
-            tetherBallMap[playerBall].Reset();
+                tetherBallMap[playerBall].Reset();
+            }
             CountdownController.StartCountdown();
         }
     }
