@@ -60,30 +60,32 @@ public partial class RoadKillScene : Node2D
         }
 
         // Spawn ball leftside
-        foreach (var y in new[] { -200, 000, 200 })
+        const double ballSpawnTime = 0.4f;
+        const int ballSpawnVelocity = 300;
+        foreach (var y in new[] { -250, -150, -50, 50, 150 })
         {
             void SpawnBallLaneLoop()
             {
-                SpawnBall(-750, y, 200, 0);
-                var newTimer = GetTree().CreateTimer(0.75f);
+                SpawnBall(-750, y, ballSpawnVelocity, 0);
+                var newTimer = GetTree().CreateTimer(ballSpawnTime);
                 newTimer.Timeout += SpawnBallLaneLoop;
             }
 
-            var timer = GetTree().CreateTimer(0.75f);
+            var timer = GetTree().CreateTimer(ballSpawnTime);
             timer.Timeout += SpawnBallLaneLoop;
         }
 
         // Spawn ball rightside
-        foreach (var y in new[] { -100, 100 })
+        foreach (var y in new[] { -200, -100, 0, 100, 200})
         {
             void SpawnBallLaneLoop()
             {
-                SpawnBall(750, y, -200, 0);
-                var newTimer = GetTree().CreateTimer(0.75f);
+                SpawnBall(750, y, -ballSpawnVelocity, 0);
+                var newTimer = GetTree().CreateTimer(ballSpawnTime);
                 newTimer.Timeout += SpawnBallLaneLoop;
             }
 
-            var timer = GetTree().CreateTimer(0.75f);
+            var timer = GetTree().CreateTimer(ballSpawnTime);
             timer.Timeout += SpawnBallLaneLoop;
         }
     }
