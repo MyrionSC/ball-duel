@@ -48,18 +48,18 @@ public partial class PlayerBall : RigidBody2D
             ? Globals.BALL_FORCE_MULTIPLIER_CONSTANT
             : 1f;
 
-        var ballAccelerationConstant = analogInput * forceMultiplier * Globals.BALL_ACCELERATION_CONSTANT;
+        var forceVector = analogInput * forceMultiplier * Globals.BALL_ACCELERATION_CONSTANT;
 
         if (DrawLine)
         {
             _line.ClearPoints();
             _line.AddPoint(GetPosition());
-            _line.AddPoint(GetPosition() + ballAccelerationConstant);
+            _line.AddPoint(GetPosition() + forceVector);
         }
         
         ApplyForce(Globals.InputDisabled
             ? Vector2.Zero
-            : ballAccelerationConstant);
+            : forceVector);
     }
 
     private float GetClampedJoyAxis(int controllerId, JoyAxis axis)

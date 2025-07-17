@@ -22,6 +22,9 @@ public partial class AIVersusScene : Node2D
             playerBall.Position = new Vector2(100000, 100000);
         else
             GetNode<RichTextLabel>("Player" + (playerBall.ControllerId + 1) + "Score").Visible = true;
+        
+        var enemyBall = GetNode<EnemyBall>("EnemyBall");
+        enemyBall.playerBall = playerBall;
 
         CountdownController.Init(this);
         CountdownController.StartCountdown();
