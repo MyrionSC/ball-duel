@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://ddvqqrxrn5sfa"]
 
-[ext_resource type="Script" uid="uid://csx8vy7npgrln" path="res://Scenes/AIVersus/AiVersusScene.cs" id="1_q2kkb"]
+[ext_resource type="Script" uid="uid://csx8vy7npgrln" path="res://Scenes/AIVersus/AIVersusScene.cs" id="1_q2kkb"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
 [ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]

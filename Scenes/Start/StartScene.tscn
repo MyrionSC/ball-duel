@@ -75,6 +75,28 @@ theme_override_font_sizes/normal_font_size = 36
 text = "AI
 Versus"
 
+[node name="BallGathering" type="Area2D" parent="."]
+position = Vector2(150, 300)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/BallGathering/BallGathering.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallGathering"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="BallGathering"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BallGathering"]
+offset_left = -82.0
+offset_top = -60.0
+offset_right = 107.0
+offset_bottom = 93.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Ball Gathering"
+
 [node name="TetherVersusSelect" type="Area2D" parent="."]
 position = Vector2(-147, -322)
 scale = Vector2(0.6, 0.6)
@@ -312,6 +334,7 @@ texture = ExtResource("6_po4a3")
 
 [connection signal="body_entered" from="VersusSelect" to="VersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="AIVersusSelect" to="AIVersusSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="BallGathering" to="BallGathering" method="OnBodyEntered"]
 [connection signal="body_entered" from="TetherVersusSelect" to="TetherVersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="VersusTeamSelect" to="VersusTeamSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="CTF" to="CTF" method="OnBodyEntered"]

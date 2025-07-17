@@ -1,4 +1,5 @@
 using System;
+using BallDuel.scripts;
 using Godot;
 
 namespace BallDuel.Scenes.AIVersus;
@@ -10,6 +11,8 @@ public partial class EnemyBall : RigidBody2D
     private Vector2 _newPosition;
     public bool IsRespawning = false;
     private Line2D _line;
+    public bool DrawLine = true;
+    public PlayerBall playerBall = null;
 
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
 
@@ -39,18 +42,17 @@ public partial class EnemyBall : RigidBody2D
             return;
         }
 
-        // Vector2 analogInput = new Vector2(
-        //     GetClampedJoyAxis(ControllerId, JoyAxis.LeftX),
-        //     GetClampedJoyAxis(ControllerId, JoyAxis.LeftY)
-        // );
-        // float forceMultiplier = Input.IsActionPressed($"device_{ControllerId}_trigger_right")
-        //     ? Globals.BALL_FORCE_MULTIPLIER_CONSTANT
-        //     : 1f;
-        //
-        // ApplyForce(Globals.InputDisabled
-        //     ? Vector2.Zero
-        //     : analogInput * forceMultiplier * Globals.BALL_ACCELERATION_CONSTANT);
+        var dirVector = playerBall.GetPosition() - GetPosition();
+        var forceVector = dirVector.Normalized() * Globals.BALL_FORCE_MULTIPLIER_CONSTANT * Globals.BALL_ACCELERATION_CONSTANT;
         
+        if (DrawLine)
+        {
+            _line.ClearPoints();
+            _line.AddPoint(GetPosition());
+            _line.AddPoint(GetPosition() + forceVector);
+        }
+        
+        ApplyForce(forceVector);
     }
 
     public void ResetPosition()
