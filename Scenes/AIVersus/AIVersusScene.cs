@@ -16,6 +16,7 @@ public partial class AIVersusScene : Node2D
         Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         var playerBall = GetNode<PlayerBall>("PlayerBall");
+        playerBall.DrawLine = true;
         playerBallList.Add(playerBall);
         if (!playerBall.IsControllerConnected())
             playerBall.Position = new Vector2(100000, 100000);

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace BallDuel.Scenes.AIVersus;
@@ -8,6 +9,7 @@ public partial class EnemyBall : RigidBody2D
     public Vector2 OriginalPosition = Vector2.Zero;
     private Vector2 _newPosition;
     public bool IsRespawning = false;
+    private Line2D _line;
 
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
 
@@ -15,6 +17,14 @@ public partial class EnemyBall : RigidBody2D
     {
         base._Ready();
         OriginalPosition = Position;
+
+        _line = new Line2D();
+        var r = new Random();
+        _line.DefaultColor = Color.Color8((byte)(r.NextInt64() % 256), (byte)(r.NextInt64() % 256),
+            (byte)(r.NextInt64() % 256));
+        _line.Width = 1.5f;
+        var scene = GetParent<Node2D>();
+        scene.CallDeferred("add_child", _line);
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)

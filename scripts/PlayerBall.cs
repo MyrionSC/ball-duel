@@ -8,6 +8,8 @@ public partial class PlayerBall : RigidBody2D
     public Vector2 OriginalPosition = Vector2.Zero;
     private Vector2 _newPosition;
     public bool IsRespawning = false;
+    private Line2D _line;
+    public bool DrawLine = false;
 
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
 
@@ -16,6 +18,14 @@ public partial class PlayerBall : RigidBody2D
     {
         base._Ready();
         OriginalPosition = Position;
+
+        _line = new Line2D();
+        var r = new Random();
+        _line.DefaultColor = Color.Color8((byte)(r.NextInt64() % 256), (byte)(r.NextInt64() % 256),
+            (byte)(r.NextInt64() % 256));
+        _line.Width = 1.5f;
+        var scene = GetParent<Node2D>();
+        scene.CallDeferred("add_child", _line);
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
@@ -38,9 +48,18 @@ public partial class PlayerBall : RigidBody2D
             ? Globals.BALL_FORCE_MULTIPLIER_CONSTANT
             : 1f;
 
+        var ballAccelerationConstant = analogInput * forceMultiplier * Globals.BALL_ACCELERATION_CONSTANT;
+
+        if (DrawLine)
+        {
+            _line.ClearPoints();
+            _line.AddPoint(GetPosition());
+            _line.AddPoint(GetPosition() + ballAccelerationConstant);
+        }
+        
         ApplyForce(Globals.InputDisabled
             ? Vector2.Zero
-            : analogInput * forceMultiplier * Globals.BALL_ACCELERATION_CONSTANT);
+            : ballAccelerationConstant);
     }
 
     private float GetClampedJoyAxis(int controllerId, JoyAxis axis)
