@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b27w6ls1vmooo"]
+[gd_scene load_steps=18 format=3 uid="uid://b27w6ls1vmooo"]
 
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_54fx0"]
 [ext_resource type="Script" uid="uid://cv6vxwuihcnme" path="res://Scenes/BallGathering/BallGatheringScene.cs" id="1_wpht7"]
@@ -7,8 +7,6 @@
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="4_s4mny"]
 [ext_resource type="Texture2D" uid="uid://cqaai3duwax2c" path="res://assets/lightblue_ball.png" id="5_nbuwi"]
 [ext_resource type="Texture2D" uid="uid://bsohetrjwrls3" path="res://assets/lightred_ball.png" id="6_nbuwi"]
-[ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="10_rp8ir"]
-[ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="11_t14sq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fiux"]
 
@@ -17,7 +15,7 @@ friction = 0.0
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gaae"]
-size = Vector2(40, 800)
+size = Vector2(320, 800)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbuwi"]
 friction = 0.0
@@ -48,10 +46,11 @@ script = ExtResource("1_wpht7")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("1_54fx0")
 
 [node name="BlueGoal" type="Area2D" parent="."]
-position = Vector2(-800, 0)
+position = Vector2(-526, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlueGoal"]
@@ -63,7 +62,7 @@ scale = Vector2(1.575, 1.575)
 texture = ExtResource("5_nbuwi")
 
 [node name="RedGoal" type="Area2D" parent="."]
-position = Vector2(800, 0)
+position = Vector2(529, 5)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RedGoal"]
@@ -84,17 +83,17 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -400.0
-offset_right = 40.0
+offset_right = 320.0
 offset_bottom = 400.0
 grow_vertical = 2
 color = Color(0.709804, 0.709804, 0.709804, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder"]
-position = Vector2(20, 0)
+position = Vector2(160, 0)
 shape = SubResource("RectangleShape2D_0gaae")
 
 [node name="RightBorder" type="StaticBody2D" parent="."]
-position = Vector2(660, 0)
+position = Vector2(380, 0)
 physics_material_override = SubResource("PhysicsMaterial_nbuwi")
 metadata/_edit_group_ = true
 
@@ -103,13 +102,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -400.0
-offset_right = 40.0
+offset_right = 320.0
 offset_bottom = 400.0
 grow_vertical = 2
 color = Color(0.709804, 0.709804, 0.709804, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder"]
-position = Vector2(20, 0)
+position = Vector2(160, 0)
 shape = SubResource("RectangleShape2D_0gaae")
 debug_color = Color(0.666667, 1, 1, 0.419608)
 
@@ -155,7 +154,7 @@ color = Color(0.707967, 0.707967, 0.707967, 1)
 
 [node name="PlayerBall1" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(-400, -100)
+position = Vector2(-260, -1)
 physics_material_override = SubResource("PhysicsMaterial_dojh8")
 script = ExtResource("4_s4mny")
 metadata/_edit_group_ = true
@@ -170,7 +169,7 @@ texture = ExtResource("3_nbuwi")
 
 [node name="PlayerBall2" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(400, -100)
+position = Vector2(260, 1)
 physics_material_override = SubResource("PhysicsMaterial_hgi2p")
 script = ExtResource("4_s4mny")
 ControllerId = 1
@@ -186,7 +185,7 @@ texture = ExtResource("4_nbuwi")
 
 [node name="PlayerBall3" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(-400, 100)
+position = Vector2(0, -281)
 physics_material_override = SubResource("PhysicsMaterial_hgi2p")
 script = ExtResource("4_s4mny")
 ControllerId = 2
@@ -202,7 +201,7 @@ texture = ExtResource("5_nbuwi")
 
 [node name="PlayerBall4" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(400, 100)
+position = Vector2(-1, 289)
 physics_material_override = SubResource("PhysicsMaterial_hgi2p")
 script = ExtResource("4_s4mny")
 ControllerId = 3
@@ -215,22 +214,6 @@ shape = SubResource("CircleShape2D_2fkgq")
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall4"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_nbuwi")
-
-[node name="ForceEdit" type="TextEdit" parent="."]
-offset_left = -576.0
-offset_top = 363.0
-offset_right = -533.0
-offset_bottom = 395.0
-text = "250"
-script = ExtResource("10_rp8ir")
-
-[node name="ForceMultiplierEdit" type="TextEdit" parent="."]
-offset_left = -509.0
-offset_top = 363.0
-offset_right = -467.0
-offset_bottom = 395.0
-text = "2"
-script = ExtResource("11_t14sq")
 
 [node name="LeftScore" type="RichTextLabel" parent="."]
 offset_left = -693.0
@@ -261,5 +244,3 @@ text = "3"
 
 [connection signal="body_entered" from="BlueGoal" to="." method="BlueGoal"]
 [connection signal="body_entered" from="RedGoal" to="." method="RedGoal"]
-[connection signal="text_changed" from="ForceEdit" to="ForceEdit" method="CustomTextChanged"]
-[connection signal="text_changed" from="ForceMultiplierEdit" to="ForceMultiplierEdit" method="ForceMultiplierTextChanged"]
