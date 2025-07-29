@@ -37,6 +37,7 @@ public partial class BaseScene : Node2D
                 playerBall.ResetPosition();
             }
         }
+        
     }
     
     public virtual void ResetScene()

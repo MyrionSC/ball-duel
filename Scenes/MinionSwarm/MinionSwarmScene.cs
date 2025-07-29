@@ -19,7 +19,6 @@ public partial class MinionSwarmScene : Node2D
     public override void _Ready()
     {
         base._Ready();
-        Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         // BlueGoal = GetNode<MinionSwarmBlueGoal>("BlueGoal");
         // RedGoal = GetNode<MinionSwarmRedGoal>("RedGoal");

@@ -14,7 +14,6 @@ public partial class AIVersusScene : Node2D
     public override void _Ready()
     {
         base._Ready();
-        Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         var playerBall = GetNode<PlayerBall>("PlayerBall");
         playerBall.ShouldDrawLine = true;

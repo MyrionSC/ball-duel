@@ -17,7 +17,6 @@ public partial class CTFScene : Node2D
     public override void _Ready()
     {
         base._Ready();
-        Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         BlueGoal = GetNode<CTFBlueGoal>("BlueGoal");
         RedGoal = GetNode<CTFRedGoal>("RedGoal");

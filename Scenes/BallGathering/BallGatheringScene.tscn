@@ -10,12 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_k6o8u"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_wpht7"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1fiux"]
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dojh8"]
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fkgq"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1fiux"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hgi2p"]
 bounce = 1.0
@@ -50,21 +50,6 @@ script = ExtResource("1_wpht7")
 [node name="Background2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_54fx0")
 
-[node name="PlayerBall1" type="RigidBody2D" parent="."]
-modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(-270, 0)
-physics_material_override = SubResource("PhysicsMaterial_dojh8")
-script = ExtResource("4_s4mny")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall1"]
-scale = Vector2(3.2, 3.2)
-shape = SubResource("CircleShape2D_2fkgq")
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerBall1"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_nbuwi")
-
 [node name="Player1Goal" type="Area2D" parent="."]
 position = Vector2(-530, 0)
 metadata/_edit_group_ = true
@@ -76,22 +61,6 @@ shape = SubResource("CircleShape2D_1fiux")
 [node name="Sprite2D" type="Sprite2D" parent="Player1Goal"]
 scale = Vector2(1.575, 1.575)
 texture = ExtResource("5_nbuwi")
-
-[node name="PlayerBall2" type="RigidBody2D" parent="."]
-modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(270, 0)
-physics_material_override = SubResource("PhysicsMaterial_hgi2p")
-script = ExtResource("4_s4mny")
-ControllerId = 1
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall2"]
-scale = Vector2(3.2, 3.2)
-shape = SubResource("CircleShape2D_2fkgq")
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerBall2"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_nbuwi")
 
 [node name="Player2Goal" type="Area2D" parent="."]
 position = Vector2(530, 0)
@@ -105,9 +74,64 @@ shape = SubResource("CircleShape2D_1fiux")
 scale = Vector2(1.575, 1.575)
 texture = ExtResource("6_nbuwi")
 
+[node name="Player3Goal" type="Area2D" parent="."]
+position = Vector2(0, -510)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player3Goal"]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_1fiux")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player3Goal"]
+scale = Vector2(1.575, 1.575)
+texture = ExtResource("8_k6o8u")
+
+[node name="Player4Goal" type="Area2D" parent="."]
+position = Vector2(0, 510)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player4Goal"]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_1fiux")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player4Goal"]
+scale = Vector2(1.575, 1.575)
+texture = ExtResource("9_wpht7")
+
+[node name="PlayerBall1" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(-290, 0)
+physics_material_override = SubResource("PhysicsMaterial_dojh8")
+script = ExtResource("4_s4mny")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall1"]
+scale = Vector2(3.2, 3.2)
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall1"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_nbuwi")
+
+[node name="PlayerBall2" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(290, 0)
+physics_material_override = SubResource("PhysicsMaterial_hgi2p")
+script = ExtResource("4_s4mny")
+ControllerId = 1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall2"]
+scale = Vector2(3.2, 3.2)
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall2"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_nbuwi")
+
 [node name="PlayerBall3" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(0, -250)
+position = Vector2(0, -270)
 physics_material_override = SubResource("PhysicsMaterial_hgi2p")
 script = ExtResource("4_s4mny")
 ControllerId = 2
@@ -121,21 +145,9 @@ shape = SubResource("CircleShape2D_2fkgq")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("8_k6o8u")
 
-[node name="Player3Goal" type="Area2D" parent="."]
-position = Vector2(0, -510)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player3Goal"]
-scale = Vector2(20, 20)
-shape = SubResource("CircleShape2D_1fiux")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player3Goal"]
-scale = Vector2(1.575, 1.575)
-texture = ExtResource("8_k6o8u")
-
 [node name="PlayerBall4" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
-position = Vector2(0, 250)
+position = Vector2(0, 270)
 physics_material_override = SubResource("PhysicsMaterial_hgi2p")
 script = ExtResource("4_s4mny")
 ControllerId = 3
@@ -147,18 +159,6 @@ shape = SubResource("CircleShape2D_2fkgq")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall4"]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("9_wpht7")
-
-[node name="Player4Goal" type="Area2D" parent="."]
-position = Vector2(0, 510)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player4Goal"]
-scale = Vector2(20, 20)
-shape = SubResource("CircleShape2D_1fiux")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player4Goal"]
-scale = Vector2(1.575, 1.575)
 texture = ExtResource("9_wpht7")
 
 [node name="LeftBorder" type="StaticBody2D" parent="."]

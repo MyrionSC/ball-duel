@@ -15,7 +15,6 @@ public partial class StartScene : Node2D
     {
         base._Ready();
         Globals.InputDisabled = false;
-        Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
         
         foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
         {

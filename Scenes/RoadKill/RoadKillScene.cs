@@ -20,7 +20,6 @@ public partial class RoadKillScene : Node2D
     public override void _Ready()
     {
         base._Ready();
-        Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
         {

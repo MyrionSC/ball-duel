@@ -18,7 +18,6 @@ public partial class TetherVersusScene : Node2D
     public override void _Ready()
     {
         base._Ready();
-        Console.WriteLine("Connected joypads: " + Input.GetConnectedJoypads());
 
         foreach (var ballNum in new[] { "1", "2", "3", "4" })
         {
