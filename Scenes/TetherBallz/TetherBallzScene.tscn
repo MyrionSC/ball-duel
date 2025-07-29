@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_xrdcs"]
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="11_wlibp"]
-[ext_resource type="PackedScene" uid="uid://b3acn3cxanp0c" path="res://Scenes/TetherBallz/TetherBall.tscn" id="11_xtx14"]
+[ext_resource type="PackedScene" path="res://Scenes/Shared/TetherBall.tscn" id="11_xtx14"]
 [ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="12_f4o1y"]
 [ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="12_gkugx"]
 
