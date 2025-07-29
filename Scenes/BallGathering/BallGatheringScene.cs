@@ -1,16 +1,9 @@
 using System;
-using System.Collections.Generic;
 using BallDuel.Scenes.Shared;
 using Godot;
 
 public partial class BallGatheringScene : BaseScene
 {
-    PlayerBall playerBall1 = null;
-    PlayerBall playerBall2 = null;
-    PlayerBall playerBall3 = null;
-    PlayerBall playerBall4 = null;
-    List<PlayerBall> playerBallList = [];
-
     public override void _Ready()
     {
         base._Ready();

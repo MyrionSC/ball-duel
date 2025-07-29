@@ -9,7 +9,7 @@ public partial class PlayerBall : RigidBody2D
     private Vector2 _newPosition;
     public bool IsRespawning = false;
     private Line2D _line;
-    public bool DrawLine = false;
+    public bool ShouldDrawLine = false;
 
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
 
@@ -50,7 +50,7 @@ public partial class PlayerBall : RigidBody2D
 
         var forceVector = analogInput * forceMultiplier * Globals.BALL_ACCELERATION_CONSTANT;
 
-        if (DrawLine)
+        if (ShouldDrawLine)
         {
             _line.ClearPoints();
             _line.AddPoint(GetPosition());
