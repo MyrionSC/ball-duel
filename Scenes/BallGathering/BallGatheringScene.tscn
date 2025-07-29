@@ -241,7 +241,7 @@ grow_vertical = 2
 color = Color(0.707967, 0.707967, 0.707967, 1)
 
 [node name="BlueScore" type="RichTextLabel" parent="."]
-offset_left = -423.0
+offset_left = -432.0
 offset_top = -35.0
 offset_right = -370.0
 offset_bottom = 34.0
@@ -252,7 +252,7 @@ text = "0"
 [node name="GreenScore" type="RichTextLabel" parent="."]
 offset_left = -13.0
 offset_top = -414.0
-offset_right = 40.0
+offset_right = 59.0
 offset_bottom = -345.0
 theme_override_colors/default_color = Color(0.0156863, 0.964706, 0.121569, 1)
 theme_override_font_sizes/normal_font_size = 48
@@ -261,7 +261,7 @@ text = "0"
 [node name="RedScore" type="RichTextLabel" parent="."]
 offset_left = 395.0
 offset_top = -38.0
-offset_right = 450.0
+offset_right = 467.0
 offset_bottom = 32.0
 theme_override_colors/default_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 48
@@ -270,7 +270,7 @@ text = "0"
 [node name="YellowScore" type="RichTextLabel" parent="."]
 offset_left = -14.0
 offset_top = 345.0
-offset_right = 39.0
+offset_right = 60.0
 offset_bottom = 414.0
 theme_override_colors/default_color = Color(0.996078, 0.815686, 0, 1)
 theme_override_font_sizes/normal_font_size = 48
@@ -286,7 +286,7 @@ theme_override_colors/font_color = Color(1, 0.190212, 0.840881, 1)
 theme_override_font_sizes/font_size = 400
 text = "3"
 
-[connection signal="body_entered" from="Player1Goal" to="." method="BlueGoal"]
-[connection signal="body_entered" from="Player2Goal" to="." method="RedGoal"]
-[connection signal="body_entered" from="Player3Goal" to="." method="BlueGoal"]
-[connection signal="body_entered" from="Player4Goal" to="." method="BlueGoal"]
+[connection signal="body_entered" from="Player1Goal" to="." method="BallEnteredPlayer1Goal"]
+[connection signal="body_entered" from="Player2Goal" to="." method="BallEnteredPlayer2Goal"]
+[connection signal="body_entered" from="Player3Goal" to="." method="BallEnteredPlayer3Goal"]
+[connection signal="body_entered" from="Player4Goal" to="." method="BallEnteredPlayer4Goal"]

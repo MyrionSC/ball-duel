@@ -1,4 +1,3 @@
-using System;
 using BallDuel.scripts;
 using Godot;
 
@@ -16,7 +15,8 @@ public class CountdownController
     {
         _scene = scene;
         _label = scene.GetNode<Label>("CountdownLabel");
-        
+        _label.ZIndex = 100;
+
         _countdownTimer = new Timer();
         scene.AddChild(_countdownTimer);
         _countdownTimer.WaitTime = 1.0f; // 1 second intervals

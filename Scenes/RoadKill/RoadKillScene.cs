@@ -30,7 +30,6 @@ public partial class RoadKillScene : Node2D
         }
 
         BlockingMessageController.Init(this);
-        BlockingMessageController.HideBlockingMessage();
 
         // CountdownController.Init(this);
         // CountdownController.StartCountdown();

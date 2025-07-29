@@ -29,7 +29,6 @@ public partial class CrabBucketScene : Node2D
         }
 
         BlockingMessageController.Init(this);
-        BlockingMessageController.HideBlockingMessage();
 
         CountdownController.Init(this);
         CountdownController.StartCountdown();
