@@ -190,6 +190,7 @@ texture = ExtResource("6_tin34")
 
 [node name="TetherBall1" parent="." instance=ExtResource("3_02gb2")]
 position = Vector2(-200, -200)
+mass = 1.0
 script = ExtResource("8_uavs1")
 
 [node name="PlayerBall2" type="RigidBody2D" parent="."]
@@ -209,6 +210,7 @@ texture = ExtResource("7_tefk0")
 
 [node name="TetherBall2" parent="." instance=ExtResource("3_02gb2")]
 position = Vector2(200, -200)
+mass = 1.0
 script = ExtResource("8_uavs1")
 
 [node name="PlayerBall3" type="RigidBody2D" parent="."]
@@ -224,15 +226,18 @@ scale = Vector2(3.2, 3.2)
 shape = SubResource("CircleShape2D_anwit")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBall3"]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("8_xyg1p")
 
 [node name="TetherBall3" parent="." instance=ExtResource("3_02gb2")]
 position = Vector2(-200, 200)
+mass = 1.0
 script = ExtResource("8_uavs1")
 
 [node name="PlayerBall4" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(50, 50)
+scale = Vector2(0.25, 0.25)
 physics_material_override = SubResource("PhysicsMaterial_xrdcs")
 script = ExtResource("5_3n2by")
 ControllerId = 3
@@ -247,6 +252,7 @@ texture = ExtResource("9_xrdcs")
 
 [node name="TetherBall4" parent="." instance=ExtResource("3_02gb2")]
 position = Vector2(200, 200)
+mass = 1.0
 script = ExtResource("8_uavs1")
 
 [node name="ForceEdit" type="TextEdit" parent="."]
