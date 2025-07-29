@@ -53,7 +53,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Versus"
 
 [node name="AIVersusSelect" type="Area2D" parent="."]
-position = Vector2(150, -300)
+position = Vector2(140, -320)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/AIVersus/AIVersusScene.tscn"
@@ -75,30 +75,8 @@ theme_override_font_sizes/normal_font_size = 36
 text = "AI
 Versus"
 
-[node name="BallGathering" type="Area2D" parent="."]
-position = Vector2(150, 300)
-scale = Vector2(0.6, 0.6)
-script = ExtResource("7_3j15m")
-resString = "res://Scenes/BallGathering/BallGathering.tscn"
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BallGathering"]
-shape = SubResource("CircleShape2D_dr8cw")
-
-[node name="Sprite2D" type="Sprite2D" parent="BallGathering"]
-texture = ExtResource("7_rhv0p")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="BallGathering"]
-offset_left = -82.0
-offset_top = -60.0
-offset_right = 107.0
-offset_bottom = 93.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 36
-text = "Ball Gathering"
-
 [node name="TetherVersusSelect" type="Area2D" parent="."]
-position = Vector2(-147, -322)
+position = Vector2(-140, -320)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/TetherVersus/TetherVersusScene.tscn"
@@ -144,7 +122,8 @@ text = "Versus
 Team"
 
 [node name="CTF" type="Area2D" parent="."]
-position = Vector2(400, -200)
+position = Vector2(400, -300)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/CTF/CTFScene.tscn"
 metadata/_edit_group_ = true
@@ -156,16 +135,17 @@ shape = SubResource("CircleShape2D_dr8cw")
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CTF"]
-offset_left = -46.0
-offset_top = -35.0
-offset_right = 52.0
-offset_bottom = 35.0
+offset_left = -66.0
+offset_top = -49.0
+offset_right = 85.0
+offset_bottom = 95.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 36
 text = "Capture the flag"
 
 [node name="AirHockeySelect" type="Area2D" parent="."]
-position = Vector2(400, 200)
+position = Vector2(550, -100)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/AirHockey/AirHockeyScene.tscn"
 metadata/_edit_group_ = true
@@ -177,12 +157,12 @@ shape = SubResource("CircleShape2D_dr8cw")
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="AirHockeySelect"]
-offset_left = -55.0
-offset_top = -19.0
-offset_right = 68.0
-offset_bottom = 21.0
+offset_left = -85.0
+offset_top = -27.0
+offset_right = 110.0
+offset_bottom = 28.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 36
 text = "Airhockey"
 
 [node name="CrabBucketSelect" type="Area2D" parent="."]
@@ -199,12 +179,12 @@ shape = SubResource("CircleShape2D_dr8cw")
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CrabBucketSelect"]
-offset_left = -42.0
-offset_top = -35.0
-offset_right = 58.0
-offset_bottom = 41.0
+offset_left = -48.0
+offset_top = -50.0
+offset_right = 113.0
+offset_bottom = 83.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 36
 text = "Crab Bucket"
 
 [node name="RoadKillSelect" type="Area2D" parent="."]
@@ -221,16 +201,16 @@ shape = SubResource("CircleShape2D_dr8cw")
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="RoadKillSelect"]
-offset_left = -51.0
-offset_top = -19.0
-offset_right = 61.0
-offset_bottom = 17.0
+offset_left = -48.0
+offset_top = -47.0
+offset_right = 47.0
+offset_bottom = 55.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 36
 text = "Road Kill"
 
 [node name="TetherBallzSelect" type="Area2D" parent="."]
-position = Vector2(-153, 323)
+position = Vector2(-140, 320)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/TetherBallz/TetherBallzScene.tscn"
@@ -243,12 +223,12 @@ shape = SubResource("CircleShape2D_dr8cw")
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TetherBallzSelect"]
-offset_left = -69.0
-offset_top = -18.0
-offset_right = 76.0
-offset_bottom = 21.0
+offset_left = -48.0
+offset_top = -52.0
+offset_right = 90.0
+offset_bottom = 60.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 36
 text = "Tether Ballz"
 
 [node name="MinionSwarmSelect" type="Area2D" parent="."]
@@ -270,8 +250,74 @@ offset_top = -36.0
 offset_right = 59.0
 offset_bottom = 43.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 36
 text = "Minion Swarm"
+
+[node name="BallGathering" type="Area2D" parent="."]
+position = Vector2(140, 320)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/BallGathering/BallGathering.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallGathering"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="BallGathering"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BallGathering"]
+offset_left = -82.0
+offset_top = -60.0
+offset_right = 107.0
+offset_bottom = 93.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Ball Gathering"
+
+[node name="TetherGatherSelect" type="Area2D" parent="."]
+position = Vector2(400, 300)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/TetherGather/TetherGatherScene.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TetherGatherSelect"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="TetherGatherSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TetherGatherSelect"]
+offset_left = -58.0
+offset_top = -55.0
+offset_right = 80.0
+offset_bottom = 63.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Tether Gather"
+
+[node name="GoldenBallSelect" type="Area2D" parent="."]
+position = Vector2(550, 100)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/GoldenBall/GoldenBallScene.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoldenBallSelect"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="GoldenBallSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GoldenBallSelect"]
+offset_left = -48.0
+offset_top = -50.0
+offset_right = 113.0
+offset_bottom = 83.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Golden Ball"
 
 [node name="PlayerBall1" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
@@ -334,7 +380,6 @@ texture = ExtResource("9_7bvpp")
 
 [connection signal="body_entered" from="VersusSelect" to="VersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="AIVersusSelect" to="AIVersusSelect" method="OnBodyEntered"]
-[connection signal="body_entered" from="BallGathering" to="BallGathering" method="OnBodyEntered"]
 [connection signal="body_entered" from="TetherVersusSelect" to="TetherVersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="VersusTeamSelect" to="VersusTeamSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="CTF" to="CTF" method="OnBodyEntered"]
@@ -343,3 +388,6 @@ texture = ExtResource("9_7bvpp")
 [connection signal="body_entered" from="RoadKillSelect" to="RoadKillSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="TetherBallzSelect" to="TetherBallzSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="MinionSwarmSelect" to="MinionSwarmSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="BallGathering" to="BallGathering" method="OnBodyEntered"]
+[connection signal="body_entered" from="TetherGatherSelect" to="TetherGatherSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="GoldenBallSelect" to="GoldenBallSelect" method="OnBodyEntered"]
