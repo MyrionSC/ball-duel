@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b27w6ls1vmooo"]
+[gd_scene load_steps=24 format=3 uid="uid://b27w6ls1vmooo"]
 
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_54fx0"]
 [ext_resource type="Script" uid="uid://dvju8kbuprhrb" path="res://Scenes/GoldenBall/GoldenBallScene.cs" id="1_geq57"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_k6o8u"]
 [ext_resource type="Texture2D" uid="uid://e7s2nwbmt1qu" path="res://assets/golden_ball.png" id="9_w13k7"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_wpht7"]
+[ext_resource type="Script" uid="uid://d0wc12qyqjm7d" path="res://Scenes/Shared/Ball.cs" id="10_i8wgk"]
 [ext_resource type="PackedScene" uid="uid://cvcopcsn1kypn" path="res://Scenes/Shared/TetherBall.tscn" id="11_yu3ao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fiux"]
@@ -167,6 +168,7 @@ texture = ExtResource("9_wpht7")
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 mass = 0.5
 physics_material_override = SubResource("PhysicsMaterial_dojh8")
+script = ExtResource("10_i8wgk")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="GoldenBall"]
