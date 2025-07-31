@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3acn3cxanp0c"]
+[gd_scene load_steps=5 format=3 uid="uid://cvcopcsn1kypn"]
 
-[ext_resource type="Script" uid="uid://cw4pxrwlo428y" path="res://Scenes/TetherBallz/TetherBall.cs" id="1_n4rif"]
+[ext_resource type="Script" uid="uid://cw4pxrwlo428y" path="res://Scenes/Shared/TetherBall.cs" id="1_n4rif"]
 [ext_resource type="Texture2D" uid="uid://xl5wwk4d0gl4" path="res://assets/grey_ball_wide_border.png" id="1_vp8ql"]
 
 [sub_resource type="PhysicsMaterial" id="1"]

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace BallDuel.Scenes.Shared;
@@ -7,7 +8,20 @@ namespace BallDuel.Scenes.Shared;
 public partial class BaseScene : Node2D
 {
     protected List<PlayerBall> playerBallList = [];
-    
+
+    public override void _Ready()
+    {
+        base._Ready();
+        playerBallList = GetChildren().OfType<PlayerBall>().ToList();
+
+        foreach (var playerBall in playerBallList)
+        {
+            if (!playerBall.IsControllerConnected())
+                playerBall.Position = new Vector2(100000, 100000);
+        }
+        
+    }
+
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);

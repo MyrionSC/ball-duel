@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0a1xterl5npd" path="res://Scenes/TetherVersus/TetherVersusScene.cs" id="1_uavs1"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
-[ext_resource type="PackedScene" uid="uid://b3acn3cxanp0c" path="res://Scenes/TetherBallz/TetherBall.tscn" id="3_02gb2"]
+[ext_resource type="PackedScene" uid="uid://cvcopcsn1kypn" path="res://Scenes/Shared/TetherBall.tscn" id="3_02gb2"]
 [ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
 [ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="6_tin34"]

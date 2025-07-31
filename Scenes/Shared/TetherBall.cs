@@ -1,18 +1,23 @@
 using System;
 using Godot;
 
+namespace BallDuel.Scenes.Shared;
+
 public partial class TetherBall : RigidBody2D
 {
-    [Export] public Vector2 OriginalPosition = Vector2.Zero;
+    private Vector2 _originalPosition = Vector2.Zero;
+    [Export] public Vector2 TetherPosition = Vector2.Zero;
+    [Export] public Vector2 StartVelocity = Vector2.Zero;
     private Line2D _line;
+    private bool _reset = false;
 
     public override void _Ready()
     {
         base._Ready();
-        
-        if (OriginalPosition == Vector2.Zero) 
-            OriginalPosition = Position;
-        
+
+        if (_originalPosition == Vector2.Zero) _originalPosition = Position;
+        if (TetherPosition == Vector2.Zero) TetherPosition = _originalPosition;
+
         if (GetName().ToString().Contains("Black"))
         {
             var sprite = GetNode<Sprite2D>("Sprite2D");
@@ -32,15 +37,32 @@ public partial class TetherBall : RigidBody2D
     {
         base._IntegrateForces(state);
 
-        // try to return to original position
-        var newVel = OriginalPosition - GetPosition();
-
-        if (newVel.Length() > 1f)
+        if (_reset)
         {
-            ApplyForce(newVel * 5);
+            Position = _originalPosition;
+            LinearVelocity = StartVelocity;
+            AngularVelocity = 0;
+            ConstantForce = Vector2.Zero;
             _line.ClearPoints();
-            _line.AddPoint(OriginalPosition);
-            _line.AddPoint(GetPosition());
+            _reset = false;
+            return;
         }
+
+        // try to return to original position
+        var newVel = TetherPosition - GetPosition();
+        if (!(newVel.Length() > 1f)) return;
+
+        var isBlackBall = GetName().ToString().Contains("Black");
+        var forceMultiplier = isBlackBall ? 50f : 5f;
+
+        ApplyForce(newVel * forceMultiplier);
+        _line.ClearPoints();
+        _line.AddPoint(TetherPosition);
+        _line.AddPoint(GetPosition());
+    }
+    
+    public void ResetToStart()
+    {
+        _reset = true;
     }
 }

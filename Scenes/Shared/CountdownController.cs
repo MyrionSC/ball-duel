@@ -44,6 +44,7 @@ public class CountdownController
 
     public static void StartCountdown()
     {
+        if (_scene is null) return;
         _scene.GetTree().CreateTimer(0.2).Timeout += DisablePhysics;
         PhysicsServer2D.SetActive(false);
         Globals.InputDisabled = true;

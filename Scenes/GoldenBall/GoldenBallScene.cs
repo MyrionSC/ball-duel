@@ -9,6 +9,7 @@ public partial class GoldenBallScene : BaseScene
     private static string ballScenePath = "res://Scenes/Shared/ball.tscn";
     private PackedScene _ballScene = GD.Load<PackedScene>(ballScenePath);
     private List<RigidBody2D> ballList = new();
+    private List<PlayerBall> playerBallList = new();
 
     public override void _Ready()
     {
@@ -24,8 +25,8 @@ public partial class GoldenBallScene : BaseScene
 
         BlockingMessageController.Init(this);
         
-        CountdownController.Init(this);
-        CountdownController.StartCountdown();
+        // CountdownController.Init(this);
+        // CountdownController.StartCountdown();
 
         SpawnBallsInGrid();
     }
@@ -58,7 +59,12 @@ public partial class GoldenBallScene : BaseScene
         base.ResetScene();
         foreach (var ball in ballList)
             RemoveChild(ball);
-        SpawnBallsInGrid();
+
+        var tethers = GetChildren().OfType<TetherBall>().ToArray();
+        foreach (var tether in tethers) tether.ResetToStart();
+        
+        // SpawnBallsInGrid();
+        
         BlockingMessageController.HideBlockingMessage();
     }
 
