@@ -1,24 +1,31 @@
 using System;
-using BallDuel.Scenes.TetherBallz;
 using Godot;
 
 public partial class TetherBall : RigidBody2D
 {
-    public Vector2 OriginalPosition;
+    [Export] public Vector2 OriginalPosition = Vector2.Zero;
     private Line2D _line;
 
     public override void _Ready()
     {
         base._Ready();
-        OriginalPosition = Position;
+        
+        if (OriginalPosition == Vector2.Zero) 
+            OriginalPosition = Position;
+        
+        if (GetName().ToString().Contains("Black"))
+        {
+            var sprite = GetNode<Sprite2D>("Sprite2D");
+            sprite.Texture = GD.Load<Texture2D>("res://assets/black_ball.png");
+        }
 
         _line = new Line2D();
         var r = new Random();
         _line.DefaultColor = Color.Color8((byte)(r.NextInt64() % 256), (byte)(r.NextInt64() % 256),
             (byte)(r.NextInt64() % 256));
         _line.Width = 1.5f;
-        var TetherBallzScene = GetParent<TetherBallzScene>();
-        TetherBallzScene.CallDeferred("add_child", _line);
+        var parentScene = GetParent<Node2D>();
+        parentScene.CallDeferred("add_child", _line);
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)

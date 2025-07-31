@@ -257,7 +257,7 @@ text = "Minion Swarm"
 position = Vector2(140, 320)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
-resString = "res://Scenes/BallGathering/BallGatheringScene.tscn"
+resString = "qres://Scenes/BallGathering/BallGatheringScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallGathering"]
@@ -276,7 +276,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Ball Gathering"
 
 [node name="TetherGatherSelect" type="Area2D" parent="."]
-position = Vector2(400, 300)
+position = Vector2(403, 496)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/TetherGather/TetherGatherScene.tscn"

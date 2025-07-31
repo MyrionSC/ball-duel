@@ -10,6 +10,7 @@
     <Content Include="Scenes\AIVersus\AIVersusScene.tscn" />
     <Content Include="Scenes\BallGathering\BallGatheringScene.tscn" />
     <Content Include="Scenes\CrabBucket\CrabBucketScene.tscn" />
+    <Content Include="Scenes\GoldenBall\GoldenBallScene.tscn" />
     <Content Include="Scenes\Shared\TetherBall.tscn" />
     <Content Include="Scenes\TetherBallz\TetherBallzScene.tscn" />
     <Content Include="Scenes\CTF\CTFScene.tscn" />

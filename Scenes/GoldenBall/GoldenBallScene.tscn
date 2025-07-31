@@ -1,0 +1,328 @@
+[gd_scene load_steps=23 format=3 uid="uid://b27w6ls1vmooo"]
+
+[ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_54fx0"]
+[ext_resource type="Script" uid="uid://dvju8kbuprhrb" path="res://Scenes/GoldenBall/GoldenBallScene.cs" id="1_geq57"]
+[ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="3_nbuwi"]
+[ext_resource type="Texture2D" uid="uid://cfpoj252gt5qj" path="res://assets/darkred_ball.png" id="4_nbuwi"]
+[ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="4_s4mny"]
+[ext_resource type="Texture2D" uid="uid://cqaai3duwax2c" path="res://assets/lightblue_ball.png" id="5_nbuwi"]
+[ext_resource type="Texture2D" uid="uid://bsohetrjwrls3" path="res://assets/lightred_ball.png" id="6_nbuwi"]
+[ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_k6o8u"]
+[ext_resource type="Texture2D" uid="uid://e7s2nwbmt1qu" path="res://assets/golden_ball.png" id="9_w13k7"]
+[ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_wpht7"]
+[ext_resource type="PackedScene" path="res://Scenes/Shared/TetherBall.tscn" id="11_yu3ao"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1fiux"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dojh8"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2fkgq"]
+radius = 32.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hgi2p"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w13k7"]
+radius = 16.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rkb7c"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gaae"]
+size = Vector2(320, 800)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbuwi"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_54fx0"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mngp"]
+size = Vector2(1400, 40)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d7q08"]
+friction = 0.0
+bounce = 1.0
+
+[node name="GoldenBallScene" type="Node2D"]
+script = ExtResource("1_geq57")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_54fx0")
+
+[node name="Player1Goal" type="Area2D" parent="."]
+position = Vector2(-530, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1Goal"]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_1fiux")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player1Goal"]
+scale = Vector2(1.575, 1.575)
+texture = ExtResource("5_nbuwi")
+
+[node name="Player2Goal" type="Area2D" parent="."]
+position = Vector2(530, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2Goal"]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_1fiux")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2Goal"]
+scale = Vector2(1.575, 1.575)
+texture = ExtResource("6_nbuwi")
+
+[node name="Player3Goal" type="Area2D" parent="."]
+position = Vector2(0, -510)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player3Goal"]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_1fiux")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player3Goal"]
+scale = Vector2(1.575, 1.575)
+texture = ExtResource("8_k6o8u")
+
+[node name="Player4Goal" type="Area2D" parent="."]
+position = Vector2(0, 510)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player4Goal"]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_1fiux")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player4Goal"]
+scale = Vector2(1.575, 1.575)
+texture = ExtResource("9_wpht7")
+
+[node name="PlayerBall1" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(-290, 0)
+physics_material_override = SubResource("PhysicsMaterial_dojh8")
+script = ExtResource("4_s4mny")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall1"]
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall1"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_nbuwi")
+
+[node name="PlayerBall2" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(290, 0)
+physics_material_override = SubResource("PhysicsMaterial_hgi2p")
+script = ExtResource("4_s4mny")
+ControllerId = 1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall2"]
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall2"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_nbuwi")
+
+[node name="PlayerBall3" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(0, -270)
+physics_material_override = SubResource("PhysicsMaterial_hgi2p")
+script = ExtResource("4_s4mny")
+ControllerId = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall3"]
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall3"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_k6o8u")
+
+[node name="PlayerBall4" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(0, 270)
+physics_material_override = SubResource("PhysicsMaterial_hgi2p")
+script = ExtResource("4_s4mny")
+ControllerId = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall4"]
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall4"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_wpht7")
+
+[node name="GoldenBall" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_dojh8")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GoldenBall"]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("9_w13k7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoldenBall"]
+shape = SubResource("CircleShape2D_w13k7")
+
+[node name="LeftBorder" type="StaticBody2D" parent="."]
+position = Vector2(-700, 0)
+physics_material_override = SubResource("PhysicsMaterial_rkb7c")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="LeftBorder"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -400.0
+offset_right = 320.0
+offset_bottom = 400.0
+grow_vertical = 2
+color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder"]
+position = Vector2(160, 0)
+shape = SubResource("RectangleShape2D_0gaae")
+
+[node name="RightBorder" type="StaticBody2D" parent="."]
+position = Vector2(380, 0)
+physics_material_override = SubResource("PhysicsMaterial_nbuwi")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="RightBorder"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -400.0
+offset_right = 320.0
+offset_bottom = 400.0
+grow_vertical = 2
+color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder"]
+position = Vector2(160, 0)
+shape = SubResource("RectangleShape2D_0gaae")
+debug_color = Color(0.666667, 1, 1, 0.419608)
+
+[node name="UpperBorder" type="StaticBody2D" parent="."]
+position = Vector2(-700, -380)
+physics_material_override = SubResource("PhysicsMaterial_54fx0")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperBorder"]
+position = Vector2(700, 0)
+shape = SubResource("RectangleShape2D_4mngp")
+debug_color = Color(0.482241, 0.436579, 1, 0.42)
+
+[node name="ColorRect" type="ColorRect" parent="UpperBorder"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 1400.0
+offset_bottom = 20.0
+grow_vertical = 2
+color = Color(0.707967, 0.707967, 0.707967, 1)
+
+[node name="LowerBorder" type="StaticBody2D" parent="."]
+position = Vector2(-700, 380)
+physics_material_override = SubResource("PhysicsMaterial_d7q08")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowerBorder"]
+position = Vector2(700, 0)
+shape = SubResource("RectangleShape2D_4mngp")
+debug_color = Color(0.482241, 0.436579, 1, 0.42)
+
+[node name="ColorRect" type="ColorRect" parent="LowerBorder"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 1400.0
+offset_bottom = 20.0
+grow_vertical = 2
+color = Color(0.707967, 0.707967, 0.707967, 1)
+
+[node name="TetherBall1" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(-40, -41)
+mass = 1.0
+
+[node name="TetherBall2" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(41, 39)
+mass = 1.0
+
+[node name="TetherBall3" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(-39, 40)
+mass = 1.0
+
+[node name="TetherBall4" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(42, -41)
+mass = 1.0
+
+[node name="BlackTetherBall1" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(158, 0)
+mass = 1.0
+OriginalPosition = Vector2(0.01, 0)
+
+[node name="BlueScore" type="RichTextLabel" parent="."]
+offset_left = -432.0
+offset_top = -35.0
+offset_right = -370.0
+offset_bottom = 34.0
+theme_override_colors/default_color = Color(0, 0, 1, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="GreenScore" type="RichTextLabel" parent="."]
+offset_left = -13.0
+offset_top = -414.0
+offset_right = 59.0
+offset_bottom = -345.0
+theme_override_colors/default_color = Color(0.0156863, 0.964706, 0.121569, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="RedScore" type="RichTextLabel" parent="."]
+offset_left = 395.0
+offset_top = -38.0
+offset_right = 467.0
+offset_bottom = 32.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="YellowScore" type="RichTextLabel" parent="."]
+offset_left = -14.0
+offset_top = 345.0
+offset_right = 60.0
+offset_bottom = 414.0
+theme_override_colors/default_color = Color(0.996078, 0.815686, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="CountdownLabel" type="Label" parent="."]
+visible = false
+offset_left = -109.0
+offset_top = -279.0
+offset_right = 119.0
+offset_bottom = 267.0
+theme_override_colors/font_color = Color(1, 0.190212, 0.840881, 1)
+theme_override_font_sizes/font_size = 400
+text = "3"
+
+[connection signal="body_entered" from="Player1Goal" to="." method="BallEnteredPlayer1Goal"]
+[connection signal="body_entered" from="Player2Goal" to="." method="BallEnteredPlayer2Goal"]
+[connection signal="body_entered" from="Player3Goal" to="." method="BallEnteredPlayer3Goal"]
+[connection signal="body_entered" from="Player4Goal" to="." method="BallEnteredPlayer4Goal"]
