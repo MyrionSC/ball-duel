@@ -6,9 +6,9 @@ using Godot;
 
 public partial class BallGatheringScene : BaseScene
 {
-    private static string ballScenePath = "res://Scenes/Shared/ball.tscn";
-    private PackedScene _ballScene = GD.Load<PackedScene>(ballScenePath);
-    private List<RigidBody2D> ballList = new();
+    private static readonly string BallScenePath = "res://Scenes/Shared/ball.tscn";
+    private PackedScene _ballScene = GD.Load<PackedScene>(BallScenePath);
+    private List<RigidBody2D> _ballList = [];
 
     public override void _Ready()
     {
@@ -23,7 +23,7 @@ public partial class BallGatheringScene : BaseScene
         }
 
         BlockingMessageController.Init(this);
-        
+
         CountdownController.Init(this);
         CountdownController.StartCountdown();
 
@@ -40,7 +40,7 @@ public partial class BallGatheringScene : BaseScene
             sprite.Scale = new Vector2(0.2f, 0.2f);
             var collision = ball.GetNode<CollisionShape2D>("Collision");
             collision.Scale = new Vector2(0.2f, 0.2f);
-            ballList.Add(ball);
+            _ballList.Add(ball);
             AddChild(ball);
         }
 
@@ -56,8 +56,14 @@ public partial class BallGatheringScene : BaseScene
     public override void ResetScene()
     {
         base.ResetScene();
-        foreach (var ball in ballList)
-            RemoveChild(ball);
+        foreach (var ball in _ballList)
+            CallDeferred("remove_child", ball);
+        _ballList = [];
+            
+        var scoreLabels = GetChildren().OfType<RichTextLabel>().Where(l => l.Name.ToString().Contains("Score"));
+        foreach (var scoreLabel in scoreLabels)
+            scoreLabel.Text = "0";
+
         SpawnBallsInGrid();
         BlockingMessageController.HideBlockingMessage();
     }
@@ -84,36 +90,36 @@ public partial class BallGatheringScene : BaseScene
 
     private void UpdateScoreAndRemoveBall(Node2D body, NodePath scoreName)
     {
-        if (body is RigidBody2D ball && body.SceneFilePath == ballScenePath)
+        if (body is RigidBody2D ball && body.SceneFilePath == BallScenePath)
         {
             var blueScore = GetNode<RichTextLabel>(scoreName);
             var newScore = int.Parse(blueScore.Text) + 1;
             blueScore.Text = newScore.ToString();
 
-            ballList.Remove(ball);
+            _ballList.Remove(ball);
             RemoveChild(ball);
-            checkForWin();
+            CheckForWin();
         }
     }
 
-    private void checkForWin()
+    private void CheckForWin()
     {
-        Console.WriteLine(ballList.Count);
-        if (ballList.Count == 0)
+        Console.WriteLine(_ballList.Count);
+        if (_ballList.Count == 0)
         {
             var blueScore = int.Parse(GetNode<RichTextLabel>("BlueScore").Text);
             var redScore = int.Parse(GetNode<RichTextLabel>("RedScore").Text);
             var greenScore = int.Parse(GetNode<RichTextLabel>("GreenScore").Text);
             var yellowScore = int.Parse(GetNode<RichTextLabel>("YellowScore").Text);
             Console.WriteLine(new { blueScore, redScore, greenScore, YellowScore = yellowScore });
-            
+
             var maxScore = Math.Max(Math.Max(Math.Max(blueScore, redScore), greenScore), yellowScore);
             var winners = new List<string>();
             if (blueScore == maxScore) winners.Add("Blue");
             if (redScore == maxScore) winners.Add("Red");
             if (greenScore == maxScore) winners.Add("Green");
             if (yellowScore == maxScore) winners.Add("Yellow");
-            
+
             BlockingMessageController.ShowBlockingMessage($"{string.Join(" and ", winners)} wins!");
         }
     }
