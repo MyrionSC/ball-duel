@@ -90,13 +90,13 @@ public partial class PlayerBall : RigidBody2D
         switch (ControllerId)
         {
             case 0:
-                return "blue";
+                return "Blue";
             case 1:
-                return "red";
+                return "Red";
             case 2:
-                return "green";
+                return "Green";
             case 3:
-                return "yellow";
+                return "Yellow";
             default:
                 throw new Exception($"controller id {ControllerId} has no defined color");
         }

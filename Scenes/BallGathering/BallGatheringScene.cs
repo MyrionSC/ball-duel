@@ -111,7 +111,6 @@ public partial class BallGatheringScene : BaseScene
             var redScore = int.Parse(GetNode<RichTextLabel>("RedScore").Text);
             var greenScore = int.Parse(GetNode<RichTextLabel>("GreenScore").Text);
             var yellowScore = int.Parse(GetNode<RichTextLabel>("YellowScore").Text);
-            Console.WriteLine(new { blueScore, redScore, greenScore, YellowScore = yellowScore });
 
             var maxScore = Math.Max(Math.Max(Math.Max(blueScore, redScore), greenScore), yellowScore);
             var winners = new List<string>();

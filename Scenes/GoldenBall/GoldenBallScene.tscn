@@ -257,26 +257,11 @@ offset_bottom = 20.0
 grow_vertical = 2
 color = Color(0.707967, 0.707967, 0.707967, 1)
 
-[node name="TetherBall1" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(-40, -41)
-mass = 1.0
-
-[node name="TetherBall2" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(41, 39)
-mass = 1.0
-
-[node name="TetherBall3" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(-39, 40)
-mass = 1.0
-
-[node name="TetherBall4" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(42, -41)
-mass = 1.0
-
 [node name="BlackTetherBall1" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(158, 0)
+position = Vector2(200, 0)
 mass = 100.0
 TetherPosition = Vector2(0.001, 0)
+mode = 1
 
 [node name="BlueScore" type="RichTextLabel" parent="."]
 offset_left = -432.0

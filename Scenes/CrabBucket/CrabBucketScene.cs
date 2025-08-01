@@ -9,16 +9,12 @@ namespace BallDuel.Scenes.CrabBucket;
 
 public partial class CrabBucketScene : Node2D
 {
-    PlayerBall playerBall1 = null;
-    PlayerBall playerBall2 = null;
-    PlayerBall playerBall3 = null;
-    PlayerBall playerBall4 = null;
     List<PlayerBall> playerBallList = new();
 
     public override void _Ready()
     {
         base._Ready();
-        
+
         foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
         {
             var playerBall = GetNode<PlayerBall>(s);
@@ -32,15 +28,12 @@ public partial class CrabBucketScene : Node2D
 
         CountdownController.Init(this);
         CountdownController.StartCountdown();
-        
+
         Border.CollisionCallback = body =>
         {
             if (body is PlayerBall ball)
             {
-                GetTree().CreateTimer(1).Timeout += () =>
-                {
-                    ball.ResetPosition();
-                };
+                GetTree().CreateTimer(1).Timeout += () => { ball.ResetPosition(); };
             }
         };
     }
@@ -76,14 +69,22 @@ public partial class CrabBucketScene : Node2D
             }
         }
     }
-    
+
     public void OnBodyEntered(Node2D body)
     {
-        if (body is PlayerBall ball)
+        if (body is not PlayerBall ball) return;
+
+        ball.ResetPosition();
+
+        var scoreLabel = GetNode<RichTextLabel>(ball.GetColorName() + "Score");
+        var oldScore = int.Parse(scoreLabel.Text);
+        var score = oldScore + 1;
+        scoreLabel.Text = score.ToString();
+        
+        if (score >= 3)
         {
-            ball.ResetPosition();
             Globals.InputDisabled = true;
-            BlockingMessageController.ShowBlockingMessage($"{ball.GetColorName()} ball wins!");
+            BlockingMessageController.ShowBlockingMessage($"{ball.GetColorName()} wins!");
         }
     }
 
@@ -91,9 +92,13 @@ public partial class CrabBucketScene : Node2D
     {
         foreach (var playerBall in playerBallList)
         {
-            if (playerBall.IsControllerConnected())
-                playerBall.ResetPosition();
-            CountdownController.StartCountdown();
+            if (playerBall.IsControllerConnected()) playerBall.ResetPosition();
         }
+
+        var scoreLabels = GetChildren().OfType<RichTextLabel>().Where(l => l.Name.ToString().Contains("Score"));
+        foreach (var scoreLabel in scoreLabels)
+            scoreLabel.Text = "0";
+
+        CountdownController.StartCountdown();
     }
 }
