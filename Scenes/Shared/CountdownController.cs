@@ -45,15 +45,10 @@ public class CountdownController
     public static void StartCountdown()
     {
         if (_scene is null) return;
-        _scene.GetTree().CreateTimer(0.2).Timeout += DisablePhysics;
-        PhysicsServer2D.SetActive(false);
+        // Wait a short while before disabling physics so reset movement have time to take effect
+        _scene.GetTree().CreateTimer(0.06).Timeout += () => PhysicsServer2D.SetActive(false);
         Globals.InputDisabled = true;
         _label.Visible = true;
         _countdownTimer.Start();
-    }
-
-    private static void DisablePhysics()
-    {
-        PhysicsServer2D.SetActive(false);
     }
 }

@@ -86,6 +86,10 @@ public partial class CrabBucketScene : Node2D
             Globals.InputDisabled = true;
             BlockingMessageController.ShowBlockingMessage($"{ball.GetColorName()} wins!");
         }
+        else
+        {
+            CountdownController.StartCountdown();
+        }
     }
 
     private void ResetScene()
