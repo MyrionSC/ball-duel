@@ -1,23 +1,15 @@
 using System.Linq;
 using BallDuel.Scenes.Shared;
+using BallDuel.scripts;
 using Godot;
 
 public partial class GoldenBallScene : BaseScene
 {
-    private static string ballScenePath = "res://Scenes/Shared/ball.tscn";
-
-    private PackedScene _ballScene = GD.Load<PackedScene>(ballScenePath);
-
     public override void _Ready()
     {
         base._Ready();
 
         BlockingMessageController.Init(this);
-        
-        // var tethers = GetChildren().OfType<TetherBall>().ToArray();
-        // foreach (var tether in tethers)
-        // {
-        // }
 
         // CountdownController.Init(this);
         // CountdownController.StartCountdown();
@@ -26,6 +18,7 @@ public partial class GoldenBallScene : BaseScene
     public override void ResetScene()
     {
         base.ResetScene();
+        Globals.InputDisabled = false;
 
         var tethers = GetChildren().OfType<TetherBall>().ToArray();
         foreach (var tether in tethers) tether.ResetToStart();
@@ -38,35 +31,27 @@ public partial class GoldenBallScene : BaseScene
         BlockingMessageController.HideBlockingMessage();
     }
 
-    public void BallEnteredPlayer1Goal(Node2D body) => UpdateScoreAndResetGoldenBall(body, "BlueScore");
-    public void BallEnteredPlayer2Goal(Node2D body) => UpdateScoreAndResetGoldenBall(body, "RedScore");
-    public void BallEnteredPlayer3Goal(Node2D body) => UpdateScoreAndResetGoldenBall(body, "GreenScore");
-    public void BallEnteredPlayer4Goal(Node2D body) => UpdateScoreAndResetGoldenBall(body, "YellowScore");
+    public void BallEnteredPlayer1Goal(Node2D body) => UpdateScoreAndResetGoldenBall(body, "Blue");
+    public void BallEnteredPlayer2Goal(Node2D body) => UpdateScoreAndResetGoldenBall(body, "Red");
+    public void BallEnteredPlayer3Goal(Node2D body) => UpdateScoreAndResetGoldenBall(body, "Green");
+    public void BallEnteredPlayer4Goal(Node2D body) => UpdateScoreAndResetGoldenBall(body, "Yellow");
 
-    private void UpdateScoreAndResetGoldenBall(Node2D body, NodePath scoreName)
+    private void UpdateScoreAndResetGoldenBall(Node2D body, NodePath colorName)
     {
         if (body is Ball ball && ball.GetName().ToString() == "GoldenBall")
         {
-            var blueScore = GetNode<RichTextLabel>(scoreName);
-            var newScore = int.Parse(blueScore.Text) + 1;
-            blueScore.Text = newScore.ToString();
+            var scoreNode = GetNode<RichTextLabel>($"{colorName}Score");
+            var newScore = int.Parse(scoreNode.Text) + 1;
+            scoreNode.Text = newScore.ToString();
 
             ball.ResetToStart();
-            CheckForWin();
+
+            if (newScore >= 5)
+            {
+                Globals.InputDisabled = true;
+                BlockingMessageController.ShowBlockingMessage($"{colorName} wins!");
+            }
         }
     }
-
-    private void CheckForWin()
-    {
-        var blueScore = int.Parse(GetNode<RichTextLabel>("BlueScore").Text);
-        var redScore = int.Parse(GetNode<RichTextLabel>("RedScore").Text);
-        var greenScore = int.Parse(GetNode<RichTextLabel>("GreenScore").Text);
-        var yellowScore = int.Parse(GetNode<RichTextLabel>("YellowScore").Text);
-
-        const int winScore = 3;
-        if (blueScore == winScore) BlockingMessageController.ShowBlockingMessage($"Blue wins!");
-        if (redScore == winScore) BlockingMessageController.ShowBlockingMessage($"Red wins!");
-        if (greenScore == winScore) BlockingMessageController.ShowBlockingMessage($"Green wins!");
-        if (yellowScore == winScore) BlockingMessageController.ShowBlockingMessage($"Yellow wins!");
-    }
+    
 }

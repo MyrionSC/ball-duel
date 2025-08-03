@@ -258,18 +258,52 @@ grow_vertical = 2
 color = Color(0.707967, 0.707967, 0.707967, 1)
 
 [node name="BlackTetherBall1" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(100, 0)
+position = Vector2(0, -80)
 mass = 100.0
 TetherPosition = Vector2(0.001, 0)
-mode = 1
+Mode = 1
 ScaleBy = 0.75
+ShouldDrawLine = false
 
 [node name="BlackTetherBall2" parent="." instance=ExtResource("11_yu3ao")]
 position = Vector2(0, 200)
 mass = 100.0
 TetherPosition = Vector2(0.001, 0)
-mode = 1
+Mode = 1
 ScaleBy = 0.75
+ShouldDrawLine = false
+
+[node name="BlackTetherBall3" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(0, 140)
+mass = 100.0
+TetherPosition = Vector2(0.001, 0)
+Mode = 1
+ScaleBy = 0.75
+ShouldDrawLine = false
+
+[node name="BlackTetherBall4" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(0, 80)
+mass = 100.0
+TetherPosition = Vector2(0.001, 0)
+Mode = 1
+ScaleBy = 0.75
+ShouldDrawLine = false
+
+[node name="BlackTetherBall5" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(0, -140)
+mass = 100.0
+TetherPosition = Vector2(0.001, 0)
+Mode = 1
+ScaleBy = 0.75
+ShouldDrawLine = false
+
+[node name="BlackTetherBall6" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(0, -200)
+mass = 100.0
+TetherPosition = Vector2(0.001, 0)
+Mode = 1
+ScaleBy = 0.75
+ShouldDrawLine = false
 
 [node name="BlueScore" type="RichTextLabel" parent="."]
 offset_left = -432.0
@@ -316,6 +350,14 @@ offset_bottom = 267.0
 theme_override_colors/font_color = Color(1, 0.190212, 0.840881, 1)
 theme_override_font_sizes/font_size = 400
 text = "3"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -379.0
+offset_top = -392.0
+offset_right = -271.0
+offset_bottom = -369.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "First to 5 wins"
 
 [connection signal="body_entered" from="Player1Goal" to="." method="BallEnteredPlayer1Goal"]
 [connection signal="body_entered" from="Player2Goal" to="." method="BallEnteredPlayer2Goal"]

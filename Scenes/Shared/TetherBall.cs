@@ -8,11 +8,12 @@ public partial class TetherBall : RigidBody2D
     private Vector2 _originalPosition = Vector2.Zero;
     [Export] public Vector2 TetherPosition = Vector2.Zero;
     [Export] public Vector2 StartVelocity = Vector2.Zero;
-    [Export] public TetherBallMode mode = TetherBallMode.Normal;
+    [Export] public TetherBallMode Mode = TetherBallMode.Normal;
     [Export] public float ScaleBy = 1f;
+    [Export] public bool ShouldDrawLine = true;
     private Line2D _line;
-    private bool _reset = false;
-    private float forceMultiplier = 1f;
+    private bool _reset;
+    private float _forceMultiplier = 1f;
 
     public override void _Ready()
     {
@@ -30,20 +31,16 @@ public partial class TetherBall : RigidBody2D
         var collision = GetNode<CollisionShape2D>("Collision");
         collision.Scale *= ScaleBy;
 
+        _forceMultiplier = Mass;
+        
         if (GetName().ToString().Contains("Black"))
         {
-            forceMultiplier = Mass;
             var sprite = GetNode<Sprite2D>("Sprite2D");
             sprite.Texture = GD.Load<Texture2D>("res://assets/black_ball.png");
         }
         
-        if (mode == TetherBallMode.Orbit)
+        if (Mode == TetherBallMode.Orbit)
         {
-            Console.WriteLine(Mass);
-            var orbitVelocity = (Position - TetherPosition).Length();
-            Console.WriteLine(orbitVelocity);
-            
-
             StartVelocity = (TetherPosition - GetPosition()).Orthogonal();
             LinearVelocity = StartVelocity;
         }
@@ -75,10 +72,14 @@ public partial class TetherBall : RigidBody2D
         var newVel = TetherPosition - GetPosition();
         if (!(newVel.Length() > 1f)) return;
 
-        ApplyForce(newVel * forceMultiplier);
-        _line.ClearPoints();
-        _line.AddPoint(TetherPosition);
-        _line.AddPoint(GetPosition());
+        ApplyForce(newVel * _forceMultiplier);
+
+        if (ShouldDrawLine)
+        {
+            _line.ClearPoints();
+            _line.AddPoint(TetherPosition);
+            _line.AddPoint(GetPosition());
+        }
     }
 
     public void ResetToStart()
