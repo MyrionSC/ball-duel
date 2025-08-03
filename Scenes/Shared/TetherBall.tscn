@@ -7,7 +7,7 @@
 bounce = 0.4
 
 [sub_resource type="CircleShape2D" id="2"]
-radius = 213.333
+radius = 32.0
 
 [node name="Ball" type="RigidBody2D"]
 mass = 2.0
@@ -19,5 +19,4 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_vp8ql")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-scale = Vector2(0.15, 0.15)
 shape = SubResource("2")

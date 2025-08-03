@@ -9,6 +9,7 @@ public partial class TetherBall : RigidBody2D
     [Export] public Vector2 TetherPosition = Vector2.Zero;
     [Export] public Vector2 StartVelocity = Vector2.Zero;
     [Export] public TetherBallMode mode = TetherBallMode.Normal;
+    [Export] public float ScaleBy = 1f;
     private Line2D _line;
     private bool _reset = false;
     private float forceMultiplier = 1f;
@@ -22,6 +23,12 @@ public partial class TetherBall : RigidBody2D
         if (StartVelocity == Vector2.Zero) LinearVelocity = StartVelocity;
 
         _reset = true;
+        
+        // Set scale
+        var sprite2 = GetNode<Sprite2D>("Sprite2D");
+        sprite2.Scale *= ScaleBy;
+        var collision = GetNode<CollisionShape2D>("Collision");
+        collision.Scale *= ScaleBy;
 
         if (GetName().ToString().Contains("Black"))
         {
@@ -35,7 +42,9 @@ public partial class TetherBall : RigidBody2D
             Console.WriteLine(Mass);
             var orbitVelocity = (Position - TetherPosition).Length();
             Console.WriteLine(orbitVelocity);
-            StartVelocity = new Vector2(0, orbitVelocity);
+            
+
+            StartVelocity = (TetherPosition - GetPosition()).Orthogonal();
             LinearVelocity = StartVelocity;
         }
 

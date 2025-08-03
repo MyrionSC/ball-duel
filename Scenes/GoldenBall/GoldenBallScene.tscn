@@ -258,10 +258,18 @@ grow_vertical = 2
 color = Color(0.707967, 0.707967, 0.707967, 1)
 
 [node name="BlackTetherBall1" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(200, 0)
+position = Vector2(100, 0)
 mass = 100.0
 TetherPosition = Vector2(0.001, 0)
 mode = 1
+ScaleBy = 0.75
+
+[node name="BlackTetherBall2" parent="." instance=ExtResource("11_yu3ao")]
+position = Vector2(0, 200)
+mass = 100.0
+TetherPosition = Vector2(0.001, 0)
+mode = 1
+ScaleBy = 0.75
 
 [node name="BlueScore" type="RichTextLabel" parent="."]
 offset_left = -432.0
