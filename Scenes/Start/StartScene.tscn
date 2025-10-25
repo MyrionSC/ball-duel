@@ -319,6 +319,29 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 36
 text = "Golden Ball"
 
+[node name="KingOfBallsSelect" type="Area2D" parent="."]
+position = Vector2(394, 280)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/KingOfBalls/KingOfBallsScene.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KingOfBallsSelect"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="KingOfBallsSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="KingOfBallsSelect"]
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 115.0
+offset_bottom = 55.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "King 
+of Balls"
+
 [node name="PlayerBall1" type="RigidBody2D" parent="."]
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(0, -200)
@@ -391,3 +414,4 @@ texture = ExtResource("9_7bvpp")
 [connection signal="body_entered" from="BallGathering" to="BallGathering" method="OnBodyEntered"]
 [connection signal="body_entered" from="TetherGatherSelect" to="TetherGatherSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="GoldenBallSelect" to="GoldenBallSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="KingOfBallsSelect" to="KingOfBallsSelect" method="OnBodyEntered"]

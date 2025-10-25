@@ -5,19 +5,21 @@ using Godot;
 public partial class PlayerBall : RigidBody2D
 {
     private bool _resetState = false;
-    public Vector2 OriginalPosition = Vector2.Zero;
     private Vector2 _newPosition;
+    
+    public Vector2 OriginalPosition = Vector2.Zero;
     public bool IsRespawning = false;
     private Line2D _line;
     public bool ShouldDrawLine = false;
+    public Sprite2D OntopSprite;
 
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
-
 
     public override void _Ready()
     {
         base._Ready();
         OriginalPosition = Position;
+        OntopSprite = GetNode<Sprite2D>("OntopSprite"); // is null if not found
 
         _line = new Line2D();
         var r = new Random();
