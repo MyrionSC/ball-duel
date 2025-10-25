@@ -11,8 +11,8 @@ public partial class GoldenBallScene : BaseScene
 
         BlockingMessageController.Init(this);
 
-        // CountdownController.Init(this);
-        // CountdownController.StartCountdown();
+        CountdownController.Init(this);
+        CountdownController.StartCountdown();
     }
 
     public override void ResetScene()
@@ -22,6 +22,8 @@ public partial class GoldenBallScene : BaseScene
 
         var tethers = GetChildren().OfType<TetherBall>().ToArray();
         foreach (var tether in tethers) tether.ResetToStart();
+        
+        GetNode<Ball>("GoldenBall").ResetToStart();
 
         var scoreLabels = GetChildren().OfType<RichTextLabel>()
             .Where(l => l.Name.ToString().Contains("Score"));

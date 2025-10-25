@@ -21,7 +21,7 @@ public partial class PlayerBall : RigidBody2D
     {
         base._Ready();
         OriginalPosition = Position;
-        OntopSprite = GetNode<Sprite2D>("OntopSprite"); // is null if not found
+        OntopSprite = GetNodeOrNull<Sprite2D>("OntopSprite");
 
         _line = new Line2D();
         var r = new Random();

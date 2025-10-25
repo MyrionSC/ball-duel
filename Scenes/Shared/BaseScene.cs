@@ -22,7 +22,7 @@ public partial class BaseScene : Node2D
             }
             else
             {
-                var scoreLabel = GetNode<RichTextLabel>($"Player{playerBall.ControllerId+1}Score");
+                var scoreLabel = GetNodeOrNull<RichTextLabel>($"Player{playerBall.ControllerId+1}Score");
                 if (scoreLabel != null) scoreLabel.Visible = true;
             }
         }
