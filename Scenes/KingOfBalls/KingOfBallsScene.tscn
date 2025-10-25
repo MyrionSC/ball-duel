@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ddvqqrxrn5sfa"]
+[gd_scene load_steps=19 format=3 uid="uid://ddvqqrxrn5sfa"]
 
 [ext_resource type="Script" uid="uid://bivlq3twnd8oj" path="res://Scenes/KingOfBalls/KingOfBallsScene.cs" id="1_1u2fd"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cnchnv2cvob8m" path="res://assets/grey_high_res_ball.png" id="7_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_xrdcs"]
+[ext_resource type="Texture2D" uid="uid://dy8oakwykci3q" path="res://assets/crown-black.png" id="10_ct55k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gaov6"]
 bounce = 10.0
@@ -29,6 +30,8 @@ bounce = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrdcs"]
 bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ct55k"]
 
 [node name="KingOfBallsScene" type="Node2D"]
 script = ExtResource("1_1u2fd")
@@ -173,6 +176,7 @@ debug_color = Color(1, 1, 1, 0.42)
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(-400, -200)
 physics_material_override = SubResource("PhysicsMaterial_xyg1p")
+lock_rotation = true
 script = ExtResource("5_3n2by")
 metadata/_edit_group_ = true
 
@@ -191,6 +195,7 @@ scale = Vector2(0.17, 0.17)
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(400, -200)
 physics_material_override = SubResource("PhysicsMaterial_xrdcs")
+lock_rotation = true
 script = ExtResource("5_3n2by")
 ControllerId = 1
 metadata/_edit_group_ = true
@@ -209,6 +214,7 @@ scale = Vector2(0.17, 0.17)
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(-400, 200)
 physics_material_override = SubResource("PhysicsMaterial_xrdcs")
+lock_rotation = true
 script = ExtResource("5_3n2by")
 ControllerId = 2
 metadata/_edit_group_ = true
@@ -228,6 +234,7 @@ scale = Vector2(0.17, 0.17)
 modulate = Color(0.617334, 0.761603, 0.782717, 1)
 position = Vector2(400, 200)
 physics_material_override = SubResource("PhysicsMaterial_xrdcs")
+lock_rotation = true
 script = ExtResource("5_3n2by")
 ControllerId = 3
 metadata/_edit_group_ = true
@@ -257,7 +264,7 @@ text = "3"
 visible = false
 offset_left = -656.0
 offset_top = -372.0
-offset_right = -610.0
+offset_right = -584.0
 offset_bottom = -303.0
 theme_override_colors/default_color = Color(0, 0, 1, 1)
 theme_override_font_sizes/normal_font_size = 48
@@ -265,19 +272,20 @@ text = "0"
 
 [node name="Player2Score" type="RichTextLabel" parent="."]
 visible = false
-offset_left = 629.0
+offset_left = 598.0
 offset_top = -372.0
-offset_right = 684.0
+offset_right = 657.0
 offset_bottom = -302.0
 theme_override_colors/default_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 48
 text = "0"
+horizontal_alignment = 2
 
 [node name="Player3Score" type="RichTextLabel" parent="."]
 visible = false
 offset_left = -657.0
 offset_top = 303.0
-offset_right = -611.0
+offset_right = -588.0
 offset_bottom = 372.0
 theme_override_colors/default_color = Color(0, 0.862745, 0, 1)
 theme_override_font_sizes/normal_font_size = 48
@@ -285,15 +293,36 @@ text = "0"
 
 [node name="Player4Score" type="RichTextLabel" parent="."]
 visible = false
-offset_left = 629.0
+offset_left = 591.0
 offset_top = 303.0
-offset_right = 675.0
+offset_right = 656.0
 offset_bottom = 372.0
 theme_override_colors/default_color = Color(0.880472, 0.880472, 0, 1)
 theme_override_font_sizes/normal_font_size = 48
 text = "0"
+horizontal_alignment = 2
+
+[node name="FreeCrown" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FreeCrown"]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_ct55k")
+
+[node name="Sprite2D" type="Sprite2D" parent="FreeCrown"]
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("10_ct55k")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -379.0
+offset_top = -392.0
+offset_right = -271.0
+offset_bottom = -369.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "First to 100 wins"
 
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LowerBorder" to="LowerBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LeftBorder" to="LeftBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="RightBorder" to="RightBorder" method="OnBodyEntered"]
+[connection signal="body_entered" from="FreeCrown" to="." method="TouchedFreeCrown"]

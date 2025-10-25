@@ -320,7 +320,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Golden Ball"
 
 [node name="KingOfBallsSelect" type="Area2D" parent="."]
-position = Vector2(394, 280)
+position = Vector2(400, 300)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/KingOfBalls/KingOfBallsScene.tscn"

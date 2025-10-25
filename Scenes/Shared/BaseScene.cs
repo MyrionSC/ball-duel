@@ -17,7 +17,14 @@ public partial class BaseScene : Node2D
         foreach (var playerBall in playerBallList)
         {
             if (!playerBall.IsControllerConnected())
+            {
                 playerBall.Position = new Vector2(100000, 100000);
+            }
+            else
+            {
+                var scoreLabel = GetNode<RichTextLabel>($"Player{playerBall.ControllerId+1}Score");
+                if (scoreLabel != null) scoreLabel.Visible = true;
+            }
         }
         
     }
@@ -48,6 +55,8 @@ public partial class BaseScene : Node2D
             if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
             {
                 Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
+                var scoreLabel = GetNode<RichTextLabel>($"Player{playerBall.ControllerId+1}Score");
+                if (scoreLabel != null) scoreLabel.Visible = true;
                 playerBall.ResetPosition();
             }
         }
@@ -61,6 +70,7 @@ public partial class BaseScene : Node2D
             if (playerBall.IsControllerConnected())
                 playerBall.ResetPosition();
         }
+        
         CountdownController.StartCountdown();
     }
 }

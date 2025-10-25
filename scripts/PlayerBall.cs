@@ -12,6 +12,8 @@ public partial class PlayerBall : RigidBody2D
     private Line2D _line;
     public bool ShouldDrawLine = false;
     public Sprite2D OntopSprite;
+    
+    public float Accelaration = Globals.BALL_ACCELERATION_CONSTANT;
 
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
 
@@ -50,7 +52,7 @@ public partial class PlayerBall : RigidBody2D
             ? Globals.BALL_FORCE_MULTIPLIER_CONSTANT
             : 1f;
 
-        var forceVector = analogInput * forceMultiplier * Globals.BALL_ACCELERATION_CONSTANT;
+        var forceVector = analogInput * forceMultiplier * Accelaration;
 
         if (ShouldDrawLine)
         {

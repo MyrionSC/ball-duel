@@ -1,4 +1,3 @@
-using BallDuel.scripts;
 using Godot;
 
 namespace BallDuel.Scenes.Shared;

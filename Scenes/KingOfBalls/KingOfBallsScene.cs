@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using BallDuel.Scenes.Shared;
 using BallDuel.scripts;
@@ -7,69 +5,73 @@ using Godot;
 
 namespace BallDuel.Scenes.KingOfBalls;
 
-public partial class KingOfBallsScene : Node2D
+public partial class KingOfBallsScene : BaseScene
 {
-    protected List<PlayerBall> playerBallList = [];
+    public Area2D FreeCrown { get; set; }
 
     public override void _Ready()
     {
         base._Ready();
-        playerBallList = GetChildren().OfType<PlayerBall>().ToList();
-
-        foreach (var playerBall in playerBallList)
-        {
-            if (!playerBall.IsControllerConnected())
-                playerBall.Position = new Vector2(100000, 100000);
-            
-            if (playerBall.OntopSprite != null)
-                playerBall.OntopSprite.Texture = GD.Load<Texture2D>("res://assets/Crown.png");
-        }
-
+        
+        FreeCrown  = GetNode<Area2D>("FreeCrown");
+        
         BlockingMessageController.Init(this);
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        base._Input(@event);
-
-        if (@event is InputEventMouseMotion mouseEvent)
+        
+        Border.CollisionCallback = body =>
         {
-            return;
-        }
-
-        if (@event is InputEventJoypadButton btn && btn.ButtonIndex == JoyButton.Start)
-        {
-            ResetScene();
-            return;
-        }
-
-        if (@event is InputEventJoypadButton btn1 && btn1.ButtonIndex == JoyButton.Back)
-        {
-            GetTree().ChangeSceneToFile("res://Scenes/Start/StartScene.tscn");
-            return;
-        }
-
-        foreach (var playerBall in playerBallList)
-        {
-            if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
+            if (body is PlayerBall playerBall)
             {
-                Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
-                playerBall.ResetPosition();
+                if (playerBall.OntopSprite?.Texture != null)
+                {
+                    playerBall.OntopSprite.Texture = null;
+                    playerBall.Accelaration = Globals.BALL_ACCELERATION_CONSTANT;
+                    FreeCrown.Visible = true;
+                }
+                GetTree().CreateTimer(3.0f).Timeout += playerBall.ResetPosition;
             }
-        }
+        };
+        
+        CountdownController.Init(this);
+        CountdownController.StartCountdown();
+        
+        StartScoreCounter();
     }
 
-    public virtual void ResetScene()
+    private void StartScoreCounter()
     {
-        foreach (var playerBall in playerBallList)
+        var scoreCounter = new Timer();
+        scoreCounter.OneShot = false;
+        scoreCounter.WaitTime = 1.0;
+        scoreCounter.Timeout += () =>
         {
-            if (playerBall.IsControllerConnected())
-                playerBall.ResetPosition();
-        }
+            var kingBall = playerBallList.SingleOrDefault(x => x.OntopSprite.Texture != null);
+            if (kingBall == null) return;
+            var scoreLabel = GetNode<RichTextLabel>($"Player{kingBall.ControllerId+1}Score");
+            var oldScore = int.Parse(scoreLabel.Text);
+            scoreLabel.Text = (oldScore + 1).ToString();
+            
+            if (oldScore + 1 >= 100)
+            {
+                Globals.InputDisabled = true;
+                BlockingMessageController.ShowBlockingMessage($"{kingBall.GetColorName()} wins!");
+            }
+        };
+        AddChild(scoreCounter);
+        scoreCounter.Start();
+    }
 
-        CountdownController.StartCountdown();
+    public override void ResetScene()
+    {
+        base.ResetScene();
 
         Globals.InputDisabled = false;
+        
+        foreach (var playerBall in playerBallList)
+        {
+            playerBall.OntopSprite.Texture = null;
+            playerBall.Accelaration = Globals.BALL_ACCELERATION_CONSTANT;
+        }
+        FreeCrown.Visible = true;
 
         var scoreLabels = GetChildren().OfType<RichTextLabel>()
             .Where(l => l.Name.ToString().Contains("Score"));
@@ -78,4 +80,13 @@ public partial class KingOfBallsScene : Node2D
 
         BlockingMessageController.HideBlockingMessage();
     }
+    
+    public void TouchedFreeCrown(PlayerBall playerBall)
+    {
+        if (!FreeCrown.Visible) return;
+        FreeCrown.Visible = false;
+        playerBall.OntopSprite.Texture = GD.Load<Texture2D>("res://assets/crown-white.png");
+        playerBall.Accelaration = Globals.BALL_ACCELERATION_CONSTANT * 1.5f;
+    }
+    
 }
