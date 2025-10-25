@@ -22,7 +22,7 @@ public partial class KingOfBallsScene : Node2D
                 playerBall.Position = new Vector2(100000, 100000);
             
             if (playerBall.OntopSprite != null)
-                playerBall.OntopSprite.Texture = GD.Load<Texture2D>("res://assets/RedFlag.png");
+                playerBall.OntopSprite.Texture = GD.Load<Texture2D>("res://assets/Crown.png");
         }
 
         BlockingMessageController.Init(this);
