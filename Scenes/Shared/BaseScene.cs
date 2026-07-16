@@ -70,15 +70,15 @@ public partial class BaseScene : Node2D
     public virtual void ResetScene()
     {
         // TODO: test around
-        // Globals.InputDisabled = false;
-        // BlockingMessageController.HideBlockingMessage();
-        
+        Globals.InputDisabled = false;
+        BlockingMessageController.HideBlockingMessage();
+
         ResetPositions();
 
         var scoreLabels = GetChildren().OfType<RichTextLabel>().Where(l => l.Name.ToString().Contains("Score"));
         foreach (var scoreLabel in scoreLabels)
             scoreLabel.Text = "0";
-        
+
         CountdownController.StartCountdown();
     }
 

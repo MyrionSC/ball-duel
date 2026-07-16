@@ -26,7 +26,7 @@ public partial class KingOfBallsScene : BaseScene
                 if (playerBall.OntopSprite?.Texture != null)
                 {
                     playerBall.OntopSprite.Texture = null;
-                    playerBall.Accelaration = Globals.BALL_ACCELERATION_CONSTANT;
+                    playerBall.Acceleration = Globals.BALL_ACCELERATION_CONSTANT;
                     FreeCrown.Visible = true;
                 }
                 GetTree().CreateTimer(3.0f).Timeout += playerBall.ResetPosition;
@@ -61,23 +61,8 @@ public partial class KingOfBallsScene : BaseScene
 
     public override void ResetScene()
     {
-        base.ResetScene();
-
-        Globals.InputDisabled = false;
-        
-        foreach (var playerBall in playerBallList)
-        {
-            playerBall.OntopSprite.Texture = null;
-            playerBall.Accelaration = Globals.BALL_ACCELERATION_CONSTANT;
-        }
         FreeCrown.Visible = true;
-
-        var scoreLabels = GetChildren().OfType<RichTextLabel>()
-            .Where(l => l.Name.ToString().Contains("Score"));
-        foreach (var scoreLabel in scoreLabels)
-            scoreLabel.Text = "0";
-
-        BlockingMessageController.HideBlockingMessage();
+        base.ResetScene();
     }
     
     public void TouchedFreeCrown(PlayerBall playerBall)
@@ -85,7 +70,6 @@ public partial class KingOfBallsScene : BaseScene
         if (!FreeCrown.Visible) return;
         FreeCrown.Visible = false;
         playerBall.OntopSprite.Texture = GD.Load<Texture2D>("res://assets/crown-white.png");
-        playerBall.Accelaration = Globals.BALL_ACCELERATION_CONSTANT * 1.5f;
     }
     
 }
