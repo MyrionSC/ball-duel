@@ -7,32 +7,13 @@ using Godot;
 
 namespace BallDuel.Scenes.Versus;
 
-public partial class VersusScene : Node2D
+public partial class VersusScene : BaseScene
 {
-    PlayerBall playerBall1 = null;
-    PlayerBall playerBall2 = null;
-    PlayerBall playerBall3 = null;
-    PlayerBall playerBall4 = null;
-    List<PlayerBall> playerBallList = new();
-
     public override void _Ready()
     {
         base._Ready();
 
-        foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
-        {
-            var playerBall = GetNode<PlayerBall>(s);
-            playerBallList.Add(playerBall);
-            if (!playerBall.IsControllerConnected())
-            {
-                playerBall.Position = new Vector2(100000, 100000);
-            }
-            else
-            {
-                GetNode<RichTextLabel>("Player" + (playerBall.ControllerId + 1) + "Score").Visible = true;
-            }
-        }
-
+        BlockingMessageController.Init(this);
         CountdownController.Init(this);
         CountdownController.StartCountdown();
 
@@ -46,41 +27,11 @@ public partial class VersusScene : Node2D
         };
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        base._Input(@event);
-
-        if (@event is InputEventMouseMotion mouseEvent)
-        {
-            return;
-        }
-
-        if (@event is InputEventJoypadButton btn && btn.ButtonIndex == JoyButton.Start)
-        {
-            ResetScene();
-            return;
-        }
-
-        if (@event is InputEventJoypadButton btn1 && btn1.ButtonIndex == JoyButton.Back)
-        {
-            GetTree().ChangeSceneToFile("res://Scenes/Start/StartScene.tscn");
-            return;
-        }
-
-        foreach (var playerBall in playerBallList)
-        {
-            if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
-            {
-                Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
-                GetNode<RichTextLabel>("Player" + (playerBall.ControllerId + 1) + "Score").Visible = true;
-                playerBall.ResetPosition();
-            }
-        }
-    }
-
     private void CheckForWin()
     {
         Console.WriteLine("Checking for win...");
+        
+        // TODO: Check for score win
 
         List<PlayerBall> remainingPlayerList =
             playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
@@ -93,12 +44,12 @@ public partial class VersusScene : Node2D
             Console.WriteLine(
                 $"player {remainingPlayer.ControllerId} wins, old score: {oldScore} new score: {oldScore + 1}");
             scoreLabel.Text = (oldScore + 1).ToString();
-            ResetScene();
+            StartNextRound();
         }
         else if (remainingPlayerList.Count == 0)
         {
             Console.WriteLine("draw");
-            ResetScene();
+            StartNextRound();
         }
         else
         {
@@ -106,15 +57,10 @@ public partial class VersusScene : Node2D
         }
     }
 
-    private void ResetScene()
+    private void StartNextRound()
     {
-        foreach (var playerBall in playerBallList)
-        {
-            if (playerBall.IsControllerConnected())
-                playerBall.ResetPosition();
-            CountdownController.StartCountdown();
-        }
-
+        ResetPositions();
         GetNode<MiddleSpinnyThing>("MiddleSpinnyThing").Reset();
+        CountdownController.StartCountdown();
     }
 }

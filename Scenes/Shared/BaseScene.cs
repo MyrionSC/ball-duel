@@ -69,16 +69,28 @@ public partial class BaseScene : Node2D
 
     public virtual void ResetScene()
     {
+        // TODO: test around
+        // Globals.InputDisabled = false;
+        // BlockingMessageController.HideBlockingMessage();
+        
+        ResetPositions();
+
+        var scoreLabels = GetChildren().OfType<RichTextLabel>().Where(l => l.Name.ToString().Contains("Score"));
+        foreach (var scoreLabel in scoreLabels)
+            scoreLabel.Text = "0";
+        
+        CountdownController.StartCountdown();
+    }
+
+    public void ResetPositions()
+    {
         foreach (var playerBall in playerBallList)
         {
             if (playerBall.IsControllerConnected())
                 playerBall.ResetPosition();
         }
 
-        var scoreLabels = GetChildren().OfType<RichTextLabel>().Where(l => l.Name.ToString().Contains("Score"));
-        foreach (var scoreLabel in scoreLabels)
-            scoreLabel.Text = "0";
-
-        CountdownController.StartCountdown();
+        var tethers = GetChildren().OfType<TetherBall>().ToArray();
+        foreach (var tether in tethers) tether.ResetToStart();
     }
 }

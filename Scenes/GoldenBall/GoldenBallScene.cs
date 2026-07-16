@@ -18,19 +18,7 @@ public partial class GoldenBallScene : BaseScene
     public override void ResetScene()
     {
         base.ResetScene();
-        Globals.InputDisabled = false;
-
-        var tethers = GetChildren().OfType<TetherBall>().ToArray();
-        foreach (var tether in tethers) tether.ResetToStart();
-        
         GetNode<Ball>("GoldenBall").ResetToStart();
-
-        var scoreLabels = GetChildren().OfType<RichTextLabel>()
-            .Where(l => l.Name.ToString().Contains("Score"));
-        foreach (var scoreLabel in scoreLabels)
-            scoreLabel.Text = "0";
-
-        BlockingMessageController.HideBlockingMessage();
     }
 
     public void BallEnteredPlayer1Goal(Node2D body) => UpdateScoreAndResetGoldenBall(body, "Blue");
