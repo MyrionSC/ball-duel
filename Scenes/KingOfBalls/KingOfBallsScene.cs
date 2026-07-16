@@ -16,6 +16,8 @@ public partial class KingOfBallsScene : BaseScene
         FreeCrown  = GetNode<Area2D>("FreeCrown");
         
         BlockingMessageController.Init(this);
+        CountdownController.Init(this);
+        CountdownController.StartCountdown();
         
         Border.CollisionCallback = body =>
         {
@@ -30,9 +32,6 @@ public partial class KingOfBallsScene : BaseScene
                 GetTree().CreateTimer(3.0f).Timeout += playerBall.ResetPosition;
             }
         };
-        
-        CountdownController.Init(this);
-        CountdownController.StartCountdown();
         
         StartScoreCounter();
     }
@@ -50,7 +49,7 @@ public partial class KingOfBallsScene : BaseScene
             var oldScore = int.Parse(scoreLabel.Text);
             scoreLabel.Text = (oldScore + 1).ToString();
             
-            if (oldScore + 1 >= 100)
+            if (oldScore + 1 >= 50)
             {
                 Globals.InputDisabled = true;
                 BlockingMessageController.ShowBlockingMessage($"{kingBall.GetColorName()} wins!");

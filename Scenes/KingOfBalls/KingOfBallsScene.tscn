@@ -319,7 +319,7 @@ offset_top = -392.0
 offset_right = -271.0
 offset_bottom = -369.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "First to 100 wins"
+text = "First to 50 wins"
 
 [connection signal="body_entered" from="UpperBorder" to="UpperBorder" method="OnBodyEntered"]
 [connection signal="body_entered" from="LowerBorder" to="LowerBorder" method="OnBodyEntered"]
