@@ -16,7 +16,7 @@ public partial class BallGatheringScene : BaseScene
 
         foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
         {
-            var playerBall = GetNode<PlayerBall>(s);
+            var playerBall = GetNode<BallDuel.scripts.PlayerBall>(s);
             playerBallList.Add(playerBall);
             if (!playerBall.IsControllerConnected())
                 playerBall.Position = new Vector2(100000, 100000);

@@ -7,7 +7,7 @@ public partial class TetherVersusBall : RigidBody2D
 {
     public Vector2 OriginalPosition;
     private Line2D _line;
-    private PlayerBall _playerBall;
+    private scripts.PlayerBall _playerBall;
     private bool _resetState;
     private Vector2 _newPosition;
 
@@ -25,7 +25,7 @@ public partial class TetherVersusBall : RigidBody2D
         parentScene.CallDeferred("add_child", _line);
     }
 
-    public void TetherToPlayer(PlayerBall playerBall)
+    public void TetherToPlayer(scripts.PlayerBall playerBall)
     {
         _playerBall = playerBall;
     }

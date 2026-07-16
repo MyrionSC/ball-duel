@@ -4,14 +4,14 @@ using Godot;
 
 public partial class MinionSwarmScene : Node2D
 {
-    PlayerBall playerBall1 = null;
-    PlayerBall playerBall2 = null;
-    PlayerBall playerBall3 = null;
-    PlayerBall playerBall4 = null;
+    BallDuel.scripts.PlayerBall playerBall1 = null;
+    BallDuel.scripts.PlayerBall playerBall2 = null;
+    BallDuel.scripts.PlayerBall playerBall3 = null;
+    BallDuel.scripts.PlayerBall playerBall4 = null;
 
     private PackedScene _ballScene = GD.Load<PackedScene>("res://Scenes/Shared/ball.tscn");
 
-    List<PlayerBall> playerBallList = new();
+    List<BallDuel.scripts.PlayerBall> playerBallList = new();
 
     // public MinionSwarmBlueGoal BlueGoal = null;
     // public MinionSwarmRedGoal RedGoal = null;
@@ -25,7 +25,7 @@ public partial class MinionSwarmScene : Node2D
 
         foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
         {
-            var playerBall = GetNode<PlayerBall>(s);
+            var playerBall = GetNode<BallDuel.scripts.PlayerBall>(s);
             playerBallList.Add(playerBall);
             playerBall.IsRespawning = true;
             if (!playerBall.IsControllerConnected())
@@ -71,12 +71,12 @@ public partial class MinionSwarmScene : Node2D
         }
     }
 
-    public void BallTouchedBlueGoal(PlayerBall ball)
+    public void BallTouchedBlueGoal(BallDuel.scripts.PlayerBall ball)
     {
         Console.WriteLine("BallTouchedBlueGoal: " + ball.ControllerId);
     }
 
-    public void BallTouchedRedGoal(PlayerBall ball)
+    public void BallTouchedRedGoal(BallDuel.scripts.PlayerBall ball)
     {
         Console.WriteLine("BallTouchedRedGoal: " + ball.ControllerId);
     }

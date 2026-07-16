@@ -8,14 +8,14 @@ namespace BallDuel.Scenes.AIVersus;
 
 public partial class AIVersusScene : Node2D
 {
-    List<PlayerBall> playerBallList = new();
+    List<scripts.PlayerBall> playerBallList = new();
     private EnemyBall enemyBall = null;
 
     public override void _Ready()
     {
         base._Ready();
 
-        var playerBall = GetNode<PlayerBall>("PlayerBall");
+        var playerBall = GetNode<scripts.PlayerBall>("PlayerBall");
         playerBall.ShouldDrawLine = true;
         playerBallList.Add(playerBall);
         if (!playerBall.IsControllerConnected())
@@ -31,7 +31,7 @@ public partial class AIVersusScene : Node2D
 
         Border.CollisionCallback = body =>
         {
-            if (body is PlayerBall ball)
+            if (body is scripts.PlayerBall ball)
             {
                 Console.WriteLine("ball: " + ball.ControllerId + " touched border");
                 GetTree().CreateTimer(0.1).Timeout += CheckForWin;
@@ -75,12 +75,12 @@ public partial class AIVersusScene : Node2D
     {
         Console.WriteLine("Checking for win...");
 
-        List<PlayerBall> remainingPlayerList =
+        List<scripts.PlayerBall> remainingPlayerList =
             playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
 
         if (remainingPlayerList.Count == 1)
         {
-            PlayerBall remainingPlayer = remainingPlayerList[0];
+            scripts.PlayerBall remainingPlayer = remainingPlayerList[0];
             var scoreLabel = GetNode<RichTextLabel>("Player" + (remainingPlayer.ControllerId + 1) + "Score");
             var oldScore = int.Parse(scoreLabel.Text);
             Console.WriteLine(

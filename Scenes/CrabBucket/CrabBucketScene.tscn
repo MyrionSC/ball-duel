@@ -34,6 +34,7 @@ script = ExtResource("1_u4ac0")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background2D" type="Sprite2D" parent="."]
+position = Vector2(-18, 3)
 texture = ExtResource("2_xyg1p")
 
 [node name="UpperBorder" type="Area2D" parent="."]

@@ -8,12 +8,12 @@ namespace BallDuel.Scenes.TetherVersus;
 
 public partial class TetherVersusScene : Node2D
 {
-    PlayerBall playerBall1 = null;
-    PlayerBall playerBall2 = null;
-    PlayerBall playerBall3 = null;
-    PlayerBall playerBall4 = null;
-    List<PlayerBall> playerBallList = new();
-    Dictionary<PlayerBall, TetherVersusBall> tetherBallMap = new();
+    scripts.PlayerBall playerBall1 = null;
+    scripts.PlayerBall playerBall2 = null;
+    scripts.PlayerBall playerBall3 = null;
+    scripts.PlayerBall playerBall4 = null;
+    List<scripts.PlayerBall> playerBallList = new();
+    Dictionary<scripts.PlayerBall, TetherVersusBall> tetherBallMap = new();
 
     public override void _Ready()
     {
@@ -21,7 +21,7 @@ public partial class TetherVersusScene : Node2D
 
         foreach (var ballNum in new[] { "1", "2", "3", "4" })
         {
-            var playerBall = GetNode<PlayerBall>("PlayerBall" + ballNum);
+            var playerBall = GetNode<scripts.PlayerBall>("PlayerBall" + ballNum);
             playerBallList.Add(playerBall);
             var tetherBall = GetNode<TetherVersusBall>("TetherBall" + ballNum);
             tetherBall.TetherToPlayer(playerBall);
@@ -43,7 +43,7 @@ public partial class TetherVersusScene : Node2D
 
         Border.CollisionCallback = body =>
         {
-            if (body is PlayerBall ball)
+            if (body is scripts.PlayerBall ball)
             {
                 Console.WriteLine("ball: " + ball.ControllerId + " touched border");
                 
@@ -91,12 +91,12 @@ public partial class TetherVersusScene : Node2D
     {
         Console.WriteLine("Checking for win...");
 
-        List<PlayerBall> remainingPlayerList =
+        List<scripts.PlayerBall> remainingPlayerList =
             playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
 
         if (remainingPlayerList.Count == 1)
         {
-            PlayerBall remainingPlayer = remainingPlayerList[0];
+            scripts.PlayerBall remainingPlayer = remainingPlayerList[0];
             var scoreLabel = GetNode<RichTextLabel>("Player" + (remainingPlayer.ControllerId + 1) + "Score");
             var oldScore = int.Parse(scoreLabel.Text);
             Console.WriteLine(

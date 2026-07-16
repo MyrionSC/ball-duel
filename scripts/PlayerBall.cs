@@ -1,6 +1,7 @@
 using System;
-using BallDuel.scripts;
 using Godot;
+
+namespace BallDuel.scripts;
 
 public partial class PlayerBall : RigidBody2D
 {
@@ -72,7 +73,6 @@ public partial class PlayerBall : RigidBody2D
         return Math.Abs(clampedJoyAxis) > 0.1f ? clampedJoyAxis : 0;
     }
 
-    // Useful method to check if the controller is connected
     public bool IsControllerConnected()
     {
         return Input.IsJoyKnown(ControllerId);

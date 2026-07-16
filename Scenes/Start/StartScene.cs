@@ -1,13 +1,13 @@
 using BallDuel.Scenes.Shared;
-using BallDuel.scripts;
-using Godot;
+
+namespace BallDuel.Scenes.Start;
 
 public partial class StartScene : BaseScene
 {
     public override void _Ready()
     {
         base._Ready();
-        Globals.InputDisabled = false;
-        PhysicsServer2D.SetActive(true);
+        // Globals.InputDisabled = false;
+        // PhysicsServer2D.SetActive(true);
     }
 }
