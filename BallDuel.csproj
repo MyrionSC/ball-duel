@@ -19,6 +19,7 @@
     <Content Include="Scenes\RoadKill\RoadKillBall.tscn" />
     <Content Include="Scenes\RoadKill\RoadKillScene.tscn" />
     <Content Include="Scenes\TetherVersus\TetherVersusScene.tscn" />
+    <Content Include="Scenes\VersusBigRotator\VersusBigRotatorScene.tscn" />
     <Content Include="Scenes\VersusTeam\VersusTeamScene.tscn" />
     <Content Include="Scenes\Versus\VersusScene.tscn" />
   </ItemGroup>
