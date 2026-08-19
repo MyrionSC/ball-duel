@@ -275,6 +275,14 @@ theme_override_colors/font_color = Color(1, 0.190212, 0.840881, 1)
 theme_override_font_sizes/font_size = 400
 text = "3"
 
+[node name="Label" type="Label" parent="."]
+offset_left = -379.0
+offset_top = -392.0
+offset_right = -271.0
+offset_bottom = -369.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "First to 5 wins"
+
 [connection signal="body_entered" from="BlueGoal" to="." method="BlueGoal"]
 [connection signal="body_entered" from="RedGoal" to="." method="RedGoal"]
 [connection signal="text_changed" from="ForceEdit" to="ForceEdit" method="CustomTextChanged"]

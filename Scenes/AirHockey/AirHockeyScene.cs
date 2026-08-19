@@ -1,97 +1,74 @@
-using System;
-using System.Collections.Generic;
-using BallDuel.Scenes.AirHockey;
 using BallDuel.Scenes.Shared;
+using BallDuel.scripts;
 using Godot;
 
-public partial class AirHockeyScene : Node2D
+namespace BallDuel.Scenes.AirHockey;
+
+public partial class AirHockeyScene : BaseScene
 {
-    BallDuel.scripts.PlayerBall playerBall1 = null;
-    BallDuel.scripts.PlayerBall playerBall2 = null;
-    BallDuel.scripts.PlayerBall playerBall3 = null;
-    BallDuel.scripts.PlayerBall playerBall4 = null;
-    Puck puck = null;
-    List<BallDuel.scripts.PlayerBall> playerBallList = new();
+    private Puck _puck;
 
     public override void _Ready()
     {
         base._Ready();
 
-        puck = GetNode<Puck>("Puck");
-        foreach (var s in new[] { "PlayerBall1", "PlayerBall2", "PlayerBall3", "PlayerBall4" })
-        {
-            var playerBall = GetNode<BallDuel.scripts.PlayerBall>(s);
-            playerBallList.Add(playerBall);
-            if (!playerBall.IsControllerConnected())
-                playerBall.Position = new Vector2(100000, 100000);
-        }
+        _puck = GetNode<Puck>("Puck");
 
+        BlockingMessageController.Init(this);
         CountdownController.Init(this);
         CountdownController.StartCountdown();
     }
 
-    public override void _Input(InputEvent @event)
+    public override void ResetScene()
     {
-        base._Input(@event);
+        base.ResetScene();
+        _puck.Reset();
+    }
 
-        if (@event is InputEventMouseMotion mouseEvent)
-        {
-            return;
-        }
+    private void StartNextRound()
+    {
+        ResetPositions();
+        CountdownController.StartCountdown();
+        _puck.Reset();
+    }
 
-        if (@event is InputEventJoypadButton btn && btn.ButtonIndex == JoyButton.Start)
+    private void BlueGoal(Node2D body)
+    {
+        if (body is Puck puck)
         {
-            ResetScene();
-            return;
-        }
+            var rightScore = GetNode<RichTextLabel>("RightScore");
+            var newScore = int.Parse(rightScore.Text) + 1;
+            rightScore.Text = newScore.ToString();
 
-        if (@event is InputEventJoypadButton btn1 && btn1.ButtonIndex == JoyButton.Back)
-        {
-            GetTree().ChangeSceneToFile("res://Scenes/Start/StartScene.tscn");
-            return;
-        }
-
-        foreach (var playerBall in playerBallList)
-        {
-            if (playerBall.IsControllerConnected() && playerBall.Position.X > 50000)
+            if (newScore >= 5)
             {
-                Console.WriteLine("Connecting playerball " + playerBall.ControllerId);
-                playerBall.ResetPosition();
+                Globals.InputDisabled = true;
+                BlockingMessageController.ShowBlockingMessage($"Red wins!");
+            }
+            else
+            {
+                StartNextRound();
             }
         }
     }
 
-    public void ResetScene()
+    private void RedGoal(Node2D body)
     {
-        foreach (var playerBall in playerBallList)
-        {
-            if (playerBall.IsControllerConnected())
-                playerBall.ResetPosition();
-        }
-
-        CountdownController.StartCountdown();
-        puck.Reset();
-    }
-
-    public void BlueGoal(Node2D body)
-    {
-        if (body is Puck ball)
-        {
-            var rightScore = GetNode<RichTextLabel>("RightScore");
-            rightScore.Text = (int.Parse(rightScore.Text) + 1).ToString();
-
-            ResetScene();
-        }
-    }
-
-    public void RedGoal(Node2D body)
-    {
-        if (body is Puck ball)
+        if (body is Puck puck)
         {
             var leftScore = GetNode<RichTextLabel>("LeftScore");
-            leftScore.Text = (int.Parse(leftScore.Text) + 1).ToString();
-
-            ResetScene();
+            var newScore = int.Parse(leftScore.Text) + 1;
+            leftScore.Text = newScore.ToString();
+            
+            if (newScore >= 5)
+            {
+                Globals.InputDisabled = true;
+                BlockingMessageController.ShowBlockingMessage("Blue wins!");
+            }
+            else
+            {
+                StartNextRound();
+            }
         }
     }
 }
