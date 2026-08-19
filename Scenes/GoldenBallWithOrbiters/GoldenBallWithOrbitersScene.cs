@@ -2,9 +2,9 @@ using BallDuel.Scenes.Shared;
 using BallDuel.scripts;
 using Godot;
 
-namespace BallDuel.Scenes.GoldenBall;
+namespace BallDuel.Scenes.GoldenBallWithOrbiters;
 
-public partial class GoldenBallScene : BaseScene
+public partial class GoldenBallWithOrbitersScene : BaseScene
 {
     public override void _Ready()
     {

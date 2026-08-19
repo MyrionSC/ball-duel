@@ -1,5 +1,15 @@
 
 
+golden ball
+- without orbiters (done)
+- obstacles before goal
+- slanted walls (or round?)
+
+
+
+
+
+
 
 
 Tetherversus less ball mass

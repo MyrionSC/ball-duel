@@ -1,23 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddvqqrxrn5sfa"]
+[gd_scene load_steps=19 format=3 uid="uid://ddvqqrxrn5sfa"]
 
-[ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://Scenes/VersusBigRotator/VersusBigRotatorScene.cs" id="1_f4o1y"]
+[ext_resource type="Script" uid="uid://cmrby5lab7h2b" path="res://Scenes/Versus/VersusScene.cs" id="1_f4o1y"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_xyg1p"]
 [ext_resource type="Script" uid="uid://1lo1vfsou3ra" path="res://scripts/Border.cs" id="3_xrdcs"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="5_3n2by"]
 [ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="6_tin34"]
 [ext_resource type="Texture2D" uid="uid://d0ri81xw1pyjw" path="res://assets/red_ball.png" id="7_tefk0"]
-[ext_resource type="Texture2D" uid="uid://cnchnv2cvob8m" path="res://assets/grey_high_res_ball.png" id="7_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="8_xyg1p"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_xrdcs"]
 [ext_resource type="Script" uid="uid://dds8y5ni0rj7n" path="res://scripts/MiddleSpinnyThing.cs" id="10_f4o1y"]
 [ext_resource type="Script" uid="uid://drme648u3pcs4" path="res://scripts/AccelerationEdit.cs" id="11_wlibp"]
 [ext_resource type="Script" uid="uid://bwie7aj673q1f" path="res://scripts/ForceMultiplierEdit.cs" id="12_f4o1y"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gaov6"]
-bounce = 10.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tefk0"]
-radius = 12.0007
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyg1p"]
 size = Vector2(1400, 40)
@@ -45,58 +38,6 @@ script = ExtResource("1_f4o1y")
 
 [node name="Background2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_xyg1p")
-
-[node name="LeftTopStatic" type="StaticBody2D" parent="."]
-position = Vector2(-680, -380)
-physics_material_override = SubResource("PhysicsMaterial_gaov6")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTopStatic"]
-scale = Vector2(8, 8)
-shape = SubResource("CircleShape2D_tefk0")
-
-[node name="Sprite2D" type="Sprite2D" parent="LeftTopStatic"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("7_xyg1p")
-
-[node name="RightTopStatic" type="StaticBody2D" parent="."]
-position = Vector2(680, -380)
-physics_material_override = SubResource("PhysicsMaterial_gaov6")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightTopStatic"]
-scale = Vector2(8, 8)
-shape = SubResource("CircleShape2D_tefk0")
-
-[node name="Sprite2D" type="Sprite2D" parent="RightTopStatic"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("7_xyg1p")
-
-[node name="LeftBottomStatic" type="StaticBody2D" parent="."]
-position = Vector2(-680, 380)
-physics_material_override = SubResource("PhysicsMaterial_gaov6")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBottomStatic"]
-scale = Vector2(8, 8)
-shape = SubResource("CircleShape2D_tefk0")
-
-[node name="Sprite2D" type="Sprite2D" parent="LeftBottomStatic"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("7_xyg1p")
-
-[node name="RightBottomStatic2" type="StaticBody2D" parent="."]
-position = Vector2(680, 380)
-physics_material_override = SubResource("PhysicsMaterial_gaov6")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBottomStatic2"]
-scale = Vector2(8, 8)
-shape = SubResource("CircleShape2D_tefk0")
-
-[node name="Sprite2D" type="Sprite2D" parent="RightBottomStatic2"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("7_xyg1p")
 
 [node name="UpperBorder" type="Area2D" parent="."]
 position = Vector2(-700, -380)

@@ -26,8 +26,11 @@ bounce = 1.0
 script = ExtResource("1_gxtbs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
 
 [node name="Background2D" type="Sprite2D" parent="."]
+position = Vector2(-24, -73)
+scale = Vector2(1.5, 1.741)
 texture = ExtResource("1_dr8cw")
 
 [node name="VersusSelect" type="Area2D" parent="."]
@@ -66,13 +69,15 @@ shape = SubResource("CircleShape2D_dr8cw")
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VersusBigRotatorSelect"]
-offset_left = -68.0
-offset_top = -28.0
-offset_right = 65.0
-offset_bottom = 23.0
+offset_left = -133.0
+offset_top = -53.0
+offset_right = 132.0
+offset_bottom = 47.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 36
-text = "Versus"
+text = "Versus
+Big Spinner"
+horizontal_alignment = 1
 
 [node name="AIVersusSelect" type="Area2D" parent="."]
 position = Vector2(140, -320)
@@ -276,7 +281,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Minion Swarm"
 
 [node name="BallGathering" type="Area2D" parent="."]
-position = Vector2(140, 320)
+position = Vector2(91, 412)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/BallGathering/BallGatheringScene.tscn"
@@ -298,7 +303,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Ball Gathering"
 
 [node name="TetherGatherSelect" type="Area2D" parent="."]
-position = Vector2(403, 496)
+position = Vector2(418, 817)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/TetherGather/TetherGatherScene.tscn"
@@ -319,8 +324,32 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 36
 text = "Tether Gather"
 
+[node name="GoldenBallWithOrbitersSelect" type="Area2D" parent="."]
+position = Vector2(685, 90)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/GoldenBallWithOrbiters/GoldenBallWithOrbitersScene.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoldenBallWithOrbitersSelect"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="GoldenBallWithOrbitersSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GoldenBallWithOrbitersSelect"]
+offset_left = -147.0
+offset_top = -47.0
+offset_right = 152.0
+offset_bottom = 43.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "Golden Ball
+With Orbiters"
+horizontal_alignment = 1
+
 [node name="GoldenBallSelect" type="Area2D" parent="."]
-position = Vector2(550, 100)
+position = Vector2(625, 276)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/GoldenBall/GoldenBallScene.tscn"
@@ -333,16 +362,17 @@ shape = SubResource("CircleShape2D_dr8cw")
 texture = ExtResource("7_rhv0p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="GoldenBallSelect"]
-offset_left = -48.0
-offset_top = -50.0
-offset_right = 113.0
-offset_bottom = 83.0
+offset_left = -95.0
+offset_top = -55.0
+offset_right = 92.0
+offset_bottom = 68.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 36
 text = "Golden Ball"
+horizontal_alignment = 1
 
 [node name="KingOfBallsSelect" type="Area2D" parent="."]
-position = Vector2(400, 300)
+position = Vector2(282, 408)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/KingOfBalls/KingOfBallsScene.tscn"
@@ -436,5 +466,6 @@ texture = ExtResource("9_7bvpp")
 [connection signal="body_entered" from="MinionSwarmSelect" to="MinionSwarmSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="BallGathering" to="BallGathering" method="OnBodyEntered"]
 [connection signal="body_entered" from="TetherGatherSelect" to="TetherGatherSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="GoldenBallWithOrbitersSelect" to="GoldenBallWithOrbitersSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="GoldenBallSelect" to="GoldenBallSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="KingOfBallsSelect" to="KingOfBallsSelect" method="OnBodyEntered"]
