@@ -22,14 +22,12 @@ public partial class BaseScene : Node2D
 
         foreach (var playerBall in playerBallList)
         {
+            var scoreLabel = GetNodeOrNull<RichTextLabel>($"Player{playerBall.ControllerId + 1}Score");
+            scoreLabel.Visible = true;
             if (!playerBall.IsControllerConnected())
             {
                 playerBall.Position = new Vector2(100000, 100000);
-            }
-            else
-            {
-                var scoreLabel = GetNodeOrNull<RichTextLabel>($"Player{playerBall.ControllerId + 1}Score");
-                if (scoreLabel != null) scoreLabel.Visible = true;
+                scoreLabel.Visible = false;
             }
         }
     }
