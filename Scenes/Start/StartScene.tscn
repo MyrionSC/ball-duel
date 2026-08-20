@@ -348,6 +348,30 @@ text = "Golden Ball
 With Orbiters"
 horizontal_alignment = 1
 
+[node name="GoldenBallWithOrbitersSelect2" type="Area2D" parent="."]
+position = Vector2(475, 384)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/GoldenBallWithObstacles/GoldenBallWithObstaclesScene.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoldenBallWithOrbitersSelect2"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="GoldenBallWithOrbitersSelect2"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GoldenBallWithOrbitersSelect2"]
+offset_left = -147.0
+offset_top = -47.0
+offset_right = 152.0
+offset_bottom = 43.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "Golden Ball
+With Obstructions"
+horizontal_alignment = 1
+
 [node name="GoldenBallSelect" type="Area2D" parent="."]
 position = Vector2(625, 276)
 scale = Vector2(0.6, 0.6)
@@ -467,5 +491,6 @@ texture = ExtResource("9_7bvpp")
 [connection signal="body_entered" from="BallGathering" to="BallGathering" method="OnBodyEntered"]
 [connection signal="body_entered" from="TetherGatherSelect" to="TetherGatherSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="GoldenBallWithOrbitersSelect" to="GoldenBallWithOrbitersSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="GoldenBallWithOrbitersSelect2" to="GoldenBallWithOrbitersSelect2" method="OnBodyEntered"]
 [connection signal="body_entered" from="GoldenBallSelect" to="GoldenBallSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="KingOfBallsSelect" to="KingOfBallsSelect" method="OnBodyEntered"]

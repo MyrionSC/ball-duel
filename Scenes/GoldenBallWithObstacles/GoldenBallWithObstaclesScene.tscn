@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://b27w6ls1vmooo"]
+[gd_scene load_steps=22 format=3 uid="uid://b27w6ls1vmooo"]
 
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_54fx0"]
-[ext_resource type="Script" uid="uid://be3qiaqb76v0e" path="res://Scenes/GoldenBallWithOrbiters/GoldenBallWithOrbitersScene.cs" id="1_h07oc"]
+[ext_resource type="Script" uid="uid://8l3i2yluv65p" path="res://Scenes/GoldenBallWithObstacles/GoldenBallWithObstaclesScene.cs" id="1_br0q8"]
 [ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="3_nbuwi"]
 [ext_resource type="Texture2D" uid="uid://cfpoj252gt5qj" path="res://assets/darkred_ball.png" id="4_nbuwi"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="4_s4mny"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://e7s2nwbmt1qu" path="res://assets/golden_ball.png" id="9_w13k7"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="9_wpht7"]
 [ext_resource type="Script" uid="uid://d0wc12qyqjm7d" path="res://Scenes/Shared/Ball.cs" id="10_i8wgk"]
-[ext_resource type="PackedScene" uid="uid://cvcopcsn1kypn" path="res://Scenes/Shared/TetherBall.tscn" id="11_yu3ao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fiux"]
 
@@ -27,16 +26,12 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_w13k7"]
 radius = 16.0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rkb7c"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbuwi"]
 friction = 0.0
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gaae"]
 size = Vector2(320, 800)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbuwi"]
-friction = 0.0
-bounce = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_54fx0"]
 friction = 0.0
@@ -49,8 +44,8 @@ size = Vector2(1400, 40)
 friction = 0.0
 bounce = 1.0
 
-[node name="GoldenBallWithOrbitersScene" type="Node2D"]
-script = ExtResource("1_h07oc")
+[node name="GoldenBallWithObstaclesScene" type="Node2D"]
+script = ExtResource("1_br0q8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -178,25 +173,6 @@ texture = ExtResource("9_w13k7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoldenBall"]
 shape = SubResource("CircleShape2D_w13k7")
 
-[node name="LeftBorder" type="StaticBody2D" parent="."]
-position = Vector2(-700, 0)
-physics_material_override = SubResource("PhysicsMaterial_rkb7c")
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="LeftBorder"]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -400.0
-offset_right = 320.0
-offset_bottom = 400.0
-grow_vertical = 2
-color = Color(0.709804, 0.709804, 0.709804, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder"]
-position = Vector2(160, 0)
-shape = SubResource("RectangleShape2D_0gaae")
-
 [node name="RightBorder" type="StaticBody2D" parent="."]
 position = Vector2(380, 0)
 physics_material_override = SubResource("PhysicsMaterial_nbuwi")
@@ -256,38 +232,6 @@ offset_right = 1400.0
 offset_bottom = 20.0
 grow_vertical = 2
 color = Color(0.707967, 0.707967, 0.707967, 1)
-
-[node name="BlackTetherBall2" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(0, 200)
-mass = 100.0
-TetherPosition = Vector2(0.001, 0)
-Mode = 1
-ScaleBy = 0.75
-ShouldDrawLine = false
-
-[node name="BlackTetherBall3" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(0, 140)
-mass = 100.0
-TetherPosition = Vector2(0.001, 0)
-Mode = 1
-ScaleBy = 0.75
-ShouldDrawLine = false
-
-[node name="BlackTetherBall5" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(0, -140)
-mass = 100.0
-TetherPosition = Vector2(0.001, 0)
-Mode = 1
-ScaleBy = 0.75
-ShouldDrawLine = false
-
-[node name="BlackTetherBall6" parent="." instance=ExtResource("11_yu3ao")]
-position = Vector2(0, -200)
-mass = 100.0
-TetherPosition = Vector2(0.001, 0)
-Mode = 1
-ScaleBy = 0.75
-ShouldDrawLine = false
 
 [node name="BlueScore" type="RichTextLabel" parent="."]
 offset_left = -432.0

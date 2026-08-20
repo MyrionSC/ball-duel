@@ -10,6 +10,7 @@
     <Content Include="Scenes\AIVersus\AIVersusScene.tscn" />
     <Content Include="Scenes\BallGathering\BallGatheringScene.tscn" />
     <Content Include="Scenes\CrabBucket\CrabBucketScene.tscn" />
+    <Content Include="Scenes\GoldenBallWithObstacles\GoldenBallWithObstaclesScene.tscn" />
     <Content Include="Scenes\GoldenBallWithOrbiters\GoldenBallWithOrbitersScene.tscn" />
     <Content Include="Scenes\GoldenBall\GoldenBallScene.tscn" />
     <Content Include="Scenes\KingOfBalls\KingOfBallsScene.tscn" />
