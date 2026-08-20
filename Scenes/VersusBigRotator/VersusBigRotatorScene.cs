@@ -9,9 +9,16 @@ namespace BallDuel.Scenes.VersusBigRotator;
 
 public partial class VersusBigRotatorScene : BaseScene
 {
+    private MiddleSpinnyThing _middleSpinnyThing;
+    private Label _torqueLabel;
+
     public override void _Ready()
     {
         base._Ready();
+
+        _middleSpinnyThing = GetNode<MiddleSpinnyThing>("MiddleSpinnyThing");
+        _torqueLabel = GetNode<Label>("TorqueLabel");
+        _torqueLabel.Text = "torque: " + _middleSpinnyThing.ConstantTorque;
 
         BlockingMessageController.Init(this);
         CountdownController.Init(this);
@@ -27,10 +34,19 @@ public partial class VersusBigRotatorScene : BaseScene
         };
     }
 
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        if (!Globals.InputDisabled)
+        {
+            _middleSpinnyThing.ConstantTorque += 20000;
+            _torqueLabel.Text = "torque: " + _middleSpinnyThing.ConstantTorque;
+        }
+    }
+
     private void CheckForWin()
     {
         Console.WriteLine("Checking for win...");
-        
         // TODO: Check for score win
 
         List<PlayerBall> remainingPlayerList =
@@ -57,10 +73,16 @@ public partial class VersusBigRotatorScene : BaseScene
         }
     }
 
+    public override void ResetScene()
+    {
+        base.ResetScene();
+        _middleSpinnyThing.Reset();
+    }
+
     private void StartNextRound()
     {
         ResetPositions();
-        GetNode<MiddleSpinnyThing>("MiddleSpinnyThing").Reset();
+        _middleSpinnyThing.Reset();
         CountdownController.StartCountdown();
     }
 }

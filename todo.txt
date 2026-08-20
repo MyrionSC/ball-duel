@@ -5,6 +5,7 @@ golden ball
 - obstacles before goal
 - slanted walls (or round?)
 
+reasign scripts
 
 
 
