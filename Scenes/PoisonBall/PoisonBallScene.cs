@@ -15,13 +15,19 @@ public partial class PoisonBallScene : BaseScene
 
         _poisonBall = GetNode<PoisonBall>("PoisonBall");
 
-        var randomAngle = (float)(_random.NextDouble() * Math.PI * 2);
-        const float speed = 20f;
-        _poisonBall.LinearVelocity = new Vector2(randomAngle * speed, randomAngle * speed);
+        InitializePoisonBallVelocity();
 
         BlockingMessageController.Init(this);
         CountdownController.Init(this);
         CountdownController.StartCountdown();
+    }
+
+    private void InitializePoisonBallVelocity()
+    {
+        var randomAngle1 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
+        var randomAngle2 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
+        const float speed = 50f;
+        _poisonBall.LinearVelocity = new Vector2(randomAngle1 * speed, randomAngle2 * speed);
     }
 
     public override void ResetScene()
@@ -33,7 +39,9 @@ public partial class PoisonBallScene : BaseScene
     private void StartNextRound()
     {
         ResetPositions();
+        InitializePoisonBallVelocity();
         CountdownController.StartCountdown();
         _poisonBall.Reset();
     }
+    
 }

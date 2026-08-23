@@ -34,7 +34,7 @@ scale = Vector2(1.5, 1.741)
 texture = ExtResource("1_dr8cw")
 
 [node name="VersusSelect" type="Area2D" parent="."]
-position = Vector2(-332, -304)
+position = Vector2(-258, -390)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/Versus/VersusScene.tscn"
@@ -56,7 +56,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Versus"
 
 [node name="VersusBigRotatorSelect" type="Area2D" parent="."]
-position = Vector2(-580, -73)
+position = Vector2(-522, -167)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/VersusBigRotator/VersusBigRotatorScene.tscn"
@@ -79,8 +79,56 @@ text = "Versus
 Big Spinner"
 horizontal_alignment = 1
 
+[node name="PoisonBallSelect" type="Area2D" parent="."]
+position = Vector2(-556, 5)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/PoisonBall/PoisonBall.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoisonBallSelect"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="PoisonBallSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PoisonBallSelect"]
+offset_left = -133.0
+offset_top = -53.0
+offset_right = 132.0
+offset_bottom = 47.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Poison
+Ball"
+horizontal_alignment = 1
+
+[node name="ExplodyBallSelect" type="Area2D" parent="."]
+position = Vector2(-529, 177)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/ExplodyBall/ExplodyBall.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodyBallSelect"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="ExplodyBallSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ExplodyBallSelect"]
+offset_left = -133.0
+offset_top = -53.0
+offset_right = 132.0
+offset_bottom = 47.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Explody
+Ball"
+horizontal_alignment = 1
+
 [node name="AIVersusSelect" type="Area2D" parent="."]
-position = Vector2(140, -320)
+position = Vector2(239, -379)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/AIVersus/AIVersusScene.tscn"
@@ -103,7 +151,7 @@ text = "AI
 Versus"
 
 [node name="TetherVersusSelect" type="Area2D" parent="."]
-position = Vector2(-140, -320)
+position = Vector2(-83, -407)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/TetherVersus/TetherVersusScene.tscn"
@@ -126,7 +174,7 @@ text = "Tether
 Versus"
 
 [node name="VersusTeamSelect" type="Area2D" parent="."]
-position = Vector2(-505, -233)
+position = Vector2(-418, -301)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/VersusTeam/VersusTeamScene.tscn"
@@ -149,7 +197,7 @@ text = "Versus
 Team"
 
 [node name="CTF" type="Area2D" parent="."]
-position = Vector2(400, -300)
+position = Vector2(490, -300)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/CTF/CTFScene.tscn"
@@ -171,7 +219,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Capture the flag"
 
 [node name="AirHockeySelect" type="Area2D" parent="."]
-position = Vector2(550, -100)
+position = Vector2(663, -119)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/AirHockey/AirHockeyScene.tscn"
@@ -193,7 +241,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Airhockey"
 
 [node name="CrabBucketSelect" type="Area2D" parent="."]
-position = Vector2(-550, 100)
+position = Vector2(-408, 303)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/CrabBucket/CrabBucketScene.tscn"
@@ -215,7 +263,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Crab Bucket"
 
 [node name="RoadKillSelect" type="Area2D" parent="."]
-position = Vector2(-400, 300)
+position = Vector2(-255, 379)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/RoadKill/RoadKillScene.tscn"
@@ -237,7 +285,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Road Kill"
 
 [node name="TetherBallzSelect" type="Area2D" parent="."]
-position = Vector2(-140, 320)
+position = Vector2(-86, 408)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/TetherBallz/TetherBallzScene.tscn"
@@ -325,7 +373,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Tether Gather"
 
 [node name="GoldenBallWithOrbitersSelect" type="Area2D" parent="."]
-position = Vector2(685, 90)
+position = Vector2(675, 80)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/GoldenBallWithOrbiters/GoldenBallWithOrbitersScene.tscn"
@@ -349,7 +397,7 @@ With Orbiters"
 horizontal_alignment = 1
 
 [node name="GoldenBallWithOrbitersSelect2" type="Area2D" parent="."]
-position = Vector2(475, 384)
+position = Vector2(457, 370)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/GoldenBallWithObstacles/GoldenBallWithObstaclesScene.tscn"
@@ -373,7 +421,7 @@ With Obstructions"
 horizontal_alignment = 1
 
 [node name="GoldenBallSelect" type="Area2D" parent="."]
-position = Vector2(625, 276)
+position = Vector2(607, 258)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/GoldenBall/GoldenBallScene.tscn"
@@ -479,6 +527,8 @@ texture = ExtResource("9_7bvpp")
 
 [connection signal="body_entered" from="VersusSelect" to="VersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="VersusBigRotatorSelect" to="VersusBigRotatorSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="PoisonBallSelect" to="PoisonBallSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="ExplodyBallSelect" to="ExplodyBallSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="AIVersusSelect" to="AIVersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="TetherVersusSelect" to="TetherVersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="VersusTeamSelect" to="VersusTeamSelect" method="OnBodyEntered"]

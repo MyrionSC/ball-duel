@@ -22,15 +22,20 @@ public partial class ExplodyBallScene : BaseScene
         _explodyBall = GetNode<ExplodyBall>("ExplodyBall");
         _dangerSprite = GetNode<Sprite2D>("ExplodyBall/DangerSprite2D");
 
-        var randomAngle1 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
-        var randomAngle2 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
-        const float speed = 50f;
-        _explodyBall.LinearVelocity = new Vector2(randomAngle1 * speed, randomAngle2 * speed);
+        InitializeExplodyBallVelocity();
 
         BlockingMessageController.Init(this);
 
         CountdownController.Init(this);
         CountdownController.StartCountdown();
+    }
+
+    private void InitializeExplodyBallVelocity()
+    {
+        var randomAngle1 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
+        var randomAngle2 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
+        const float speed = 50f;
+        _explodyBall.LinearVelocity = new Vector2(randomAngle1 * speed, randomAngle2 * speed);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -72,6 +77,7 @@ public partial class ExplodyBallScene : BaseScene
     {
         ResetPositions();
         _dangerSprite.Scale = new Vector2(1, 1);
+        InitializeExplodyBallVelocity();
         CountdownController.StartCountdown();
         _explodyBall.Reset();
     }
