@@ -7,13 +7,13 @@ public partial class PlayerBall : RigidBody2D
 {
     private bool _resetState = false;
     private Vector2 _newPosition;
-    
+
     public Vector2 OriginalPosition = Vector2.Zero;
     public bool IsRespawning = false;
     private Line2D _line;
     public bool ShouldDrawLine = false;
     public Sprite2D OntopSprite;
-    
+
     public float Acceleration = Globals.BALL_ACCELERATION_CONSTANT;
 
     [Export] public int ControllerId { get; set; } = 0; // Default to first controller
@@ -61,7 +61,7 @@ public partial class PlayerBall : RigidBody2D
             _line.AddPoint(GetPosition());
             _line.AddPoint(GetPosition() + forceVector);
         }
-        
+
         ApplyForce(Globals.InputDisabled
             ? Vector2.Zero
             : forceVector);

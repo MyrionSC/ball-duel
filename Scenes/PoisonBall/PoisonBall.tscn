@@ -1,13 +1,13 @@
 [gd_scene load_steps=20 format=3 uid="uid://cexpxyq6sx1xi"]
 
+[ext_resource type="Script" uid="uid://cgtcoriomy5qh" path="res://Scenes/PoisonBall/PoisonBallScene.cs" id="1_40tpu"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_54fx0"]
-[ext_resource type="Script" uid="uid://crij1ehh0fdgx" path="res://Scenes/AirHockey/AirHockeyScene.cs" id="1_nbuwi"]
 [ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="3_nbuwi"]
 [ext_resource type="Texture2D" uid="uid://cfpoj252gt5qj" path="res://assets/darkred_ball.png" id="4_nbuwi"]
 [ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="4_s4mny"]
 [ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="6_40tpu"]
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="7_40tpu"]
-[ext_resource type="Script" uid="uid://ddgctap2u6kae" path="res://Scenes/AirHockey/Puck.cs" id="8_d7q08"]
+[ext_resource type="Script" uid="uid://b33yboy10xfc0" path="res://Scenes/PoisonBall/PoisonBall.cs" id="8_40tpu"]
 [ext_resource type="Texture2D" uid="uid://cw80qptwn7xiu" path="res://assets/black_ball.png" id="9_40tpu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rkb7c"]
@@ -43,7 +43,7 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_nbuwi"]
 
 [node name="PoisonBallScene" type="Node2D"]
-script = ExtResource("1_nbuwi")
+script = ExtResource("1_40tpu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -192,16 +192,16 @@ shape = SubResource("CircleShape2D_2fkgq")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("7_40tpu")
 
-[node name="Puck" type="RigidBody2D" parent="."]
+[node name="PoisonBall" type="RigidBody2D" parent="."]
 mass = 0.5
-script = ExtResource("8_d7q08")
+script = ExtResource("8_40tpu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Puck"]
-scale = Vector2(2, 2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoisonBall"]
+scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_nbuwi")
 
-[node name="Sprite2D" type="Sprite2D" parent="Puck"]
-scale = Vector2(0.16, 0.16)
+[node name="Sprite2D" type="Sprite2D" parent="PoisonBall"]
+scale = Vector2(0.32, 0.32)
 texture = ExtResource("9_40tpu")
 
 [node name="Player1Score" type="RichTextLabel" parent="."]

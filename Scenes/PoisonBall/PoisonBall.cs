@@ -19,7 +19,6 @@ public partial class PoisonBall : RigidBody2D
         {
             _resetState = false;
             Position = _originalPosition;
-            LinearVelocity = Vector2.Zero;
         }
     }
 }
