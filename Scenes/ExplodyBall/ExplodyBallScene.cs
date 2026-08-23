@@ -2,22 +2,22 @@ using System;
 using BallDuel.Scenes.Shared;
 using Godot;
 
-namespace BallDuel.Scenes.PoisonBall;
+namespace BallDuel.Scenes.ExplodyBall;
 
-public partial class PoisonBallScene : BaseScene
+public partial class ExplodyBallScene : BaseScene
 {
-    private PoisonBall _poisonBall;
-    private Random _random = new Random();
+    private ExplodyBall _explodyBall;
+    private Random _random = new();
 
     public override void _Ready()
     {
         base._Ready();
 
-        _poisonBall = GetNode<PoisonBall>("PoisonBall");
+        _explodyBall = GetNode<ExplodyBall>("ExplodyBall");
 
         var randomAngle = (float)(_random.NextDouble() * Math.PI * 2);
         const float speed = 20f;
-        _poisonBall.LinearVelocity = new Vector2(randomAngle * speed, randomAngle * speed);
+        _explodyBall.LinearVelocity = new Vector2(randomAngle * speed, randomAngle * speed);
 
         BlockingMessageController.Init(this);
         CountdownController.Init(this);
@@ -27,13 +27,13 @@ public partial class PoisonBallScene : BaseScene
     public override void ResetScene()
     {
         base.ResetScene();
-        _poisonBall.Reset();
+        _explodyBall.Reset();
     }
 
     private void StartNextRound()
     {
         ResetPositions();
         CountdownController.StartCountdown();
-        _poisonBall.Reset();
+        _explodyBall.Reset();
     }
 }
