@@ -103,6 +103,30 @@ text = "Poison
 Ball"
 horizontal_alignment = 1
 
+[node name="DodgeBallSelect" type="Area2D" parent="."]
+position = Vector2(594, -125)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("7_3j15m")
+resString = "res://Scenes/DodgeBall/DodgeBall.tscn"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DodgeBallSelect"]
+shape = SubResource("CircleShape2D_dr8cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="DodgeBallSelect"]
+texture = ExtResource("7_rhv0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DodgeBallSelect"]
+offset_left = -133.0
+offset_top = -53.0
+offset_right = 132.0
+offset_bottom = 47.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Dodge
+Ball"
+horizontal_alignment = 1
+
 [node name="ExplodyBallSelect" type="Area2D" parent="."]
 position = Vector2(-529, 177)
 scale = Vector2(0.6, 0.6)
@@ -128,7 +152,7 @@ Ball"
 horizontal_alignment = 1
 
 [node name="AIVersusSelect" type="Area2D" parent="."]
-position = Vector2(239, -379)
+position = Vector2(132, -408)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/AIVersus/AIVersusScene.tscn"
@@ -197,7 +221,7 @@ text = "Versus
 Team"
 
 [node name="CTF" type="Area2D" parent="."]
-position = Vector2(490, -300)
+position = Vector2(311, -380)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/CTF/CTFScene.tscn"
@@ -219,7 +243,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Capture the flag"
 
 [node name="AirHockeySelect" type="Area2D" parent="."]
-position = Vector2(663, -119)
+position = Vector2(470, -300)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/AirHockey/AirHockeyScene.tscn"
@@ -373,7 +397,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Tether Gather"
 
 [node name="GoldenBallWithOrbitersSelect" type="Area2D" parent="."]
-position = Vector2(675, 80)
+position = Vector2(622, 80)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/GoldenBallWithOrbiters/GoldenBallWithOrbitersScene.tscn"
@@ -421,7 +445,7 @@ With Obstructions"
 horizontal_alignment = 1
 
 [node name="GoldenBallSelect" type="Area2D" parent="."]
-position = Vector2(607, 258)
+position = Vector2(584, 248)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/GoldenBall/GoldenBallScene.tscn"
@@ -528,6 +552,7 @@ texture = ExtResource("9_7bvpp")
 [connection signal="body_entered" from="VersusSelect" to="VersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="VersusBigRotatorSelect" to="VersusBigRotatorSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="PoisonBallSelect" to="PoisonBallSelect" method="OnBodyEntered"]
+[connection signal="body_entered" from="DodgeBallSelect" to="DodgeBallSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="ExplodyBallSelect" to="ExplodyBallSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="AIVersusSelect" to="AIVersusSelect" method="OnBodyEntered"]
 [connection signal="body_entered" from="TetherVersusSelect" to="TetherVersusSelect" method="OnBodyEntered"]

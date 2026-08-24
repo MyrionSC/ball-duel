@@ -1,0 +1,269 @@
+[gd_scene load_steps=15 format=3 uid="uid://cexpxyq6sx1xi"]
+
+[ext_resource type="Script" uid="uid://cgtcoriomy5qh" path="res://Scenes/PoisonBall/PoisonBallScene.cs" id="1_40tpu"]
+[ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="1_54fx0"]
+[ext_resource type="Texture2D" uid="uid://cmg5vdg0bsnb7" path="res://assets/darkblue_ball.png" id="3_nbuwi"]
+[ext_resource type="Texture2D" uid="uid://cfpoj252gt5qj" path="res://assets/darkred_ball.png" id="4_nbuwi"]
+[ext_resource type="Script" uid="uid://cd2kj5fgcyev5" path="res://scripts/PlayerBall.cs" id="4_s4mny"]
+[ext_resource type="Texture2D" uid="uid://ctgrfublfepvm" path="res://assets/green_ball.png" id="6_40tpu"]
+[ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="7_40tpu"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rkb7c"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gaae"]
+size = Vector2(38.5714, 1141.43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj57k"]
+size = Vector2(1995.29, 31.5714)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbuwi"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dojh8"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2fkgq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hgi2p"]
+bounce = 1.0
+
+[node name="DodgeBallScene" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_40tpu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background2D" type="Sprite2D" parent="."]
+scale = Vector2(1.43, 1.43)
+texture = ExtResource("1_54fx0")
+
+[node name="LeftBorder" type="StaticBody2D" parent="."]
+position = Vector2(-1001.43, 0)
+physics_material_override = SubResource("PhysicsMaterial_rkb7c")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder"]
+position = Vector2(20.7142, 0.714427)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_0gaae")
+
+[node name="ColorRect" type="ColorRect" parent="LeftBorder/CollisionShape2D"]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -571.0
+offset_right = 20.0
+offset_bottom = 571.0
+grow_vertical = 2
+color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[node name="TopBorder" type="StaticBody2D" parent="."]
+position = Vector2(-910, -528.571)
+physics_material_override = SubResource("PhysicsMaterial_rkb7c")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBorder"]
+position = Vector2(906.643, -27.2144)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_uj57k")
+
+[node name="LeftBorder2" type="StaticBody2D" parent="."]
+position = Vector2(-507.143, -1.42857)
+physics_material_override = SubResource("PhysicsMaterial_rkb7c")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder2"]
+position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_0gaae")
+
+[node name="ColorRect" type="ColorRect" parent="LeftBorder2/CollisionShape2D"]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -571.0
+offset_right = 20.0
+offset_bottom = 571.0
+grow_vertical = 2
+color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[node name="LeftBorder3" type="StaticBody2D" parent="."]
+position = Vector2(57.1429, 81.4286)
+physics_material_override = SubResource("PhysicsMaterial_rkb7c")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder3"]
+position = Vector2(-57.1429, -80.7143)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_0gaae")
+
+[node name="ColorRect" type="ColorRect" parent="LeftBorder3/CollisionShape2D"]
+anchors_preset = -1
+offset_left = -19.0
+offset_top = -571.0
+offset_right = 19.0
+offset_bottom = 571.0
+grow_vertical = 2
+color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[node name="LeftBorder4" type="StaticBody2D" parent="."]
+position = Vector2(474.286, -4.03897e-28)
+physics_material_override = SubResource("PhysicsMaterial_rkb7c")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder4"]
+position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_0gaae")
+
+[node name="ColorRect" type="ColorRect" parent="LeftBorder4/CollisionShape2D"]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -571.0
+offset_right = 20.0
+offset_bottom = 571.0
+grow_vertical = 2
+color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[node name="RightBorder" type="StaticBody2D" parent="."]
+position = Vector2(960, 0)
+physics_material_override = SubResource("PhysicsMaterial_nbuwi")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder"]
+position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_0gaae")
+debug_color = Color(0.666667, 1, 1, 0.419608)
+
+[node name="ColorRect" type="ColorRect" parent="RightBorder/CollisionShape2D"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -571.0
+offset_right = 20.0
+offset_bottom = 571.0
+grow_vertical = 2
+color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[node name="PlayerBall1" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(-742.857, 388.571)
+physics_material_override = SubResource("PhysicsMaterial_dojh8")
+script = ExtResource("4_s4mny")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall1"]
+scale = Vector2(3.2, 3.2)
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall1"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_nbuwi")
+
+[node name="PlayerBall2" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(-240, 391.429)
+physics_material_override = SubResource("PhysicsMaterial_hgi2p")
+script = ExtResource("4_s4mny")
+ControllerId = 1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall2"]
+scale = Vector2(3.2, 3.2)
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall2"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_nbuwi")
+
+[node name="PlayerBall3" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(252.857, 390)
+physics_material_override = SubResource("PhysicsMaterial_hgi2p")
+script = ExtResource("4_s4mny")
+ControllerId = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall3"]
+scale = Vector2(3.2, 3.2)
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall3"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_40tpu")
+
+[node name="PlayerBall4" type="RigidBody2D" parent="."]
+modulate = Color(0.617334, 0.761603, 0.782717, 1)
+position = Vector2(760, 388.571)
+physics_material_override = SubResource("PhysicsMaterial_hgi2p")
+script = ExtResource("4_s4mny")
+ControllerId = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBall4"]
+scale = Vector2(3.2, 3.2)
+shape = SubResource("CircleShape2D_2fkgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBall4"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_40tpu")
+
+[node name="Player1Score" type="RichTextLabel" parent="."]
+offset_left = -994.286
+offset_top = 507.143
+offset_right = -948.286
+offset_bottom = 576.143
+theme_override_colors/default_color = Color(0, 0, 1, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="Player2Score" type="RichTextLabel" parent="."]
+offset_left = -500.0
+offset_top = 510.0
+offset_right = -453.0
+offset_bottom = 577.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="Player3Score" type="RichTextLabel" parent="."]
+offset_left = -14.0
+offset_top = 511.0
+offset_right = 30.0
+offset_bottom = 584.0
+theme_override_colors/default_color = Color(0, 0.862745, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="Player4Score" type="RichTextLabel" parent="."]
+offset_left = 481.0
+offset_top = 513.0
+offset_right = 529.0
+offset_bottom = 579.0
+theme_override_colors/default_color = Color(0.880472, 0.880472, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+
+[node name="CountdownLabel" type="Label" parent="."]
+visible = false
+offset_left = -109.0
+offset_top = -279.0
+offset_right = 119.0
+offset_bottom = 267.0
+theme_override_colors/font_color = Color(1, 0.190212, 0.840881, 1)
+theme_override_font_sizes/font_size = 400
+text = "3"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -379.0
+offset_top = -392.0
+offset_right = -271.0
+offset_bottom = -369.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "First to 5 wins"
