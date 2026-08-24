@@ -9,16 +9,22 @@ namespace BallDuel.Scenes.DodgeBall;
 
 public partial class DodgeBallScene : BaseScene
 {
-    private Random _random = new Random();
+    private Random _random = new();
+
+    private static readonly string ballScenePath = "res://Scenes/DodgeBall/DodgeBallBall.tscn";
+    private PackedScene _ballScene = GD.Load<PackedScene>(ballScenePath);
+    private float ballSpawnTime = 2f;
+    private List<RigidBody2D> ballList = new List<RigidBody2D>();
 
     public override void _Ready()
     {
         base._Ready();
 
         BlockingMessageController.Init(this);
-        CountdownController.Init(this);
-        CountdownController.StartCountdown();
-        
+
+        // CountdownController.Init(this);
+        // CountdownController.StartCountdown();
+
         Border.CollisionCallback = body =>
         {
             if (body is PlayerBall ball)
@@ -27,23 +33,88 @@ public partial class DodgeBallScene : BaseScene
                 GetTree().CreateTimer(0.1).Timeout += CheckForWin;
             }
         };
+
+        // Spawn ball leftside
+        var ballSpawnVelocity = 150;
+        int[] lanes = [-910, -405, 100, 595];
+
+        // first wave
+        GenerateBallSpawnArray(lanes, ballSpawnVelocity);
+
+        void SpawnBallLoop()
+        {
+            GenerateBallSpawnArray(lanes, ballSpawnVelocity);
+            if (ballSpawnTime < 0.05f) ballSpawnTime -= 0.10f;
+            var newTimer = GetTree().CreateTimer(ballSpawnTime);
+            newTimer.Timeout += SpawnBallLoop;
+        }
+
+        var timer = GetTree().CreateTimer(ballSpawnTime);
+        timer.Timeout += SpawnBallLoop;
+    }
+
+    private void GenerateBallSpawnArray(int[] lanes, int ballSpawnVelocity)
+    {
+        List<bool> ballSpawnArray = [true, true, true, true, true];
+        int falsePosition = _random.Next(0, 4); // 0-3 to allow two consecutive positions
+        ballSpawnArray[falsePosition] = false;
+        ballSpawnArray[falsePosition + 1] = false;
+
+        List<PlayerBall> remainingPlayerList =
+            playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
+        foreach (var playerBall in remainingPlayerList)
+        {
+            var lane = lanes[playerBall.ControllerId];
+            for (var i = ballSpawnArray.Count - 1; i >= 0; i--)
+            {
+                if (ballSpawnArray[i])
+                {
+                    SpawnBall(lane + i * 86, -450, 0, ballSpawnVelocity);
+                }
+            }
+        }
+
+        void SpawnBall(int x, int y, int dir_x, int dir_y)
+        {
+            RigidBody2D ball = _ballScene.Instantiate() as RigidBody2D;
+            ballList.Add(ball);
+            ball.GlobalPosition = new Vector2(x, y);
+            ball.LinearVelocity = new Vector2(dir_x, dir_y);
+            AddChild(ball);
+        }
     }
 
     public override void ResetScene()
     {
         base.ResetScene();
+        ballSpawnTime = 2f;
+
+        foreach (var ball in ballList)
+        {
+            ball.QueueFree();
+        }
+        ballList.Clear();
+
+
+        // CountdownController.StartCountdown();
     }
 
     private void StartNextRound()
     {
         ResetPositions();
-        CountdownController.StartCountdown();
+        ballSpawnTime = 2f;
+        foreach (var ball in ballList)
+        {
+            ball.QueueFree();
+        }
+        ballList.Clear();
+        // CountdownController.StartCountdown();
     }
-    
+
     private void CheckForWin()
     {
         Console.WriteLine("Checking for win...");
-        
+
         // TODO: Check for score win
 
         List<PlayerBall> remainingPlayerList =
@@ -69,6 +140,4 @@ public partial class DodgeBallScene : BaseScene
             Console.WriteLine(remainingPlayerList.Count + " players left");
         }
     }
-
-    
 }

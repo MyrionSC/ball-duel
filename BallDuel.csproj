@@ -11,6 +11,7 @@
     <Content Include="Scenes\BallGathering\BallGatheringScene.tscn" />
     <Content Include="Scenes\CrabBucket\CrabBucketScene.tscn" />
     <Content Include="Scenes\DodgeBall\DodgeBall.tscn" />
+    <Content Include="Scenes\DodgeBall\DodgeBallBall.tscn" />
     <Content Include="Scenes\ExplodyBall\ExplodyBall.tscn" />
     <Content Include="Scenes\GoldenBallWithObstacles\GoldenBallWithObstaclesScene.tscn" />
     <Content Include="Scenes\GoldenBallWithOrbiters\GoldenBallWithOrbitersScene.tscn" />
