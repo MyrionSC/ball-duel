@@ -11,15 +11,20 @@ public partial class VersusBigRotatorScene : BaseScene
 {
     private MiddleSpinnyThing _middleSpinnyThing;
     private Label _torqueLabel;
+    private bool _clockwise = true;
+    private Random _random;
 
     public override void _Ready()
     {
         base._Ready();
 
+        _random = new Random();
         _middleSpinnyThing = GetNode<MiddleSpinnyThing>("MiddleSpinnyThing");
         _torqueLabel = GetNode<Label>("TorqueLabel");
         _torqueLabel.Text = "torque: " + _middleSpinnyThing.ConstantTorque;
-
+        
+        SetMiddleSpinnyThingTorque();
+        
         BlockingMessageController.Init(this);
         CountdownController.Init(this);
         CountdownController.StartCountdown();
@@ -39,7 +44,9 @@ public partial class VersusBigRotatorScene : BaseScene
         base._PhysicsProcess(delta);
         if (!Globals.InputDisabled)
         {
-            _middleSpinnyThing.ConstantTorque += 20000;
+            if (_clockwise) _middleSpinnyThing.ConstantTorque += 20000;
+            else _middleSpinnyThing.ConstantTorque -= 20000;
+
             _torqueLabel.Text = "torque: " + _middleSpinnyThing.ConstantTorque;
         }
     }
@@ -77,12 +84,21 @@ public partial class VersusBigRotatorScene : BaseScene
     {
         base.ResetScene();
         _middleSpinnyThing.Reset();
+        SetMiddleSpinnyThingTorque();
     }
 
     private void StartNextRound()
     {
         ResetPositions();
         _middleSpinnyThing.Reset();
+        SetMiddleSpinnyThingTorque();
         CountdownController.StartCountdown();
+    }
+    
+    private void SetMiddleSpinnyThingTorque()
+    {
+        _clockwise = _random.Next(2) == 0;
+        if (_clockwise) _middleSpinnyThing.ConstantTorque = 100000;
+        else _middleSpinnyThing.ConstantTorque = -100000;
     }
 }

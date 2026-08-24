@@ -182,7 +182,6 @@ texture = ExtResource("9_xrdcs")
 mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_4lbyv")
 can_sleep = false
-constant_torque = 1e+06
 script = ExtResource("10_f4o1y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleSpinnyThing"]
