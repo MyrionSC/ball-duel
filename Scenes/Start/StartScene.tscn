@@ -56,7 +56,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Versus"
 
 [node name="VersusBigRotatorSelect" type="Area2D" parent="."]
-position = Vector2(-522, -167)
+position = Vector2(-393, -126)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/VersusBigRotator/VersusBigRotatorScene.tscn"
@@ -80,7 +80,7 @@ Big Spinner"
 horizontal_alignment = 1
 
 [node name="PoisonBallSelect" type="Area2D" parent="."]
-position = Vector2(-556, 5)
+position = Vector2(-741, 3)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/PoisonBall/PoisonBall.tscn"
@@ -104,7 +104,7 @@ Ball"
 horizontal_alignment = 1
 
 [node name="DodgeBallSelect" type="Area2D" parent="."]
-position = Vector2(594, -125)
+position = Vector2(405, -131)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/DodgeBall/DodgeBall.tscn"
@@ -128,7 +128,7 @@ Ball"
 horizontal_alignment = 1
 
 [node name="ExplodyBallSelect" type="Area2D" parent="."]
-position = Vector2(-529, 177)
+position = Vector2(-393, 126)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/ExplodyBall/ExplodyBall.tscn"
@@ -397,7 +397,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Tether Gather"
 
 [node name="GoldenBallWithOrbitersSelect" type="Area2D" parent="."]
-position = Vector2(622, 80)
+position = Vector2(410, 35)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/GoldenBallWithOrbiters/GoldenBallWithOrbitersScene.tscn"
@@ -421,7 +421,7 @@ With Orbiters"
 horizontal_alignment = 1
 
 [node name="GoldenBallWithOrbitersSelect2" type="Area2D" parent="."]
-position = Vector2(457, 370)
+position = Vector2(521, 452)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/GoldenBallWithObstacles/GoldenBallWithObstaclesScene.tscn"
@@ -445,7 +445,7 @@ With Obstructions"
 horizontal_alignment = 1
 
 [node name="GoldenBallSelect" type="Area2D" parent="."]
-position = Vector2(584, 248)
+position = Vector2(405, 205)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/GoldenBall/GoldenBallScene.tscn"

@@ -1,47 +1,74 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using BallDuel.Scenes.Shared;
+using BallDuel.scripts;
 using Godot;
 
 namespace BallDuel.Scenes.DodgeBall;
 
 public partial class DodgeBallScene : BaseScene
 {
-    private DodgeBall _dodgeBall;
     private Random _random = new Random();
 
     public override void _Ready()
     {
         base._Ready();
 
-        _dodgeBall = GetNode<DodgeBall>("DodgeBall");
-
-        InitializeDodgeBallVelocity();
-
         BlockingMessageController.Init(this);
         CountdownController.Init(this);
         CountdownController.StartCountdown();
-    }
-
-    private void InitializeDodgeBallVelocity()
-    {
-        var randomAngle1 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
-        var randomAngle2 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
-        const float speed = 50f;
-        _dodgeBall.LinearVelocity = new Vector2(randomAngle1 * speed, randomAngle2 * speed);
+        
+        Border.CollisionCallback = body =>
+        {
+            if (body is PlayerBall ball)
+            {
+                Console.WriteLine("ball: " + ball.ControllerId + " touched border");
+                GetTree().CreateTimer(0.1).Timeout += CheckForWin;
+            }
+        };
     }
 
     public override void ResetScene()
     {
         base.ResetScene();
-        _dodgeBall.Reset();
     }
 
     private void StartNextRound()
     {
         ResetPositions();
-        InitializeDodgeBallVelocity();
         CountdownController.StartCountdown();
-        _dodgeBall.Reset();
     }
+    
+    private void CheckForWin()
+    {
+        Console.WriteLine("Checking for win...");
+        
+        // TODO: Check for score win
+
+        List<PlayerBall> remainingPlayerList =
+            playerBallList.Where(b => b.IsControllerConnected() && Math.Abs(b.Position.X) < 50000).ToList();
+
+        if (remainingPlayerList.Count == 1)
+        {
+            PlayerBall remainingPlayer = remainingPlayerList[0];
+            var scoreLabel = GetNode<RichTextLabel>("Player" + (remainingPlayer.ControllerId + 1) + "Score");
+            var oldScore = int.Parse(scoreLabel.Text);
+            Console.WriteLine(
+                $"player {remainingPlayer.ControllerId} wins, old score: {oldScore} new score: {oldScore + 1}");
+            scoreLabel.Text = (oldScore + 1).ToString();
+            StartNextRound();
+        }
+        else if (remainingPlayerList.Count == 0)
+        {
+            Console.WriteLine("draw");
+            StartNextRound();
+        }
+        else
+        {
+            Console.WriteLine(remainingPlayerList.Count + " players left");
+        }
+    }
+
     
 }
