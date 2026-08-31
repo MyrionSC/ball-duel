@@ -11,18 +11,23 @@ public partial class PoisonBallScene : BaseScene
 {
     private PoisonBall _poisonBall;
     private PoisonBall _copiedPoisonBall;
-    private Random _random = new Random();
+    private Random _random = new();
+    private int _ballSpawnCounter = 0;
+    private int _ballSpawnTime = 450;
+    private Area2D _poisonBallSpawn;
+    private Vector2 _viewportSize;
+    private List<PoisonBall> _spawnedPoisonBalls = new();
 
     public override void _Ready()
     {
         base._Ready();
 
         _poisonBall = GetNode<PoisonBall>("PoisonBall");
-        
-        
-        
-        
-        
+        _poisonBallSpawn = GetNode<Area2D>("PoisonBallSpawn");
+
+        _viewportSize = GetViewportRect().Size;
+        RandomizePoisonBallSpawnPosition();
+
         _poisonBall.SetContactMonitor(true);
         _poisonBall.MaxContactsReported = 10;
 
@@ -33,6 +38,8 @@ public partial class PoisonBallScene : BaseScene
             playerBall.SetContactMonitor(true);
             playerBall.MaxContactsReported = 10;
         }
+
+        _spawnedPoisonBalls = new List<PoisonBall>();
 
         BlockingMessageController.Init(this);
 
@@ -48,6 +55,13 @@ public partial class PoisonBallScene : BaseScene
         _poisonBall.LinearVelocity = new Vector2(randomAngle1 * speed, randomAngle2 * speed);
     }
 
+    private void RandomizePoisonBallSpawnPosition()
+    {
+        var randomX = (float)(_random.NextDouble() * (_viewportSize.X - 200) - (_viewportSize.X - 200) / 2);
+        var randomY = (float)(_random.NextDouble() * (_viewportSize.Y - 200) - (_viewportSize.Y - 200) / 2);
+        _poisonBallSpawn.Position = new Vector2(randomX, randomY);
+    }
+
     public override void ResetScene()
     {
         base.ResetScene();
@@ -58,16 +72,25 @@ public partial class PoisonBallScene : BaseScene
     {
         ResetPositions();
         InitializePoisonBallVelocity();
-        // CountdownController.StartCountdown();
+
+        foreach (var spawnedBall in _spawnedPoisonBalls)
+        {
+            spawnedBall.QueueFree();
+        }
+        _spawnedPoisonBalls.Clear();
+        
         _poisonBall.Reset();
     }
-
-    private int _ballSpawnCounter = 0;
-    private int _ballSpawnTime = 600;
 
     public override void _PhysicsProcess(double delta)
     {
         _ballSpawnCounter++;
+        
+        
+        
+        
+        
+        
         if (_ballSpawnCounter >= _ballSpawnTime)
         {
             _ballSpawnCounter = 0;
@@ -82,7 +105,7 @@ public partial class PoisonBallScene : BaseScene
         if (_copiedPoisonBall != null)
         {
             AddChild(_copiedPoisonBall);
-            _copiedPoisonBall.Position = _poisonBall.Position;
+            _copiedPoisonBall.Position = _poisonBallSpawn.Position;
             _copiedPoisonBall.SetContactMonitor(true);
             _copiedPoisonBall.MaxContactsReported = 10;
 
@@ -90,6 +113,10 @@ public partial class PoisonBallScene : BaseScene
             var randomAngle2 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
             const float speed = 50f;
             _copiedPoisonBall.LinearVelocity = new Vector2(randomAngle1 * speed, randomAngle2 * speed);
+
+            _spawnedPoisonBalls.Add(_copiedPoisonBall);
+
+            RandomizePoisonBallSpawnPosition();
         }
     }
 

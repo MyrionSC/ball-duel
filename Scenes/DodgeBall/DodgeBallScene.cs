@@ -95,7 +95,6 @@ public partial class DodgeBallScene : BaseScene
         }
         ballList.Clear();
 
-
         CountdownController.StartCountdown();
     }
 

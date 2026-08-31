@@ -4,13 +4,8 @@ golden ball
 - obstacles before goal
 - slanted walls (or round?)
 
-
-
 === Poison ball
 - track closest player
-- spawn ball
-  - indicator
-
 
 === Minion swarm
 each team has a home base. 

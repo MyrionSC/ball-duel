@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfttyl0xw8rq7"]
+[gd_scene load_steps=21 format=3 uid="uid://dfttyl0xw8rq7"]
 
 [ext_resource type="Script" uid="uid://cgtcoriomy5qh" path="res://Scenes/PoisonBall/PoisonBallScene.cs" id="1_xyahd"]
 [ext_resource type="Texture2D" uid="uid://dp5rkktri4nd4" path="res://assets/background.jpg" id="2_i1d4m"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bxg71wtf4d74i" path="res://assets/yellow_ball.png" id="7_jltlv"]
 [ext_resource type="Script" uid="uid://b33yboy10xfc0" path="res://Scenes/PoisonBall/PoisonBall.cs" id="8_t24e7"]
 [ext_resource type="Texture2D" uid="uid://cw80qptwn7xiu" path="res://assets/black_ball.png" id="9_6b120"]
+[ext_resource type="Texture2D" uid="uid://qnaypfkeq5iw" path="res://assets/lightred_transparent_circle.png" id="10_i1d4m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rkb7c"]
 friction = 0.0
@@ -203,6 +204,13 @@ shape = SubResource("CircleShape2D_nbuwi")
 [node name="Sprite2D" type="Sprite2D" parent="PoisonBall"]
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("9_6b120")
+
+[node name="PoisonBallSpawn" type="Area2D" parent="."]
+position = Vector2(-187, -31)
+
+[node name="Sprite2D" type="Sprite2D" parent="PoisonBallSpawn"]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("10_i1d4m")
 
 [node name="Player1Score" type="RichTextLabel" parent="."]
 visible = false
