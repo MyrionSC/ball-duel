@@ -17,7 +17,6 @@
     <Content Include="Scenes\GoldenBallWithOrbiters\GoldenBallWithOrbitersScene.tscn" />
     <Content Include="Scenes\GoldenBall\GoldenBallScene.tscn" />
     <Content Include="Scenes\KingOfBalls\KingOfBallsScene.tscn" />
-    <Content Include="Scenes\PoisonBall\PoisonBall.tscn" />
     <Content Include="Scenes\Shared\TetherBall.tscn" />
     <Content Include="Scenes\TetherBallz\TetherBallzScene.tscn" />
     <Content Include="Scenes\CTF\CTFScene.tscn" />

@@ -1,23 +1,18 @@
 
 
 golden ball
-- without orbiters (done)
 - obstacles before goal
 - slanted walls (or round?)
 
-reasign scripts
 
 
+=== Poison ball
+- collide with ball trigger
+- smaller
+- track closest player
+- spawn ball
+  - indicator
 
-
-
-
-
-Tetherversus less ball mass
-
-Score in Crab Bucket
-
-Score overflows after 9
 
 === Minion swarm
 each team has a home base. 

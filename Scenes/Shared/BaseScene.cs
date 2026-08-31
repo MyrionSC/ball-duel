@@ -91,4 +91,10 @@ public partial class BaseScene : Node2D
         var tethers = GetChildren().OfType<TetherBall>().ToArray();
         foreach (var tether in tethers) tether.ResetToStart();
     }
+    
+    public IEnumerable<PlayerBall> GetPlayerBalls()
+    {
+        return GetChildren().OfType<PlayerBall>().Where(node => node.Name.ToString().StartsWith("PlayerBall"));
+    }
+
 }

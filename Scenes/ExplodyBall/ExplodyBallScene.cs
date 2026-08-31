@@ -111,9 +111,4 @@ public partial class ExplodyBallScene : BaseScene
             Console.WriteLine(remainingPlayerList.Count + " players left");
         }
     }
-
-    private IEnumerable<PlayerBall> GetPlayerBalls()
-    {
-        return GetChildren().OfType<PlayerBall>().Where(node => node.Name.ToString().StartsWith("PlayerBall"));
-    }
 }

@@ -56,7 +56,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Versus"
 
 [node name="VersusBigRotatorSelect" type="Area2D" parent="."]
-position = Vector2(-393, -126)
+position = Vector2(-521, -175)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/VersusBigRotator/VersusBigRotatorScene.tscn"
@@ -80,7 +80,7 @@ Big Spinner"
 horizontal_alignment = 1
 
 [node name="PoisonBallSelect" type="Area2D" parent="."]
-position = Vector2(-741, 3)
+position = Vector2(-470, 15)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/PoisonBall/PoisonBall.tscn"
@@ -128,7 +128,7 @@ Ball"
 horizontal_alignment = 1
 
 [node name="ExplodyBallSelect" type="Area2D" parent="."]
-position = Vector2(-393, 126)
+position = Vector2(-534, 194)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/ExplodyBall/ExplodyBall.tscn"
@@ -265,7 +265,7 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Airhockey"
 
 [node name="CrabBucketSelect" type="Area2D" parent="."]
-position = Vector2(-408, 303)
+position = Vector2(-418, 324)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
 resString = "res://Scenes/CrabBucket/CrabBucketScene.tscn"
