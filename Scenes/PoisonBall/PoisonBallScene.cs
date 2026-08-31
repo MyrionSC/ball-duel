@@ -13,7 +13,8 @@ public partial class PoisonBallScene : BaseScene
     private PoisonBall _copiedPoisonBall;
     private Random _random = new();
     private int _ballSpawnCounter = 0;
-    private int _ballSpawnTime = 450;
+    private int _ballSpawnTime = 400;
+    private const float TrackingForce = 50f;
     private Area2D _poisonBallSpawn;
     private Vector2 _viewportSize;
     private List<PoisonBall> _poisonBallList = new();
@@ -44,8 +45,8 @@ public partial class PoisonBallScene : BaseScene
 
         BlockingMessageController.Init(this);
 
-        // CountdownController.Init(this);
-        // CountdownController.StartCountdown();
+        CountdownController.Init(this);
+        CountdownController.StartCountdown();
     }
 
     private void InitializePoisonBallVelocity()
@@ -74,6 +75,8 @@ public partial class PoisonBallScene : BaseScene
         ResetPositions();
         InitializePoisonBallVelocity();
 
+        _ballSpawnCounter = 0;
+
         foreach (var ball in _poisonBallList)
         {
             if (ball != _poisonBall)
@@ -81,11 +84,15 @@ public partial class PoisonBallScene : BaseScene
         }
 
         _poisonBallList.Clear();
-
+        _poisonBallList.Add(_poisonBall);
         _poisonBall.Reset();
+
+        RandomizePoisonBallSpawnPosition();
+
+        CountdownController.StartCountdown();
     }
 
-    private PlayerBall FindClosestPlayerBall(Vector2 position)
+    private Vector2 FindClosestPlayerBall(Vector2 position)
     {
         PlayerBall closest = null;
         float minDistance = float.MaxValue;
@@ -103,24 +110,32 @@ public partial class PoisonBallScene : BaseScene
             }
         }
 
-        return closest;
+        if (closest == null)
+            return Vector2.Zero;
+
+        return (closest.Position - position).Normalized();
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        _ballSpawnCounter++;
-
-        foreach (var poisonBall in _poisonBallList)
+        if (!Globals.InputDisabled)
         {
-            var closestPlayerBall = FindClosestPlayerBall(poisonBall.Position);
-            GD.Print($"closest to: {closestPlayerBall.Name}");
-        }
+            _ballSpawnCounter++;
 
-        if (_ballSpawnCounter >= _ballSpawnTime)
-        {
-            _ballSpawnCounter = 0;
-            Console.WriteLine("SPAWN BALL!");
-            SpawnPoisonBallCopy();
+            foreach (var poisonBall in _poisonBallList)
+            {
+                var directionToClosest = FindClosestPlayerBall(poisonBall.Position);
+                if (directionToClosest != Vector2.Zero)
+                {
+                    poisonBall.ApplyCentralForce(directionToClosest * TrackingForce);
+                }
+            }
+
+            if (_ballSpawnCounter >= _ballSpawnTime)
+            {
+                _ballSpawnCounter = 0;
+                SpawnPoisonBallCopy();
+            }
         }
     }
 

@@ -83,7 +83,7 @@ horizontal_alignment = 1
 position = Vector2(-470, 15)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("7_3j15m")
-resString = "res://Scenes/PoisonBall/PoisonBall.tscn"
+resString = "res://Scenes/PoisonBall/PoisonBallScene.tscn"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PoisonBallSelect"]
