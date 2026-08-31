@@ -16,7 +16,7 @@ public partial class PoisonBallScene : BaseScene
     private int _ballSpawnTime = 450;
     private Area2D _poisonBallSpawn;
     private Vector2 _viewportSize;
-    private List<PoisonBall> _spawnedPoisonBalls = new();
+    private List<PoisonBall> _poisonBallList = new();
 
     public override void _Ready()
     {
@@ -39,7 +39,8 @@ public partial class PoisonBallScene : BaseScene
             playerBall.MaxContactsReported = 10;
         }
 
-        _spawnedPoisonBalls = new List<PoisonBall>();
+        _poisonBallList = new List<PoisonBall>();
+        _poisonBallList.Add(_poisonBall);
 
         BlockingMessageController.Init(this);
 
@@ -65,7 +66,7 @@ public partial class PoisonBallScene : BaseScene
     public override void ResetScene()
     {
         base.ResetScene();
-        _poisonBall.Reset();
+        StartNextRound();
     }
 
     private void StartNextRound()
@@ -73,24 +74,48 @@ public partial class PoisonBallScene : BaseScene
         ResetPositions();
         InitializePoisonBallVelocity();
 
-        foreach (var spawnedBall in _spawnedPoisonBalls)
+        foreach (var ball in _poisonBallList)
         {
-            spawnedBall.QueueFree();
+            if (ball != _poisonBall)
+                ball.QueueFree();
         }
-        _spawnedPoisonBalls.Clear();
-        
+
+        _poisonBallList.Clear();
+
         _poisonBall.Reset();
+    }
+
+    private PlayerBall FindClosestPlayerBall(Vector2 position)
+    {
+        PlayerBall closest = null;
+        float minDistance = float.MaxValue;
+
+        foreach (var playerBall in GetPlayerBalls())
+        {
+            if (!playerBall.IsControllerConnected() || Math.Abs(playerBall.Position.X) >= 50000)
+                continue;
+
+            float distance = position.DistanceTo(playerBall.Position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closest = playerBall;
+            }
+        }
+
+        return closest;
     }
 
     public override void _PhysicsProcess(double delta)
     {
         _ballSpawnCounter++;
-        
-        
-        
-        
-        
-        
+
+        foreach (var poisonBall in _poisonBallList)
+        {
+            var closestPlayerBall = FindClosestPlayerBall(poisonBall.Position);
+            GD.Print($"closest to: {closestPlayerBall.Name}");
+        }
+
         if (_ballSpawnCounter >= _ballSpawnTime)
         {
             _ballSpawnCounter = 0;
@@ -114,7 +139,7 @@ public partial class PoisonBallScene : BaseScene
             const float speed = 50f;
             _copiedPoisonBall.LinearVelocity = new Vector2(randomAngle1 * speed, randomAngle2 * speed);
 
-            _spawnedPoisonBalls.Add(_copiedPoisonBall);
+            _poisonBallList.Add(_copiedPoisonBall);
 
             RandomizePoisonBallSpawnPosition();
         }
