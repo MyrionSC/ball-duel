@@ -10,6 +10,7 @@ namespace BallDuel.Scenes.PoisonBall;
 public partial class PoisonBallScene : BaseScene
 {
     private PoisonBall _poisonBall;
+    private PoisonBall _copiedPoisonBall;
     private Random _random = new Random();
 
     public override void _Ready()
@@ -17,6 +18,11 @@ public partial class PoisonBallScene : BaseScene
         base._Ready();
 
         _poisonBall = GetNode<PoisonBall>("PoisonBall");
+        
+        
+        
+        
+        
         _poisonBall.SetContactMonitor(true);
         _poisonBall.MaxContactsReported = 10;
 
@@ -54,6 +60,37 @@ public partial class PoisonBallScene : BaseScene
         InitializePoisonBallVelocity();
         // CountdownController.StartCountdown();
         _poisonBall.Reset();
+    }
+
+    private int _ballSpawnCounter = 0;
+    private int _ballSpawnTime = 600;
+
+    public override void _PhysicsProcess(double delta)
+    {
+        _ballSpawnCounter++;
+        if (_ballSpawnCounter >= _ballSpawnTime)
+        {
+            _ballSpawnCounter = 0;
+            Console.WriteLine("SPAWN BALL!");
+            SpawnPoisonBallCopy();
+        }
+    }
+
+    private void SpawnPoisonBallCopy()
+    {
+        _copiedPoisonBall = _poisonBall.Duplicate() as PoisonBall;
+        if (_copiedPoisonBall != null)
+        {
+            AddChild(_copiedPoisonBall);
+            _copiedPoisonBall.Position = _poisonBall.Position;
+            _copiedPoisonBall.SetContactMonitor(true);
+            _copiedPoisonBall.MaxContactsReported = 10;
+
+            var randomAngle1 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
+            var randomAngle2 = (float)((_random.NextDouble() - 0.5) * Math.PI * 2);
+            const float speed = 50f;
+            _copiedPoisonBall.LinearVelocity = new Vector2(randomAngle1 * speed, randomAngle2 * speed);
+        }
     }
 
     public void Collide(Node2D body)

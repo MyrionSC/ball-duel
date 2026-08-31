@@ -7,8 +7,6 @@ golden ball
 
 
 === Poison ball
-- collide with ball trigger
-- smaller
 - track closest player
 - spawn ball
   - indicator

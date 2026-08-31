@@ -22,8 +22,8 @@ public partial class DodgeBallScene : BaseScene
 
         BlockingMessageController.Init(this);
 
-        // CountdownController.Init(this);
-        // CountdownController.StartCountdown();
+        CountdownController.Init(this);
+        CountdownController.StartCountdown();
 
         Border.CollisionCallback = body =>
         {
@@ -96,7 +96,7 @@ public partial class DodgeBallScene : BaseScene
         ballList.Clear();
 
 
-        // CountdownController.StartCountdown();
+        CountdownController.StartCountdown();
     }
 
     private void StartNextRound()
@@ -108,7 +108,7 @@ public partial class DodgeBallScene : BaseScene
             ball.QueueFree();
         }
         ballList.Clear();
-        // CountdownController.StartCountdown();
+        CountdownController.StartCountdown();
     }
 
     private void CheckForWin()
