@@ -14,7 +14,7 @@ public partial class DodgeBallScene : BaseScene
     private static readonly string ballScenePath = "res://Scenes/DodgeBall/DodgeBallBall.tscn";
     private PackedScene _ballScene = GD.Load<PackedScene>(ballScenePath);
     private float ballSpawnTime = 2f;
-    private List<RigidBody2D> ballList = new List<RigidBody2D>();
+    private List<RigidBody2D> ballList = new();
 
     public override void _Ready()
     {
@@ -44,7 +44,7 @@ public partial class DodgeBallScene : BaseScene
         void SpawnBallLoop()
         {
             GenerateBallSpawnArray(lanes, ballSpawnVelocity);
-            if (ballSpawnTime < 0.05f) ballSpawnTime -= 0.10f;
+            if (ballSpawnTime > 0.69f) ballSpawnTime -= 0.10f;
             var newTimer = GetTree().CreateTimer(ballSpawnTime);
             newTimer.Timeout += SpawnBallLoop;
         }
